@@ -12,15 +12,16 @@
         padding: 0;
 
         /* 🌌 GLOBAL NEON BACKGROUND (ALL NON-GAMING TABS) */
-        background: radial-gradient(circle at top, #0b0f2a, #050816);
-        color: white;
+        background: #111;
+        color: #00f;
     }
 
     header {
         background-color: #000;
         color: white;
         text-align: center;
-        padding: 0.8rem;
+        padding: 0.6rem;
+        font-family:m;
     }
 
     /* NAV */
@@ -42,10 +43,10 @@
     }
 
     nav button:hover {
-        background-color: #111;
+        background-color: #222;
         
     }
-
+    
     nav button.active {
         background-color: #222;
         border-bottom: 2px solid #00aaff;
@@ -107,17 +108,22 @@
     .neon-theme a:hover {
         color: #ff004c;
     }
+    .legal-and-contact-tab{
+        color:floralwhite;
+    }
 
     /* ========================= */
     /* GAMING OVERRIDE BACKGROUND*/
     /* ========================= */
 
+    .nav-button-gaming{
+      border-bottom:2px #590401;
+    }
+  
     .gaming-theme {
-        background: #111 !important;
+        background: #111;
         color: #f00;
-        border: 1px solid #444;
-        box-shadow: 0 0 25px rgba(255, 0, 80, 0.2);
-        padding: 2rem;
+        border: px solid #111;
     }
 
     .gaming-theme h2 {
@@ -185,17 +191,16 @@
 <section id="gaming" class="tab-content gaming-theme">
     <h2>Gaming Projects</h2>
 
-    <button>Game Prototype 1</button>
-    <button>Game Prototype 2</button>
+    <button>Game 1</button>
+    <button>Game 2</button>
     <button>More Coming Soon</button>
 
     <p style="margin-top: 1rem;">
-        Experimental game systems, AI simulations, and prototypes will appear here.
     </p>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="tab-content neon-theme">
+<section id="contact" class="tab-content legal-and-contact-tab">
     <h2>Contact & Legal</h2>
 
     <p>
