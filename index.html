@@ -13,6 +13,8 @@
   --red:#ff4040;
   --blue-dim:rgba(0,170,255,.35);
   --red-dim:rgba(255,64,64,.35);
+  --business:#00d4aa;
+  --business-dim:rgba(0,212,170,.35);
   
 }
 
@@ -353,6 +355,33 @@ footer{
   .tab-content{padding:36px 16px 60px}
 }
   /* ── BUSINESS ── */
+  .tab-button.active[data-tab="Business"]{
+  border-color:var(--business);
+  color:var(--business);
+  box-shadow:0 0 18px var(--business-dim);
+  background:#081714;
+}
+/* BUSINESS THEME */
+
+.business-theme .card:hover{
+  border-color:var(--business);
+  box-shadow:0 0 24px rgba(0,212,170,.15);
+}
+
+.business-btn{
+  background:transparent;
+  color:var(--business);
+  border:1px solid var(--business);
+}
+
+.business-btn:hover{
+  background:var(--business);
+  color:#081010;
+}
+
+.badge.business{
+  background:rgba(0,212,170,.12);
+  color:#6fffd7;
 }
 </style>
 </head>
@@ -365,10 +394,11 @@ footer{
 <header>
   <h1>VELLUM STUDIO</h1>
   <p>Build. Create. Experiment.</p>
-  <div class="hero">
+  <div class="hero" id="featured-hero">
     <h2>Featured Project</h2>
-    <h3>Creator Software Bundle</h3>
-    <p>A creator bundle that helps get you started with making content. Also built to outlast other tools.</p>
+    <h3 id="feat-title">Loading&hellip;</h3>
+    <p id="feat-desc"></p>
+    <a id="feat-link" class="main-btn neon-btn" href="#" target="_blank" style="display:none">View Product</a>
   </div>
 </header>
 
@@ -394,28 +424,11 @@ footer{
 </section>
 
 <!--Business -->
-<section id="business" class="tab-content gaming-theme">
+<section id="Business" class="tab-content business-theme">
   <h2 class="section-title">Business</h2>
   <div class="grid-cards">
 <!--BUSINESS_START-->
-    <div class="card">
-      <span class="badge red">GUIDE</span>
-      <h3>Game Setup Guide</h3>
-      <p>Read before purchasing gaming-related tools.</p>
-      <a class="main-btn gaming-btn" href="https://vellumtech55.github.io/vellum-setup-page/" target="_blank">Open Guide</a>
-    </div>
 
-    <div class="card">
-      <h3>Professional Game Review</h3>
-      <p>Detailed feedback and review service for games.</p>
-      <a class="main-btn gaming-btn" href="https://vellumtech.gumroad.com/l/ountn" target="_blank">View Product</a>
-    </div>
-
-    <div class="card" hidden>
-      <span class="badge red">SOON</span>
-      <h3>New Projects</h3>
-      <p>More gaming tools in development.</p>
-    </div>
 <!--BUSINESS_END-->
   </div>
 </section>
@@ -494,7 +507,7 @@ footer{
 
   <div class="legal-box">
     <h3>Legal</h3>
-END USER LICENSE AGREEMENT (EULA)
+<pre style="white-space:pre-wrap;font-family:Inter,sans-serif;font-size:.85rem;color:#777;line-height:1.75">END USER LICENSE AGREEMENT (EULA)
 
 Last Updated: June 3, 2026
 
@@ -630,6 +643,7 @@ Questions regarding this Agreement may be directed to:
 <p>contact us from our website connection "https://vellumtech55.github.io/vellum/" under the contact tab</p>
 
 <p>By downloading, installing, accessing, purchasing, or using the Software, you acknowledge that you have read, understood, and agree to be bound by this Agreement.</p>
+</pre>
   </div>
 </section>
 
@@ -639,6 +653,41 @@ Questions regarding this Agreement may be directed to:
 </footer>
 
 <script>
+/* ── FEATURED PRODUCT ────────────────────────────────────────────────────────
+   Change the values below to update the featured project.
+   Set url to "" to hide the View Product button.
+   ────────────────────────────────────────────────────────────────────────── */
+const FEATURED = {
+  title : "Creator Software Bundle",
+  desc  : "A creator bundle that helps get you started with making content. Built to outlast other tools.",
+  url   : "",          // e.g. "https://vellumtech.gumroad.com/l/xxxx"
+  theme : "blue"       // "blue" | "red" | "teal"
+};
+
+(function applyFeatured(){
+  const title = document.getElementById("feat-title");
+  const desc  = document.getElementById("feat-desc");
+  const link  = document.getElementById("feat-link");
+  const hero  = document.getElementById("featured-hero");
+  if(title) title.textContent = FEATURED.title;
+  if(desc)  desc.textContent  = FEATURED.desc;
+  if(link && FEATURED.url){
+    link.href = FEATURED.url;
+    link.style.display = "inline-block";
+    if(FEATURED.theme === "red"){
+      link.className = "main-btn gaming-btn";
+    } else if(FEATURED.theme === "teal"){
+      link.className = "main-btn business-btn";
+    }
+  }
+  if(hero && FEATURED.theme === "red"){
+    hero.style.borderColor = "rgba(255,64,64,.25)";
+  } else if(hero && FEATURED.theme === "teal"){
+    hero.style.borderColor = "rgba(0,212,170,.25)";
+  }
+})();
+
+/* ── TAB SWITCHER ── */
 const buttons = document.querySelectorAll(".tab-button");
 const tabs    = document.querySelectorAll(".tab-content");
 const bg      = document.getElementById("bg");
@@ -647,19 +696,17 @@ buttons.forEach(btn => {
   btn.onclick = () => {
     buttons.forEach(b => b.classList.remove("active"));
     tabs.forEach(t => t.classList.remove("active"));
-
     btn.classList.add("active");
     document.getElementById(btn.dataset.tab).classList.add("active");
-
     bg.classList.toggle("red", btn.dataset.tab === "gaming");
   };
 });
 
-/* secret: type "vellum" */
+/* ── SECRET: type "vellum" ── */
 const secret = [];
 document.addEventListener("keydown", e => {
   secret.push(e.key.toLowerCase());
-  if (secret.slice(-6).join("") === "vellum")
+  if(secret.slice(-6).join("") === "vellum")
     document.body.classList.toggle("secret-mode");
 });
 </script>
