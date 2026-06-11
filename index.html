@@ -13,6 +13,7 @@
   --red:#ff4040;
   --blue-dim:rgba(0,170,255,.35);
   --red-dim:rgba(255,64,64,.35);
+  
 }
 
 body{
@@ -351,6 +352,8 @@ footer{
   header h1{font-size:2.5rem}
   .tab-content{padding:36px 16px 60px}
 }
+  /* ── BUSINESS ── */
+}
 </style>
 </head>
 <body>
@@ -364,17 +367,18 @@ footer{
   <p>Build. Create. Experiment.</p>
   <div class="hero">
     <h2>Featured Project</h2>
-    <h3>Automatic Video Clipper</h3>
-    <p>AI-style detection using audio spikes + frame analysis to extract highlights automatically.</p>
+    <h3>Creator Software Bundle</h3>
+    <p>A creator bundle that helps get you started with making content. Also built to outlast other tools.</p>
   </div>
 </header>
 
 <nav>
   <button class="tab-button active" data-tab="home">Home</button>
-  <button class="tab-button" data-tab="software">Software</button>
+  <button class="tab-button" data-tab="software">All Software</button>
+    <button class="tab-button" data-tab="Business">Business</button>
   <button class="tab-button" data-tab="gaming">Gaming</button>
-  <button class="tab-button" data-tab="labs">Labs</button>
-  <button class="tab-button" data-tab="roadmap">Roadmap</button>
+  <button class="tab-button" data-tab="creator">Creator</button>
+  <button class="tab-button" data-tab="roadmap">roadmap</button>
   <button class="tab-button" data-tab="contact">Contact</button>
 </nav>
 
@@ -382,16 +386,17 @@ footer{
 <section id="home" class="tab-content active">
   <h2 class="section-title">Studio Stats</h2>
   <div class="grid-cards">
-    <div class="card stat-card"><h3>6+</h3><p>Tools Released</p></div>
+    <div class="card stat-card"hidden><h3>6+</h3><p>Tools Released</p></div>
     <div class="card stat-card"><h3>100%</h3><p>Independent</p></div>
-    <div class="card stat-card"><h3>Python</h3><p>Main Stack</p></div>
+    <div class="card stat-card"><h3>Python</h3><p>Main programming language</p></div>
     <div class="card stat-card"><h3>∞</h3><p>Ideas</p></div>
+    <div class="card stat-card"><h3>100%</h3><p>Safe</p></div>
   </div>
 </section>
 
 <!-- SOFTWARE -->
 <section id="software" class="tab-content neon-theme">
-  <h2 class="section-title">Software</h2>
+  <h2 class="section-title">All Software</h2>
   <div class="grid-cards">
 
     <div class="card">
@@ -402,33 +407,34 @@ footer{
     </div>
 
     <div class="card">
-      <span class="badge">STABLE</span>
       <h3>Simple Timer</h3>
       <p>Minimal desktop timer utility.</p>
       <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/xcofr" target="_blank">View Product</a>
     </div>
 
     <div class="card">
-      <span class="badge">UPDATED</span>
+
       <h3>Screen Recorder</h3>
       <p>Simple lightweight recording software.</p>
       <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/gdazef" target="_blank">View Product</a>
     </div>
 
     <div class="card">
-      <span class="badge">POPULAR</span>
+
       <h3>Audio Converter</h3>
       <p>Fast, flexible audio format conversion.</p>
+      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/stjica" target="_blank">View Product</a>
     </div>
 
     <div class="card">
-      <span class="badge">FEATURED</span>
+
       <h3>Video Clipper</h3>
       <p>AI-style highlight extraction from video.</p>
+      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/jdorg" target="_blank">View Product</a>
     </div>
 
     <div class="card">
-      <span class="badge">PRO</span>
+
       <h3>Work Tracker</h3>
       <p>Track projects, work sessions, and productivity.</p>
       <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/rtchpp" target="_blank">View Product</a>
@@ -436,12 +442,11 @@ footer{
 
   </div>
 </section>
-
-<!-- GAMING -->
-<section id="gaming" class="tab-content gaming-theme">
-  <h2 class="section-title">Gaming Projects</h2>
+<!--Business -->
+<section id="business" class="tab-content gaming-theme">
+  <h2 class="section-title">Business</h2>
   <div class="grid-cards">
-
+<!--BUSINESS_START-->
     <div class="card">
       <span class="badge red">GUIDE</span>
       <h3>Game Setup Guide</h3>
@@ -450,27 +455,67 @@ footer{
     </div>
 
     <div class="card">
-      <span class="badge red">LIVE</span>
       <h3>Professional Game Review</h3>
       <p>Detailed feedback and review service for games.</p>
       <a class="main-btn gaming-btn" href="https://vellumtech.gumroad.com/l/ountn" target="_blank">View Product</a>
     </div>
 
-    <div class="card">
+    <div class="card" hidden>
       <span class="badge red">SOON</span>
       <h3>New Projects</h3>
       <p>More gaming tools in development.</p>
     </div>
+<!--BUSINESS_END-->
+  </div>
+</section>
+<!-- GAMING -->
+<section id="gaming" class="tab-content gaming-theme">
+  <h2 class="section-title">Gaming Projects</h2>
+  <div class="grid-cards">
+<!--GAMING_START-->
+    <div class="card">
+      <span class="badge red">GUIDE</span>
+      <h3>Game Setup Guide</h3>
+      <p>Read before purchasing gaming-related tools.</p>
+      <a class="main-btn gaming-btn" href="https://vellumtech55.github.io/vellum-setup-page/" target="_blank">Open Guide</a>
+    </div>
 
+    <div class="card">
+      <h3>Professional Game Review</h3>
+      <p>Detailed feedback and review service for games.</p>
+      <a class="main-btn gaming-btn" href="https://vellumtech.gumroad.com/l/ountn" target="_blank">View Product</a>
+    </div>
+
+    <div class="card" hidden>
+      <span class="badge red">SOON</span>
+      <h3>New Projects</h3>
+      <p>More gaming tools in development.</p>
+    </div>
+<!--GAMING_END-->
   </div>
 </section>
 
-<!-- LABS -->
-<section id="labs" class="tab-content">
-  <h2 class="section-title">Vellum Labs</h2>
+<!-- Creator -->
+<section id="creator" class="tab-content">
+  <h2 class="section-title">Creator software</h2>
   <div class="grid-cards">
-    <div class="card"><h3>Experimental Systems</h3><p style="color:#666;margin-top:8px">Prototypes and research builds.</p></div>
-    <div class="card"><h3>Creator Utilities</h3><p style="color:#666;margin-top:8px">Workflow tools for content creators.</p></div>
+    <!--CREATOR_START-->
+    <div class="card"hidden>
+      <h3>Video Editor</h3>
+      <p>An automatic video editor that helps with time consuming cutting by catching audio spikes and frame catches.</p>
+      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/jdorg" target="_blank">View Product </a>
+    </div>
+    <div class="card">
+      <h3>Audio Converter</h3>
+      <p>An audio converter to help convert audio and video into other forms of audio file flavors</p>
+      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/stjica" target="_blank">View Product </a>
+    </div>
+        <div class="card">
+      <h3>Screen Capture</h3>
+      <p>A capturing software that has a highly customizable and lightweight system</p>
+      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/gdazef" target="_blank">View Product</a>
+    </div>
+<!--CREATOR_END-->
   </div>
 </section>
 
@@ -478,11 +523,8 @@ footer{
 <section id="roadmap" class="tab-content">
   <h2 class="section-title">Roadmap</h2>
   <div class="roadmap">
-    <div class="step">✔&nbsp; Core Tools Released</div>
-    <div class="step">✔&nbsp; Website v1</div>
-    <div class="step">⚙&nbsp; Membership System</div>
-    <div class="step">⚙&nbsp; Creator Dashboard</div>
-    <div class="step">🔬&nbsp; Experimental Engine</div>
+    <div class="step">Released ready products</div>
+    <div class="step">Redo Whole UI System</div>
   </div>
 </section>
 
