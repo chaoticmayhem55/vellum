@@ -4,24 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vellum Studio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,800;1,500&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 :root{
-  --blue:#00aaff;
-  --red:#ff4040;
-  --blue-dim:rgba(0,170,255,.35);
-  --red-dim:rgba(255,64,64,.35);
-  --business:#00d4aa;
-  --business-dim:rgba(0,212,170,.35);
-  
+  /* ── core ink + parchment ── */
+  --ink-950:#08090b;
+  --ink-900:#101216;
+  --ink-850:#15171c;
+  --ink-800:#1c1f25;
+  --line:rgba(241,237,228,.09);
+  --line-strong:rgba(241,237,228,.18);
+  --text:#f1ede3;
+  --text-dim:#9b9690;
+  --text-faint:#8a8478;
+
+  /* ── category accents ── */
+  --gold:#d8a955;
+  --gold-dim:rgba(216,169,85,.35);
+  --gold-bg:#191510;
+
+  --crimson:#d6495b;
+  --crimson-dim:rgba(214,73,91,.35);
+  --crimson-bg:#1a0e10;
+
+  --emerald:#2bd6a3;
+  --emerald-dim:rgba(43,214,163,.35);
+  --emerald-bg:#0c1815;
+
+  --violet:#8d80e0;
+  --violet-dim:rgba(141,128,224,.35);
+  --violet-bg:#131120;
+
+  --font-display:'Fraunces',serif;
+  --font-body:'Inter',sans-serif;
 }
 
 body{
-  font-family:Inter,sans-serif;
-  background:#070707;
-  color:white;
+  font-family:var(--font-body);
+  background:var(--ink-950);
+  color:var(--text);
   overflow-x:hidden;
 }
 
@@ -30,23 +54,21 @@ body{
   position:fixed;
   inset:0;
   z-index:-3;
-  transition:.6s;
 }
-
 .bg-glow::before{
   content:"";
   position:absolute;
   width:900px;
   height:900px;
   border-radius:50%;
-  filter:blur(160px);
-  background:rgba(0,140,255,.18);
-  animation:float 16s ease-in-out infinite;
+  filter:blur(170px);
+  background:rgba(216,169,85,.14);
+  animation:float 18s ease-in-out infinite;
+  transition:background 1s ease;
 }
-
-.bg-glow.red::before{
-  background:rgba(255,60,60,.18);
-}
+.bg-glow.crimson::before{ background:rgba(214,73,91,.16); }
+.bg-glow.emerald::before{ background:rgba(43,214,163,.13); }
+.bg-glow.violet::before { background:rgba(141,128,224,.15); }
 
 @keyframes float{
   0%  {transform:translate(-10%,-10%) scale(1)}
@@ -54,19 +76,17 @@ body{
   100%{transform:translate(-10%,-10%) scale(1)}
 }
 
-/* grid */
 .grid-bg{
   position:fixed;
   inset:0;
   z-index:-2;
-  opacity:.07;
+  opacity:.06;
   background-image:
     linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
   background-size:45px 45px;
 }
 
-/* grain overlay – replaces particles */
 .grain{
   position:fixed;
   inset:0;
@@ -78,310 +98,417 @@ body{
   background-size:180px 180px;
 }
 
+/* ── DECKLE EDGE (signature element: torn-paper divider) ── */
+.deckle{
+  height:16px;
+  width:100%;
+  background-color:var(--ink-950);
+  background-image:
+    linear-gradient(135deg, var(--ink-900) 50%, transparent 50%),
+    linear-gradient(-135deg, var(--ink-900) 50%, transparent 50%);
+  background-position:0 0,0 0;
+  background-size:16px 16px;
+  background-repeat:repeat-x;
+}
+
 /* ── HEADER ── */
 header{
   text-align:center;
-  padding:120px 20px 60px;
+  padding:110px 20px 0;
+  background:var(--ink-900);
+}
+
+.eyebrow{
+  font-size:.78rem;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:14px;
 }
 
 header h1{
-  font-size:4rem;
-  letter-spacing:3px;
+  font-family:var(--font-display);
+  font-size:4.2rem;
   font-weight:800;
+  letter-spacing:1px;
 }
 
-header p{
-  color:#aaa;
-  margin-top:12px;
+header p.tagline{
+  color:var(--text-dim);
+  margin-top:10px;
+  font-size:1.05rem;
+  font-family:var(--font-display);
+  font-style:italic;
 }
 
 .hero{
-  max-width:860px;
-  margin:30px auto 0;
-  padding:28px 32px;
-  border-radius:20px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  backdrop-filter:blur(12px);
+  max-width:780px;
+  margin:36px auto 0;
+  padding:30px 34px;
+  border-radius:4px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
 }
 
-.hero h2{font-size:1rem;color:#666;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
-.hero h3{font-size:1.4rem;margin-bottom:8px}
-.hero p{color:#aaa;font-size:.95rem}
+.hero h2{font-size:.78rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px;font-weight:600}
+.hero h3{font-family:var(--font-display);font-size:1.5rem;margin-bottom:10px;font-weight:600}
+.hero p{color:var(--text-dim);font-size:.95rem;line-height:1.6}
+
+header .deckle-spacer{ height:48px; }
 
 /* ── NAV ── */
 nav{
   display:flex;
   justify-content:center;
-  gap:10px;
+  gap:8px;
   flex-wrap:wrap;
-  padding:18px 20px;
+  padding:16px 20px;
   position:sticky;
   top:0;
   backdrop-filter:blur(14px);
-  background:rgba(0,0,0,.5);
+  background:rgba(8,9,11,.78);
   z-index:10;
-  border-bottom:1px solid rgba(255,255,255,.05);
+  border-bottom:1px solid var(--line);
 }
 
 .tab-button{
-  padding:11px 20px;
-  border-radius:12px;
-  border:1px solid #2a2a2a;
-  background:#111;
-  color:#bbb;
+  padding:10px 18px;
+  border-radius:8px;
+  border:1px solid var(--line-strong);
+  background:var(--ink-850);
+  color:var(--text-dim);
   cursor:pointer;
-  transition:.22s;
-  font-size:.92rem;
+  transition:.2s;
+  font-size:.88rem;
   font-weight:600;
+  font-family:var(--font-body);
 }
 
 .tab-button:hover{
-  transform:translateY(-2px);
-  color:white;
-  border-color:#444;
+  transform:translateY(-1px);
+  color:var(--text);
+  border-color:var(--text-faint);
 }
 
-.tab-button.active{
-  border-color:var(--blue);
-  color:var(--blue);
-  box-shadow:0 0 18px var(--blue-dim);
-  background:#0a0f18;
-}
+.tab-button.active{ background:var(--ink-800); }
 
-.tab-button.active[data-tab="gaming"]{
-  border-color:var(--red);
-  color:var(--red);
-  box-shadow:0 0 18px var(--red-dim);
-  background:#180a0a;
-}
+.tab-button.active[data-accent="gold"]   { border-color:var(--gold);    color:var(--gold);    box-shadow:0 0 16px var(--gold-dim); }
+.tab-button.active[data-accent="crimson"]{ border-color:var(--crimson); color:var(--crimson); box-shadow:0 0 16px var(--crimson-dim); }
+.tab-button.active[data-accent="emerald"]{ border-color:var(--emerald); color:var(--emerald); box-shadow:0 0 16px var(--emerald-dim); }
+.tab-button.active[data-accent="violet"] { border-color:var(--violet);  color:var(--violet);  box-shadow:0 0 16px var(--violet-dim); }
 
 /* ── SECTIONS ── */
 .tab-content{
   display:none;
-  max-width:1200px;
+  max-width:1180px;
   margin:auto;
-  padding:50px 22px 80px;
+  padding:54px 22px 84px;
 }
-
 .tab-content.active{
   display:block;
   animation:.3s fade ease;
 }
-
 @keyframes fade{
-  from{opacity:0;transform:translateY(10px)}
+  from{opacity:0;transform:translateY(8px)}
   to  {opacity:1;transform:translateY(0)}
 }
 
 .section-title{
+  font-family:var(--font-display);
   font-size:2rem;
-  font-weight:800;
-  margin-bottom:28px;
+  font-weight:700;
+  margin-bottom:6px;
+}
+.section-sub{
+  color:var(--text-dim);
+  font-size:.95rem;
+  margin-bottom:30px;
+  max-width:560px;
 }
 
 /* ── CARDS ── */
 .grid-cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:20px;
+  gap:18px;
   margin-top:4px;
 }
 
 .card{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  border-radius:10px;
   padding:24px;
-  backdrop-filter:blur(10px);
-  transition:.25s;
+  transition:.22s;
 }
-
 .card:hover{
-  transform:translateY(-6px);
-  border-color:rgba(255,255,255,.18);
+  transform:translateY(-4px);
+  border-color:var(--line-strong);
 }
 
-/* blue hover for software */
-.neon-theme .card:hover{
-  border-color:var(--blue);
-  box-shadow:0 0 24px rgba(0,170,255,.15);
-}
+.theme-gold .card:hover    { border-color:var(--gold);    box-shadow:0 0 22px rgba(216,169,85,.13); }
+.theme-crimson .card:hover { border-color:var(--crimson); box-shadow:0 0 22px rgba(214,73,91,.15); }
+.theme-emerald .card:hover { border-color:var(--emerald); box-shadow:0 0 22px rgba(43,214,163,.13); }
+.theme-violet .card:hover  { border-color:var(--violet);  box-shadow:0 0 22px rgba(141,128,224,.15); }
 
-/* red hover for gaming */
-.gaming-theme .card:hover{
-  border-color:#590401;
-  box-shadow:0 0 24px rgba(255,64,64,.18);
+.card h3{
+  font-family:var(--font-display);
+  font-size:1.18rem;
+  font-weight:600;
+  margin-bottom:8px;
+}
+.card p{
+  color:var(--text-dim);
+  font-size:.92rem;
+  line-height:1.55;
 }
 
 /* ── BADGES ── */
 .badge{
   display:inline-block;
   padding:4px 10px;
-  border-radius:999px;
-  font-size:.72rem;
-  font-weight:600;
-  letter-spacing:.5px;
+  border-radius:5px;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
   margin-bottom:10px;
-  background:#0d2238;
-  color:#7ec8ff;
 }
-
-.badge.red{
-  background:#3a0f0f;
-  color:#ff9a9a;
-}
+.badge.gold{ background:var(--gold-bg);    color:var(--gold); }
+.badge.crimson{ background:var(--crimson-bg); color:var(--crimson); }
+.badge.emerald{ background:var(--emerald-bg); color:var(--emerald); }
+.badge.violet{ background:var(--violet-bg);  color:var(--violet); }
 
 /* ── STAT CARDS (home) ── */
 .stat-card h3{
-  font-size:2.2rem;
-  font-weight:800;
+  font-family:var(--font-display);
+  font-size:2.1rem;
+  font-weight:700;
   margin-bottom:4px;
 }
-
-.stat-card p{
-  color:#777;
-  font-size:.9rem;
-}
+.stat-card p{ color:var(--text-faint); font-size:.85rem; }
 
 /* ── BUTTONS ── */
 .main-btn{
   display:inline-block;
-  margin-top:16px;
-  padding:11px 18px;
-  border-radius:10px;
+  margin-top:14px;
+  padding:10px 18px;
+  border-radius:7px;
   text-decoration:none;
   font-weight:600;
-  font-size:.9rem;
+  font-size:.86rem;
   cursor:pointer;
-  transition:.22s;
-  font-family:Inter,sans-serif;
+  transition:.2s;
+  font-family:var(--font-body);
+  border:1px solid transparent;
 }
-
-.neon-btn{
-  background:transparent;
-  color:var(--blue);
-  border:1px solid var(--blue);
-}
-
-.neon-btn:hover{
-  background:var(--blue);
-  color:#fff;
-}
-
-.gaming-btn{
-  background:transparent;
-  color:var(--red);
-  border:1px solid #590401;
-}
-
-.gaming-btn:hover{
-  background:#590401;
-  color:#fff;
-}
+.btn-gold   { background:transparent; color:var(--gold);    border-color:var(--gold); }
+.btn-gold:hover   { background:var(--gold);    color:#1a1303; }
+.btn-crimson{ background:transparent; color:var(--crimson); border-color:var(--crimson); }
+.btn-crimson:hover{ background:var(--crimson); color:#1f0507; }
+.btn-emerald{ background:transparent; color:var(--emerald); border-color:var(--emerald); }
+.btn-emerald:hover{ background:var(--emerald); color:#04140f; }
+.btn-violet { background:transparent; color:var(--violet);  border-color:var(--violet); }
+.btn-violet:hover { background:var(--violet);  color:#100c2c; }
 
 /* ── ROADMAP ── */
-.roadmap{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-}
-
+.roadmap{ display:flex; flex-direction:column; gap:12px; }
 .step{
-  padding:18px 22px;
-  border-left:3px solid var(--blue);
+  padding:16px 20px;
+  border-left:3px solid var(--gold);
   background:rgba(255,255,255,.03);
-  border-radius:10px;
-  font-size:.95rem;
+  border-radius:6px;
+  font-size:.93rem;
+  color:var(--text-dim);
 }
+.step b{ color:var(--text); }
 
 /* ── CONTACT ── */
-form{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  margin-bottom:36px;
-}
-
+form{ display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
 input,textarea{
-  background:#0d0d0d;
-  border:1px solid #222;
-  color:white;
-  padding:14px 16px;
-  border-radius:12px;
-  font-size:1rem;
-  font-family:Inter,sans-serif;
+  background:var(--ink-900);
+  border:1px solid var(--line-strong);
+  color:var(--text);
+  padding:13px 15px;
+  border-radius:7px;
+  font-size:.95rem;
+  font-family:var(--font-body);
 }
+textarea{ min-height:150px; resize:vertical; }
+input:focus,textarea:focus{ outline:none; border-color:var(--gold); }
 
-textarea{min-height:160px;resize:vertical}
-
-input:focus,textarea:focus{
-  outline:none;
-  border-color:var(--blue);
-}
-
-/* legal */
 .legal-box{
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:18px;
-  padding:28px;
+  background:rgba(255,255,255,.025);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:26px;
   line-height:1.75;
-  color:#888;
-  font-size:.9rem;
-  backdrop-filter:blur(10px);
+  color:var(--text-faint);
+  font-size:.88rem;
 }
-
-.legal-box h3{
-  color:#ccc;
-  margin-bottom:16px;
-}
+.legal-box h3{ font-family:var(--font-display); color:var(--text-dim); margin-bottom:14px; }
 
 /* ── FOOTER ── */
 footer{
   text-align:center;
-  padding:40px 20px;
-  color:#555;
-  border-top:1px solid rgba(255,255,255,.05);
-  font-size:.9rem;
+  padding:36px 20px;
+  color:var(--text-faint);
+  border-top:1px solid var(--line);
+  font-size:.85rem;
+}
+
+/* ── TOOLS (free html tools) ── */
+.tool-card{
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+}
+.tool-card > summary{
+  list-style:none;
+  cursor:pointer;
+  padding:22px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.tool-card > summary::-webkit-details-marker{ display:none; }
+.tool-card > summary .tool-meta h3{ font-family:var(--font-display); font-size:1.1rem; margin-bottom:4px; }
+.tool-card > summary .tool-meta p{ color:var(--text-dim); font-size:.88rem; }
+.tool-card > summary .chevron{
+  color:var(--violet);
+  font-size:1.3rem;
+  transition:.2s;
+  flex-shrink:0;
+}
+.tool-card[open] > summary .chevron{ transform:rotate(45deg); }
+.tool-card[open]{ border-color:var(--violet); box-shadow:0 0 22px rgba(141,128,224,.12); }
+
+.tool-body{
+  padding:0 24px 26px;
+  border-top:1px solid var(--line);
+  padding-top:20px;
+}
+
+.tool-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
+.tool-row label{ font-size:.82rem; color:var(--text-dim); display:flex; align-items:center; gap:6px; }
+.tool-stats{ display:flex; gap:22px; flex-wrap:wrap; margin-top:12px; }
+.tool-stats div{ font-size:.8rem; color:var(--text-faint); }
+.tool-stats span{ display:block; font-family:var(--font-display); font-size:1.4rem; color:var(--text); font-weight:600; }
+
+.tool-out{
+  background:var(--ink-950);
+  border:1px solid var(--line-strong);
+  border-radius:7px;
+  padding:14px 16px;
+  font-family:ui-monospace,monospace;
+  font-size:.85rem;
+  color:var(--text-dim);
+  white-space:pre-wrap;
+  word-break:break-word;
+  min-height:44px;
+}
+.tool-out.error{ color:var(--crimson); }
+.tool-out.pass{ color:var(--emerald); }
+
+.btn-small{
+  padding:8px 14px;
+  border-radius:6px;
+  border:1px solid var(--violet);
+  background:transparent;
+  color:var(--violet);
+  font-size:.83rem;
+  font-weight:600;
+  cursor:pointer;
+  font-family:var(--font-body);
+  transition:.2s;
+}
+.btn-small:hover{ background:var(--violet); color:#100c2c; }
+
+.swatch-pair{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
+.swatch-pair .pair-block{
+  display:flex; align-items:center; gap:8px;
+  background:var(--ink-950); border:1px solid var(--line-strong);
+  padding:8px 10px; border-radius:7px;
+}
+.swatch-pair input[type=color]{
+  width:34px; height:34px; border:none; border-radius:5px; background:none; cursor:pointer; padding:0;
+}
+.swatch-pair input[type=text]{ width:90px; padding:6px 8px; font-size:.82rem; }
+
+.preview-text{
+  margin-top:14px;
+  padding:16px;
+  border-radius:7px;
+  font-size:1rem;
+  font-weight:600;
+  text-align:center;
+}
+
+.range-row{ display:flex; align-items:center; gap:10px; flex:1; min-width:180px; }
+.range-row input[type=range]{ flex:1; accent-color:var(--violet); }
+.checkbox-row{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; }
+.checkbox-row label{ font-size:.85rem; color:var(--text-dim); display:flex; align-items:center; gap:6px; cursor:pointer; }
+
+/* ── NOTICE BANNER ── */
+.notice-banner{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  border-radius:8px;
+  padding:13px 18px;
+  margin-bottom:24px;
+  font-size:.86rem;
+  color:var(--text-dim);
+  border:1px solid;
+}
+.notice-banner a{ font-weight:700; text-decoration:none; }
+.notice-banner a:hover{ text-decoration:underline; }
+.notice-gold{ background:rgba(216,169,85,.07); border-color:rgba(216,169,85,.3); }
+.notice-gold a{ color:var(--gold); }
+.notice-crimson{ background:rgba(214,73,91,.07); border-color:rgba(214,73,91,.3); }
+.notice-crimson a{ color:var(--crimson); }
+.notice-emerald{ background:rgba(43,214,163,.07); border-color:rgba(43,214,163,.3); }
+.notice-emerald a{ color:var(--emerald); }
+
+/* ── FAQ ── */
+.faq-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
+.faq-item{
+  background:rgba(255,255,255,.03);
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+}
+.faq-item summary{
+  list-style:none;
+  cursor:pointer;
+  padding:16px 20px;
+  font-weight:600;
+  font-size:.94rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.faq-item summary::-webkit-details-marker{ display:none; }
+.faq-item summary .chevron{ color:var(--gold); transition:.2s; }
+.faq-item[open] summary .chevron{ transform:rotate(45deg); }
+.faq-item p{
+  padding:0 20px 18px;
+  color:var(--text-dim);
+  font-size:.88rem;
+  line-height:1.6;
 }
 
 /* ── SECRET ── */
-.secret-mode{filter:hue-rotate(180deg)}
+.secret-mode{ filter:hue-rotate(180deg); }
 
 /* ── MOBILE ── */
 @media(max-width:680px){
-  header h1{font-size:2.5rem}
-  .tab-content{padding:36px 16px 60px}
-}
-  /* ── BUSINESS ── */
-  .tab-button.active[data-tab="Business"]{
-  border-color:var(--business);
-  color:var(--business);
-  box-shadow:0 0 18px var(--business-dim);
-  background:#081714;
-}
-/* BUSINESS THEME */
-
-.business-theme .card:hover{
-  border-color:var(--business);
-  box-shadow:0 0 24px rgba(0,212,170,.15);
-}
-
-.business-btn{
-  background:transparent;
-  color:var(--business);
-  border:1px solid var(--business);
-}
-
-.business-btn:hover{
-  background:var(--business);
-  color:#081010;
-}
-
-.badge.business{
-  background:rgba(0,212,170,.12);
-  color:#6fffd7;
+  header h1{ font-size:2.6rem; }
+  .tab-content{ padding:40px 16px 64px; }
+  .tool-card > summary{ padding:18px; }
 }
 </style>
 </head>
@@ -392,157 +519,320 @@ footer{
 <div class="grain"></div>
 
 <header>
+  <p class="eyebrow">Independent software &amp; tools</p>
   <h1>VELLUM STUDIO</h1>
-  <p>Build. Create. Experiment.</p>
+  <p class="tagline">Build. Create. Experiment.</p>
   <div class="hero" id="featured-hero">
     <h2>Featured Project</h2>
     <h3 id="feat-title">Loading&hellip;</h3>
     <p id="feat-desc"></p>
-    <a id="feat-link" class="main-btn neon-btn" href="#" target="_blank" style="display:none">View Product</a>
+    <a id="feat-link" class="main-btn btn-gold" href="#" target="_blank" style="display:none">View Product</a>
   </div>
+  <div class="deckle-spacer"></div>
 </header>
+<div class="deckle"></div>
 
 <nav>
-  <button class="tab-button active" data-tab="home">Home</button>
-    <button class="tab-button" data-tab="Business">Business</button>
-  <button class="tab-button" data-tab="gaming">Gaming</button>
-  <button class="tab-button" data-tab="creator">Creator</button>
-  <button class="tab-button" data-tab="roadmap">roadmap</button>
-  <button class="tab-button" data-tab="contact">Contact</button>
+  <button class="tab-button active" data-tab="home" data-accent="gold">Home</button>
+  <button class="tab-button" data-tab="tools" data-accent="violet">Free Tools</button>
+  <button class="tab-button" data-tab="creator" data-accent="gold">Creator</button>
+  <button class="tab-button" data-tab="gaming" data-accent="crimson">Gaming</button>
+  <button class="tab-button" data-tab="Business" data-accent="emerald">Business</button>
+  <button class="tab-button" data-tab="roadmap" data-accent="gold">Roadmap</button>
+  <button class="tab-button" data-tab="contact" data-accent="gold">Contact</button>
 </nav>
 
 <!-- HOME -->
-<section id="home" class="tab-content active">
-    <div class="card">
-    <h2>Dependencies</h2>
-    <p>This is the installer to install the python version Vellum products were built on</p>
-      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/zroor" target="_blank">View Product </a>
-    </div>
+<section id="home" class="tab-content active theme-gold">
   <h2 class="section-title">Studio Stats</h2>
+  <p class="section-sub">A small, independent studio building practical software across creator tools, gaming, and business utilities.</p>
   <div class="grid-cards">
-    <div class="card stat-card"hidden><h3>6+</h3><p>Tools Released</p></div>
+    <div class="card stat-card"><h3>8+</h3><p>Tools Released</p></div>
     <div class="card stat-card"><h3>100%</h3><p>Independent</p></div>
     <div class="card stat-card"><h3>Python</h3><p>Main programming language</p></div>
     <div class="card stat-card"><h3>∞</h3><p>Ideas</p></div>
     <div class="card stat-card"><h3>100%</h3><p>Safe</p></div>
   </div>
+
+  <h2 class="section-title" style="margin-top:48px">Start Here</h2>
+  <p class="section-sub">Required before installing any Vellum product.</p>
+  <div class="grid-cards">
+    <div class="card" id="dependencies-card">
+      <span class="badge gold">SETUP</span>
+      <h3>Dependencies</h3>
+      <p>The installer for the Python runtime every Vellum product is built on. Install this first.</p>
+      <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/zroor" target="_blank">View Product</a>
+    </div>
+  </div>
 </section>
 
-<!--Business -->
-<section id="Business" class="tab-content business-theme">
-  <h2 class="section-title">Business</h2>
-  <div class="grid-cards">
-<!--BUSINESS_START-->
-    <div class="card">
-      <span class="badge">GUIDE</span>
-      <h3>Game Setup Guide</h3>
-      <p>Read before purchasing gaming-related tools.</p>
-      <a class="main-btn business-btn" href="https://vellumtech55.github.io/vellum-setup-page/" target="_blank">Open Guide</a>
-    </div>
-        <div class="card">
-      <h3>Clock and Stopwatch</h3>
-      <p>A countdown timer that is simple and useful. Comes with a stopwatch.</p>
-      <a class="main-btn business-btn" href="https://vellumtech.gumroad.com/l/ntgasi" target="_blank">Open Guide</a>
-    </div>
+<!-- TOOLS (free) -->
+<section id="tools" class="tab-content theme-violet">
+  <h2 class="section-title">Free Tools</h2>
+  <p class="section-sub">No purchase, no install — these run right here in your browser. Tap a tool to open it.</p>
+
+  <div class="grid-cards" style="grid-template-columns:1fr">
+<!-- TOOLS_START -->
+
+    <!-- TOOL: Word & Character Counter -->
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Word &amp; Character Counter</h3>
+          <p>Live word count, character count, and estimated reading time.</p>
         </div>
-        <div class="card">
-      <h3>Progress Tracker</h3>
-      <p>Vellum Work Tracker is a modern productivity and business management app designed for solo developers, freelancers, and small software teams. It helps users organize projects.</p>
-      <a class="main-btn business-btn" href="https://vellumtech.gumroad.com/l/rtchpp" target="_blank">Open Guide</a>
-    </div>
-<!--BUSINESS_END-->
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <textarea id="wc-input" placeholder="Paste or type text here…" style="width:100%;min-height:130px"></textarea>
+        <div class="tool-stats">
+          <div>Words<span id="wc-words">0</span></div>
+          <div>Characters<span id="wc-chars">0</span></div>
+          <div>Sentences<span id="wc-sentences">0</span></div>
+          <div>Reading time<span id="wc-time">0 min</span></div>
+        </div>
+      </div>
+    </details>
 
+    <!-- TOOL: Color Contrast Checker -->
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Color Contrast Checker</h3>
+          <p>Check text/background contrast against WCAG AA &amp; AAA.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <div class="swatch-pair">
+          <div class="pair-block">
+            <input type="color" id="cc-fg" value="#f1ede3">
+            <input type="text" id="cc-fg-hex" value="#f1ede3">
+          </div>
+          <span style="color:var(--text-faint);font-size:.8rem">on</span>
+          <div class="pair-block">
+            <input type="color" id="cc-bg" value="#101216">
+            <input type="text" id="cc-bg-hex" value="#101216">
+          </div>
+        </div>
+        <div id="cc-preview" class="preview-text">The quick brown fox jumps over the lazy dog</div>
+        <div class="tool-out" id="cc-out" style="margin-top:14px">Ratio: —</div>
+      </div>
+    </details>
 
+    <!-- TOOL: JSON Formatter & Validator -->
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>JSON Formatter &amp; Validator</h3>
+          <p>Paste JSON, format it, and catch syntax errors instantly.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <textarea id="json-input" placeholder='{"example": true}' style="width:100%;min-height:120px;font-family:ui-monospace,monospace"></textarea>
+        <div class="tool-row" style="margin-top:10px">
+          <button class="btn-small" id="json-format">Format</button>
+          <button class="btn-small" id="json-clear">Clear</button>
+        </div>
+        <div class="tool-out" id="json-out">Output will appear here.</div>
+      </div>
+    </details>
+
+    <!-- TOOL: Password Generator -->
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Password Generator</h3>
+          <p>Generate a random password with custom length and character sets.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <div class="tool-row">
+          <div class="range-row">
+            <label for="pw-length">Length</label>
+            <input type="range" id="pw-length" min="6" max="48" value="16">
+            <span id="pw-length-val" style="color:var(--text);font-weight:600">16</span>
+          </div>
+        </div>
+        <div class="checkbox-row">
+          <label><input type="checkbox" id="pw-upper" checked> Uppercase</label>
+          <label><input type="checkbox" id="pw-lower" checked> Lowercase</label>
+          <label><input type="checkbox" id="pw-num" checked> Numbers</label>
+          <label><input type="checkbox" id="pw-sym" checked> Symbols</label>
+        </div>
+        <div class="tool-row">
+          <button class="btn-small" id="pw-generate">Generate</button>
+          <button class="btn-small" id="pw-copy">Copy</button>
+        </div>
+        <div class="tool-out" id="pw-out">Click Generate</div>
+      </div>
+    </details>
+
+    <!--
+      TEMPLATE — duplicate this block to add a new free tool.
+      Keep it inside TOOLS_START / TOOLS_END, give every input/output
+      a unique id prefix, and add matching JS down in the TOOLS_JS block.
+
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Tool Name</h3>
+          <p>One-line description of what it does.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        ... tool markup ...
+      </div>
+    </details>
+    -->
+
+<!-- TOOLS_END -->
+  </div>
+
+  <div class="card" style="margin-top:22px;border-color:var(--violet)">
+    <span class="badge violet">LEVEL UP</span>
+    <h3>Looking for something even more useful?</h3>
+    <p>These free tools cover only the basics. For heavier-duty editing, capture, and automation, check out the full Creator lineup.</p>
+    <a class="main-btn btn-violet" href="#creator" onclick="navTo('creator',null,event)">Browse Creator Tools</a>
   </div>
 </section>
-<!-- GAMING -->
-<section id="gaming" class="tab-content gaming-theme">
-  <h2 class="section-title">Gaming Projects</h2>
+
+<!-- CREATOR -->
+<section id="creator" class="tab-content theme-gold">
+  <h2 class="section-title">Creator Software</h2>
+  <p class="section-sub">Tools built for editors, streamers, and full-time content creators.</p>
+  <div class="notice-banner notice-gold">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run.</div>
   <div class="grid-cards">
-<!-- GAMING_START -->
+<!-- CREATOR_START -->
     <div class="card">
-      <span class="badge red">GUIDE</span>
-      <h3>Game Setup Guide</h3>
-      <p>Read before purchasing gaming-related tools.</p>
-      <a class="main-btn gaming-btn" href="https://vellumtech55.github.io/vellum-setup-page/" target="_blank">Open Guide</a>
+      <span class="badge gold">BUNDLE</span>
+      <h3>Vellum Creator Bundle</h3>
+      <p>Stop wasting hours editing from scratch. Elevate your content, hook your audience, and double your production speed with the ultimate creative shortcut.</p>
+      <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/manqx" target="_blank">View Product</a>
     </div>
-
-    <div class="card">
-      <h3>Professional Game Review</h3>
-      <p>Detailed feedback and review service for games.</p>
-      <a class="main-btn gaming-btn" href="https://vellumtech.gumroad.com/l/ountn" target="_blank">View Product</a>
-    </div>
-
-<!-- GAMING_END -->
-<div class="card">
-  <h3>Vellum Video Clipper</h3>
-  <p>Vellum Video Clipper instantly cuts gaming or stream videos into polished clips—saving hours of editing for creators without sacrificing quality.</p>
-  <a href="https://vellumtech.gumroad.com/l/vnudjt" target="_blank" rel="noopener" class="main-btn gaming-btn">View Product</a>
-</div>
-
-  </div>
-</section>
-
-<!-- Creator -->
-<section id="creator" class="tab-content">
-  <h2 class="section-title">Creator software</h2>
-  <div class="grid-cards">
-    <!-- CREATOR_START -->
-  <div class="card">
-    <h3>VELLUM CREATOR BUNDLE</h3>
-    <p>Stop wasting hours editing from scratch. Elevate your content, hook your audience, and double your production speed with the ultimate creative shortcut.</p>
-    <a href="https://vellumtech.gumroad.com/l/manqx" target="_blank" rel="noopener" class="main-btn neon-btn">View Product</a>
-  </div>
     <div class="card">
       <h3>Video Editor</h3>
-      <p>An automatic video editor that helps with time consuming cutting by catching audio spikes and frame catches.</p>
-      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/jdorg" target="_blank">View Product </a>
+      <p>An automatic video editor that helps with time-consuming cutting by catching audio spikes and frame cuts.</p>
+      <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/jdorg" target="_blank">View Product</a>
     </div>
     <div class="card">
       <h3>Audio Converter</h3>
-      <p>An audio converter to help convert audio and video into other forms of audio file flavors</p>
-      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/stjica" target="_blank">View Product </a>
+      <p>An audio converter to help convert audio and video into other audio file formats.</p>
+      <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/stjica" target="_blank">View Product</a>
     </div>
-        <div class="card">
+    <div class="card">
       <h3>Screen Capture</h3>
-      <p>A capturing software that has a highly customizable and lightweight system</p>
-      <a class="main-btn neon-btn" href="https://vellumtech.gumroad.com/l/gdazef" target="_blank">View Product</a>
+      <p>A capture tool with a highly customizable, lightweight system.</p>
+      <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/gdazef" target="_blank">View Product</a>
+    </div>
+    <div class="card">
+      <h3>Vellum Video Clipper</h3>
+      <p>Instantly cuts gaming or stream videos into polished clips — saving hours of editing without sacrificing quality.</p>
+      <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/vnudjt" target="_blank">View Product</a>
     </div>
 <!-- CREATOR_END -->
-<div class="card">
-  <h3>Vellum Video Clipper</h3>
-  <p>Vellum Video Clipper instantly cuts gaming or stream videos into polished clips—saving hours of editing for creators without sacrificing quality.</p>
-  <a href="https://vellumtech.gumroad.com/l/vnudjt" target="_blank" rel="noopener" class="main-btn neon-btn">View Product</a>
-</div>
+  </div>
+</section>
 
+<!-- GAMING -->
+<section id="gaming" class="tab-content theme-crimson">
+  <h2 class="section-title">Gaming Projects</h2>
+  <p class="section-sub">Tools and services built for players and game reviewers.</p>
+  <div class="notice-banner notice-crimson">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run.</div>
+  <div class="grid-cards">
+<!-- GAMING_START -->
+    <div class="card">
+      <span class="badge crimson">GUIDE</span>
+      <h3>Game Setup Guide</h3>
+      <p>Read before purchasing gaming-related tools.</p>
+      <a class="main-btn btn-crimson" href="https://vellumtech55.github.io/vellum-setup-page/" target="_blank">Open Guide</a>
+    </div>
+    <div class="card">
+      <h3>Professional Game Review</h3>
+      <p>Detailed feedback and review service for games.</p>
+      <a class="main-btn btn-crimson" href="https://vellumtech.gumroad.com/l/ountn" target="_blank">View Product</a>
+    </div>
+    <div class="card">
+      <h3>Vellum Video Clipper</h3>
+      <p>Instantly cuts gaming or stream videos into polished clips — saving hours of editing without sacrificing quality.</p>
+      <a class="main-btn btn-crimson" href="https://vellumtech.gumroad.com/l/vnudjt" target="_blank">View Product</a>
+    </div>
+<!-- GAMING_END -->
+  </div>
+</section>
+
+<!-- BUSINESS -->
+<section id="Business" class="tab-content theme-emerald">
+  <h2 class="section-title">Business</h2>
+  <p class="section-sub">Productivity and management tools for solo developers, freelancers, and small teams.</p>
+  <div class="notice-banner notice-emerald">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run.</div>
+  <div class="grid-cards">
+<!-- BUSINESS_START -->
+    <div class="card">
+      <h3>Clock and Stopwatch</h3>
+      <p>A countdown timer that is simple and useful. Comes with a stopwatch.</p>
+      <a class="main-btn btn-emerald" href="https://vellumtech.gumroad.com/l/ntgasi" target="_blank">View Product</a>
+    </div>
+    <div class="card">
+      <h3>Progress Tracker</h3>
+      <p>Vellum Work Tracker is a modern productivity and business management app designed for solo developers, freelancers, and small software teams. It helps users organize projects.</p>
+      <a class="main-btn btn-emerald" href="https://vellumtech.gumroad.com/l/rtchpp" target="_blank">View Product</a>
+    </div>
+<!-- BUSINESS_END -->
   </div>
 </section>
 
 <!-- ROADMAP -->
-<section id="roadmap" class="tab-content">
+<section id="roadmap" class="tab-content theme-gold">
   <h2 class="section-title">Roadmap</h2>
+  <p class="section-sub">What's already shipped, and what's coming next.</p>
   <div class="roadmap">
-    <div class="step">Released ready products</div>
-    <div class="step">Redo Whole UI System</div>
+    <div class="step"><b>Shipped:</b> Released ready products across Creator, Gaming, and Business.</div>
+    <div class="step"><b>Shipped:</b> Free Tools tab — browser-based utilities, no install required.</div>
+    <div class="step"><b>In progress:</b> Full UI system redesign.</div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="tab-content">
+<section id="contact" class="tab-content theme-gold">
   <h2 class="section-title">Contact</h2>
+  <p class="section-sub">Questions, support, or feedback — send a message below.</p>
 
   <div class="card" style="margin-bottom:28px">
     <form action="https://formspree.io/f/mykvppey" method="POST">
       <input type="text"  name="name"    placeholder="Your Name"    required>
       <input type="email" name="email"   placeholder="Your Email"   required>
       <textarea           name="message" placeholder="Your Message" required></textarea>
-      <button type="submit" class="main-btn neon-btn">Send Message</button>
+      <button type="submit" class="main-btn btn-gold">Send Message</button>
     </form>
+  </div>
+
+  <h2 class="section-title" style="font-size:1.3rem;margin-bottom:14px">Frequently Asked</h2>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Do I need to install anything before using a Vellum product? <span class="chevron">+</span></summary>
+      <p>Yes — every Vellum product is built on the same Python runtime, so the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)" style="color:var(--gold)">Dependencies pack</a> needs to be installed once before any other tool will run.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Are the Free Tools actually free? <span class="chevron">+</span></summary>
+      <p>Yes. Everything in the <a href="#tools" onclick="navTo('tools',null,event)" style="color:var(--violet)">Free Tools</a> tab runs directly in your browser — no account, download, or payment required.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What's the refund policy? <span class="chevron">+</span></summary>
+      <p>Digital products are generally non-refundable once delivered, but requests are reviewed case-by-case. Please contact us before opening a chargeback — see the full terms in the EULA below.</p>
+    </details>
+    <details class="faq-item">
+      <summary>A product isn't working for me — what do I do? <span class="chevron">+</span></summary>
+      <p>Send a message using the form above with what you're seeing and which product it's for, and we'll help you troubleshoot.</p>
+    </details>
   </div>
 
   <div class="legal-box">
     <h3>Legal</h3>
-<pre style="white-space:pre-wrap;font-family:Inter,sans-serif;font-size:.85rem;color:#777;line-height:1.75">END USER LICENSE AGREEMENT (EULA)
+<pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:.85rem;color:var(--text-faint);line-height:1.75">END USER LICENSE AGREEMENT (EULA)
 
 Last Updated: June 3, 2026
 
@@ -573,6 +863,7 @@ Modify, adapt, translate, create derivative works from, or merge the Software wi
 Remove, alter, or obscure copyright notices, trademarks, or proprietary notices.
 Circumvent, disable, or interfere with licensing systems, activation systems, security features, or usage limitations.
 Use the Software for unlawful, fraudulent, harmful, abusive, or unauthorized activities.
+
 4. License Limitations
 
 Unless otherwise stated in writing:
@@ -581,6 +872,7 @@ One license is granted per purchaser.
 Licenses may not be transferred, assigned, or shared.
 Access credentials, license keys, and downloads may not be shared with others.
 The Licensor reserves the right to revoke licenses obtained through fraud, abuse, chargebacks, unauthorized distribution, or violation of this Agreement.
+
 5. Updates and Modifications
 
 The Licensor may provide updates, patches, bug fixes, modifications, or new versions of the Software at its sole discretion.
@@ -612,6 +904,7 @@ The Software will be uninterrupted or error-free.
 Defects will be corrected.
 The Software will meet your requirements.
 The Software will be compatible with all devices, systems, or software environments.
+
 8. Limitation of Liability
 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES.
@@ -635,6 +928,7 @@ You agree to defend, indemnify, and hold harmless the Licensor from and against 
 Your misuse of the Software.
 Your violation of this Agreement.
 Your violation of any law or third-party rights.
+
 10. Termination
 
 This Agreement remains in effect until terminated.
@@ -646,6 +940,7 @@ Upon termination:
 All licenses granted under this Agreement immediately cease.
 You must stop using the Software.
 You must delete all copies of the Software in your possession or control.
+
 11. Anti-Piracy and Unauthorized Distribution
 
 Unauthorized copying, sharing, redistribution, resale, or publication of the Software is strictly prohibited.
@@ -674,51 +969,40 @@ This Agreement shall be governed by and construed in accordance with the laws of
 
 Questions regarding this Agreement may be directed to:
 
-<p>vellum</p>
-<p>contact us from our website connection "https://vellumtech55.github.io/vellum/" under the contact tab</p>
+Vellum Studio
+Use the contact form on this page (Contact tab) and we'll respond as soon as we can.
 
-<p>By downloading, installing, accessing, purchasing, or using the Software, you acknowledge that you have read, understood, and agree to be bound by this Agreement.</p>
-</pre>
+By downloading, installing, accessing, purchasing, or using the Software, you acknowledge that you have read, understood, and agree to be bound by this Agreement.</pre>
   </div>
 </section>
 
 <footer>
-  <p>Vellum Studio &bull; Software &bull; Gaming &bull; Labs</p>
+  <p>Vellum Studio &bull; Creator &bull; Gaming &bull; Business &bull; Tools</p>
   <p style="margin-top:6px">© 2026 Vellum Studio — All Rights Reserved</p>
 </footer>
 
 <script>
-/* ── FEATURED PRODUCT ────────────────────────────────────────────────────────
+/* ── FEATURED PRODUCT ──────────────────────────────────────────────────────
    Change the values below to update the featured project.
-   Set url to "" to hide the View Product button.
+   theme: "gold" | "crimson" | "emerald" | "violet"
    ────────────────────────────────────────────────────────────────────────── */
 const FEATURED = {
-  title : "Creator Software Bundle",
+  title : "Vellum Creator Bundle",
   desc  : "Stop wasting hours editing from scratch. Elevate your content, hook your audience, and double your production speed with the ultimate creative shortcut.",
-  url   : "",          // e.g. "https://vellumtech.gumroad.com/l/xxxx"
-  theme : "blue"       // "blue" | "red" | "teal"
+  url   : "https://vellumtech.gumroad.com/l/manqx",
+  theme : "gold"
 };
 
 (function applyFeatured(){
   const title = document.getElementById("feat-title");
   const desc  = document.getElementById("feat-desc");
   const link  = document.getElementById("feat-link");
-  const hero  = document.getElementById("featured-hero");
   if(title) title.textContent = FEATURED.title;
   if(desc)  desc.textContent  = FEATURED.desc;
   if(link && FEATURED.url){
     link.href = FEATURED.url;
     link.style.display = "inline-block";
-    if(FEATURED.theme === "red"){
-      link.className = "main-btn gaming-btn";
-    } else if(FEATURED.theme === "teal"){
-      link.className = "main-btn business-btn";
-    }
-  }
-  if(hero && FEATURED.theme === "red"){
-    hero.style.borderColor = "rgba(255,64,64,.25)";
-  } else if(hero && FEATURED.theme === "teal"){
-    hero.style.borderColor = "rgba(0,212,170,.25)";
+    link.className = "main-btn btn-" + FEATURED.theme;
   }
 })();
 
@@ -726,6 +1010,7 @@ const FEATURED = {
 const buttons = document.querySelectorAll(".tab-button");
 const tabs    = document.querySelectorAll(".tab-content");
 const bg      = document.getElementById("bg");
+const accentToGlow = { gold:null, crimson:"crimson", emerald:"emerald", violet:"violet" };
 
 buttons.forEach(btn => {
   btn.onclick = () => {
@@ -733,7 +1018,9 @@ buttons.forEach(btn => {
     tabs.forEach(t => t.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById(btn.dataset.tab).classList.add("active");
-    bg.classList.toggle("red", btn.dataset.tab === "gaming");
+    bg.classList.remove("crimson","emerald","violet");
+    const glow = accentToGlow[btn.dataset.accent];
+    if(glow) bg.classList.add(glow);
   };
 });
 
@@ -744,6 +1031,149 @@ document.addEventListener("keydown", e => {
   if(secret.slice(-6).join("") === "vellum")
     document.body.classList.toggle("secret-mode");
 });
+
+/* ── CROSS-TAB NAVIGATION (banners, FAQ links, cross-sell) ── */
+function navTo(tab, anchorId, e){
+  if(e) e.preventDefault();
+  const btn = document.querySelector(`.tab-button[data-tab="${tab}"]`);
+  if(btn) btn.click();
+  requestAnimationFrame(() => {
+    const el = document.getElementById(anchorId || tab);
+    if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
+  });
+}
+
+/* ── TOOLS_JS ──────────────────────────────────────────────────────────── */
+
+/* Word & Character Counter */
+(function(){
+  const input = document.getElementById("wc-input");
+  const words = document.getElementById("wc-words");
+  const chars = document.getElementById("wc-chars");
+  const sentences = document.getElementById("wc-sentences");
+  const time = document.getElementById("wc-time");
+  if(!input) return;
+  input.addEventListener("input", () => {
+    const text = input.value;
+    const wordList = text.trim().length ? text.trim().split(/\s+/) : [];
+    const sentenceList = text.trim().length ? text.trim().split(/[.!?]+/).filter(s => s.trim().length) : [];
+    words.textContent = wordList.length;
+    chars.textContent = text.length;
+    sentences.textContent = sentenceList.length;
+    time.textContent = Math.max(1, Math.ceil(wordList.length / 200)) + " min";
+  });
+})();
+
+/* Color Contrast Checker */
+(function(){
+  const fg = document.getElementById("cc-fg");
+  const fgHex = document.getElementById("cc-fg-hex");
+  const bg = document.getElementById("cc-bg");
+  const bgHex = document.getElementById("cc-bg-hex");
+  const preview = document.getElementById("cc-preview");
+  const out = document.getElementById("cc-out");
+  if(!fg) return;
+
+  function luminance(hex){
+    const rgb = [1,3,5].map(i => parseInt(hex.substr(i,2),16) / 255);
+    const [r,g,b] = rgb.map(c => c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4));
+    return 0.2126*r + 0.7152*g + 0.0722*b;
+  }
+  function isHex(v){ return /^#[0-9a-fA-F]{6}$/.test(v); }
+
+  function update(){
+    if(!isHex(fgHex.value) || !isHex(bgHex.value)) return;
+    fg.value = fgHex.value; bg.value = bgHex.value;
+    const L1 = luminance(fgHex.value);
+    const L2 = luminance(bgHex.value);
+    const ratio = (Math.max(L1,L2) + 0.05) / (Math.min(L1,L2) + 0.05);
+    preview.style.color = fgHex.value;
+    preview.style.background = bgHex.value;
+    const r = ratio.toFixed(2);
+    const aaNormal = ratio >= 4.5, aaaNormal = ratio >= 7, aaLarge = ratio >= 3;
+    out.className = "tool-out " + (aaNormal ? "pass" : "error");
+    out.textContent = `Ratio: ${r}:1 — AA normal text: ${aaNormal ? "Pass" : "Fail"} · AAA normal text: ${aaaNormal ? "Pass" : "Fail"} · AA large text: ${aaLarge ? "Pass" : "Fail"}`;
+  }
+
+  fg.addEventListener("input", () => { fgHex.value = fg.value; update(); });
+  bg.addEventListener("input", () => { bgHex.value = bg.value; update(); });
+  fgHex.addEventListener("input", update);
+  bgHex.addEventListener("input", update);
+  update();
+})();
+
+/* JSON Formatter & Validator */
+(function(){
+  const input = document.getElementById("json-input");
+  const out = document.getElementById("json-out");
+  const formatBtn = document.getElementById("json-format");
+  const clearBtn = document.getElementById("json-clear");
+  if(!input) return;
+  formatBtn.addEventListener("click", () => {
+    try{
+      const parsed = JSON.parse(input.value);
+      out.className = "tool-out pass";
+      out.textContent = JSON.stringify(parsed, null, 2);
+    }catch(e){
+      out.className = "tool-out error";
+      out.textContent = "Invalid JSON: " + e.message;
+    }
+  });
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    out.className = "tool-out";
+    out.textContent = "Output will appear here.";
+  });
+})();
+
+/* Password Generator */
+(function(){
+  const lengthInput = document.getElementById("pw-length");
+  const lengthVal = document.getElementById("pw-length-val");
+  const out = document.getElementById("pw-out");
+  const genBtn = document.getElementById("pw-generate");
+  const copyBtn = document.getElementById("pw-copy");
+  if(!lengthInput) return;
+
+  const sets = {
+    upper: "ABCDEFGHJKLMNPQRSTUVWXYZ",
+    lower: "abcdefghijkmnpqrstuvwxyz",
+    num: "23456789",
+    sym: "!@#$%^&*()-_=+"
+  };
+
+  lengthInput.addEventListener("input", () => { lengthVal.textContent = lengthInput.value; });
+
+  genBtn.addEventListener("click", () => {
+    let pool = "";
+    if(document.getElementById("pw-upper").checked) pool += sets.upper;
+    if(document.getElementById("pw-lower").checked) pool += sets.lower;
+    if(document.getElementById("pw-num").checked) pool += sets.num;
+    if(document.getElementById("pw-sym").checked) pool += sets.sym;
+    if(!pool){
+      out.className = "tool-out error";
+      out.textContent = "Select at least one character set.";
+      return;
+    }
+    const len = parseInt(lengthInput.value, 10);
+    const arr = new Uint32Array(len);
+    crypto.getRandomValues(arr);
+    let result = "";
+    for(let i = 0; i < len; i++) result += pool[arr[i] % pool.length];
+    out.className = "tool-out pass";
+    out.textContent = result;
+  });
+
+  copyBtn.addEventListener("click", () => {
+    const text = out.textContent;
+    if(!text || text === "Click Generate") return;
+    navigator.clipboard.writeText(text).then(() => {
+      const prev = copyBtn.textContent;
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => { copyBtn.textContent = prev; }, 1200);
+    });
+  });
+})();
 </script>
 </body>
 </html>
