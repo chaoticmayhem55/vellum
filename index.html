@@ -508,41 +508,6 @@ footer{
   padding-top:20px;
 }
 
-/* Screenshot / demo placeholder — swap the inner markup for a real <img> or <video> when assets are ready */
-.product-screenshot{
-  width:100%;
-  min-height:190px;
-  border-radius:8px;
-  border:1.5px dashed var(--line-strong);
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 12px, transparent 12px 24px),
-    var(--ink-950);
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  margin-bottom:18px;
-  color:var(--text-faint);
-  text-align:center;
-  padding:22px;
-}
-.product-screenshot img{
-  width:100%;
-  border-radius:8px;
-  display:block;
-}
-.product-screenshot .ss-icon{ font-size:1.8rem; opacity:.6; }
-.product-screenshot .ss-label{ font-size:.82rem; max-width:360px; }
-.product-screenshot .ss-hint{ font-size:.72rem; opacity:.7; }
-.product-screenshot .ss-fallback{
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-}
-
 .product-desc{ color:var(--text-dim); font-size:.92rem; line-height:1.6; margin-bottom:16px; }
 
 .feature-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
@@ -582,39 +547,6 @@ footer{
   align-items:flex-start;
   flex-wrap:wrap;
 }
-.about-photo-slot{
-  width:140px;
-  height:140px;
-  border-radius:50%;
-  flex-shrink:0;
-  border:1.5px dashed var(--line-strong);
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 10px, transparent 10px 20px),
-    var(--ink-950);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  position:relative;
-}
-.about-photo-slot img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-.about-photo-slot .ph-fallback{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:4px;
-  color:var(--text-faint);
-  text-align:center;
-  padding:10px;
-}
-.about-photo-slot .ph-icon{ font-size:1.6rem; opacity:.6; }
-.about-photo-slot .ph-label{ font-size:.62rem; line-height:1.3; }
 
 .about-intro{ flex:1; min-width:260px; }
 .about-intro h3{
@@ -737,6 +669,7 @@ footer{
   <button class="tab-button" data-tab="gaming" data-accent="crimson">Gaming</button>
   <button class="tab-button" data-tab="Business" data-accent="emerald">Business</button>
   <button class="tab-button" data-tab="roadmap" data-accent="gold">Roadmap</button>
+  <button class="tab-button" data-tab="fixes" data-accent="gold">Fixes</button>
   <button class="tab-button" data-tab="contact" data-accent="gold">Contact</button>
 </nav>
 
@@ -765,16 +698,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace this div's contents with:
-             <img src="screenshots/dependencies-installer.png" alt="Dependencies installer screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/dependencies-installer.png" alt="Dependencies installer screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Dependencies installer screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/dependencies-installer.png</span>
-          </div>
-        </div>
         <p class="product-desc">A one-time installer that sets up the shared Python runtime and libraries every Vellum product depends on. Run it once, then any Vellum tool you install afterward will just work.</p>
         <ul class="feature-list">
           <li>Installs the exact runtime version every Vellum app is tested against</li>
@@ -796,14 +719,6 @@ footer{
   <p class="section-sub">The person behind Vellum Studio.</p>
 
   <div class="card about-header">
-    <!-- PHOTO SLOT — replace assets/photos/profile.jpg with a real headshot or logo -->
-    <div class="about-photo-slot">
-      <img src="assets/photos/profile.jpg" alt="Photo of the Vellum Studio developer" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="ph-fallback">
-        <span class="ph-icon">🙂</span>
-        <span class="ph-label">Add photo:<br>assets/photos/profile.jpg</span>
-      </div>
-    </div>
     <div class="about-intro">
       <h3>Hi, I'm the developer behind Vellum Studio</h3>
       <p>I'm an independent, self-taught developer building practical desktop software — mostly Python apps with clean, custom UIs, wrapped around ffmpeg for anything video or audio related. Vellum Studio started as a way to solve my own problems with editing and capturing content, and grew into a small lineup of tools for creators, gamers, and other solo builders.</p>
@@ -988,8 +903,7 @@ footer{
     <!--
       TEMPLATE — duplicate this block to add a new Creator product.
       1. Give the <details> a unique accent class: product-card--gold
-      2. Swap the .product-screenshot placeholder for a real <img> once you have one
-      3. Update the badge, title, one-liner, description, features, "best for", and link
+      2. Update the badge, title, one-liner, description, features, "best for", and link
     -->
     <details class="product-card product-card--gold">
       <summary>
@@ -1001,15 +915,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/creator-bundle.png" alt="Vellum Creator Bundle screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/creator-bundle.png" alt="Vellum Creator Bundle screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Vellum Creator Bundle screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/creator-bundle.png</span>
-          </div>
-        </div>
         <p class="product-desc">Every Creator tool Vellum makes, bundled into a single install. Elevate your content, hook your audience, and double your production speed with the ultimate creative shortcut.</p>
         <ul class="feature-list">
           <li>Includes Video Editor, Audio Converter, Screen Capture, and Video Clipper</li>
@@ -1032,15 +937,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/video-editor.png" alt="Video Editor screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/video-editor.png" alt="Video Editor screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Video Editor screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/video-editor.png</span>
-          </div>
-        </div>
         <p class="product-desc">An automatic video editor that helps with time-consuming cutting by catching audio spikes and frame cuts, so you spend less time scrubbing through raw footage.</p>
         <ul class="feature-list">
           <li>Detects likely cut points from audio spikes and silence</li>
@@ -1063,15 +959,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/audio-converter.png" alt="Audio Converter screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/audio-converter.png" alt="Audio Converter screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Audio Converter screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/audio-converter.png</span>
-          </div>
-        </div>
         <p class="product-desc">An audio converter to help convert audio and video into other audio file formats, with a queue so you can line up a whole batch and walk away.</p>
         <ul class="feature-list">
           <li>Converts audio and video sources into common audio formats</li>
@@ -1094,15 +981,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/screen-capture.png" alt="Screen Capture screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/screen-capture.png" alt="Screen Capture screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Screen Capture screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/screen-capture.png</span>
-          </div>
-        </div>
         <p class="product-desc">A capture tool with a highly customizable, lightweight system — built to stay out of the way while you record.</p>
         <ul class="feature-list">
           <li>Automatic hardware encoder detection for smooth capture</li>
@@ -1125,15 +1003,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/video-clipper.png" alt="Vellum Video Clipper screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/video-clipper.png" alt="Vellum Video Clipper screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Vellum Video Clipper screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/video-clipper.png</span>
-          </div>
-        </div>
         <p class="product-desc">Instantly cuts gaming or stream videos into polished clips — saving hours of editing without sacrificing quality.</p>
         <ul class="feature-list">
           <li>Finds highlight-worthy moments automatically</li>
@@ -1172,15 +1041,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/game-review-sample.png" alt="Sample game review report"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/game-review-sample.png" alt="Sample game review report" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Sample game review report goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/game-review-sample.png</span>
-          </div>
-        </div>
         <p class="product-desc">A detailed feedback and review service for games — covering gameplay, story, and technical performance so you get an outside perspective before you ship.</p>
         <ul class="feature-list">
           <li>Written review covering gameplay, story, and technical performance</li>
@@ -1203,15 +1063,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/video-clipper.png" alt="Vellum Video Clipper screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/video-clipper.png" alt="Vellum Video Clipper screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Vellum Video Clipper screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/video-clipper.png</span>
-          </div>
-        </div>
         <p class="product-desc">Instantly cuts gaming or stream videos into polished clips — saving hours of editing without sacrificing quality.</p>
         <ul class="feature-list">
           <li>Finds highlight-worthy moments automatically</li>
@@ -1250,15 +1101,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/clock-stopwatch.png" alt="Clock and Stopwatch screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/clock-stopwatch.png" alt="Clock and Stopwatch screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Clock and Stopwatch screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/clock-stopwatch.png</span>
-          </div>
-        </div>
         <p class="product-desc">A countdown timer that is simple and useful, with a stopwatch built right in — no clutter, no accounts, just the timer you need.</p>
         <ul class="feature-list">
           <li>Simple countdown timer</li>
@@ -1281,15 +1123,6 @@ footer{
         <span class="chevron">+</span>
       </summary>
       <div class="product-body">
-        <!-- SCREENSHOT SLOT — replace with: <img src="screenshots/progress-tracker.png" alt="Progress Tracker screenshot"> -->
-        <div class="product-screenshot">
-          <img src="assets/screenshots/progress-tracker.png" alt="Progress Tracker screenshot" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-          <div class="ss-fallback">
-            <span class="ss-icon">🖼️</span>
-            <span class="ss-label">Progress Tracker screenshot goes here</span>
-            <span class="ss-hint">Recommended size: 1280×720 · drop the file into assets/screenshots/progress-tracker.png</span>
-          </div>
-        </div>
         <p class="product-desc">Vellum Work Tracker is a modern productivity and business management app designed for solo developers, freelancers, and small software teams. It helps you organize projects in one place.</p>
         <ul class="feature-list">
           <li>Organize projects, tasks, and deadlines together</li>
@@ -1315,6 +1148,31 @@ footer{
     <div class="step"><b>Shipped:</b> Released ready products across Creator, Gaming, and Business.</div>
     <div class="step"><b>Shipped:</b> Free Tools tab — browser-based utilities, no install required.</div>
     <div class="step"><b>In progress:</b> Full UI system redesign.</div>
+  </div>
+</section>
+
+<!-- FIXES -->
+<section id="fixes" class="tab-content theme-gold">
+  <h2 class="section-title">Fixes &amp; Patch Notes</h2>
+  <p class="section-sub">Recent bug fixes and stability improvements across the Vellum lineup.</p>
+  <div class="roadmap">
+    <!--
+      TEMPLATE — duplicate this block to log a new fix.
+      <div class="step"><b>Product Name:</b> What was fixed.</div>
+    -->
+    <div class="step"><b>Screen Capture:</b> Fixed an issue where the countdown timer before recording would not start correctly on some systems.</div>
+    <div class="step"><b>Screen Capture:</b> Hardware encoder detection now runs a real test encode instead of just checking for the encoder's presence, preventing recordings from silently failing on unsupported drivers.</div>
+    <div class="step"><b>Screen Capture:</b> Resolved a container/codec mismatch that could corrupt exported clips during the .webm to .mp4 conversion step.</div>
+    <div class="step"><b>Audio Converter Pro:</b> Fixed installer/packaging errors that could prevent the app from launching after a fresh install on some machines.</div>
+    <div class="step"><b>General:</b> Improved Linux compatibility, including more reliable display and graphics driver detection across different desktop environments.</div>
+  </div>
+
+  <div class="card" style="margin-top:40px;border-color:var(--crimson)">
+    <span class="badge crimson">A NOTE ON RESPECTFUL COMMUNICATION</span>
+    <h3>Support, With Mutual Respect</h3>
+    <p>Vellum Studio is built, tested, and supported by one person, and every message sent through the Contact form gets a real, personal reply by email. I'm always glad to help you troubleshoot a bug, work through a refund request, or hear honest — even critical — feedback. That kind of communication is exactly what makes these tools better.</p>
+    <p style="margin-top:12px">That said, I reserve the right to decline support, cancel a license, or refuse further service to anyone who communicates with abuse, threats, or harassment. Frustration is understandable, and I'll always do my best to make things right; disrespect toward myself, however, is not something I'll continue to engage with.</p>
+    <p style="margin-top:12px">If you're running into a problem, please reach out through the <a href="#contact" onclick="navTo('contact',null,event)" style="color:var(--gold);font-weight:600;text-decoration:none">Contact form</a> — I read every email myself and will do right by you.</p>
   </div>
 </section>
 
