@@ -501,6 +501,8 @@ footer{
 .product-card--crimson .chevron{ color:var(--crimson); }
 .product-card--emerald[open] { border-color:var(--emerald); box-shadow:0 0 22px rgba(43,214,163,.13); }
 .product-card--emerald .chevron{ color:var(--emerald); }
+.product-card--violet[open] { border-color:var(--violet); box-shadow:0 0 22px rgba(141,128,224,.15); }
+.product-card--violet .chevron{ color:var(--violet); }
 
 .product-body{
   padding:0 24px 26px;
@@ -527,6 +529,7 @@ footer{
 .product-card--gold .feature-list li::before   { color:var(--gold); }
 .product-card--crimson .feature-list li::before{ color:var(--crimson); }
 .product-card--emerald .feature-list li::before{ color:var(--emerald); }
+.product-card--violet .feature-list li::before{ color:var(--violet); }
 
 .product-meta-row{
   display:flex;
@@ -655,7 +658,6 @@ footer{
     <h2>Featured Project</h2>
     <h3 id="feat-title">Loading&hellip;</h3>
     <p id="feat-desc"></p>
-    <a id="feat-link" class="main-btn btn-gold" href="#" target="_blank" style="display:none">View Product</a>
   </div>
   <div class="deckle-spacer"></div>
 </header>
@@ -665,9 +667,7 @@ footer{
   <button class="tab-button active" data-tab="home" data-accent="gold">Home</button>
   <button class="tab-button" data-tab="about" data-accent="gold">About Me</button>
   <button class="tab-button" data-tab="tools" data-accent="violet">Free Tools</button>
-  <button class="tab-button" data-tab="creator" data-accent="gold">Creator</button>
-  <button class="tab-button" data-tab="gaming" data-accent="crimson">Gaming</button>
-  <button class="tab-button" data-tab="Business" data-accent="emerald">Business</button>
+  <button class="tab-button" data-tab="products" data-accent="gold">Products</button>
   <button class="tab-button" data-tab="roadmap" data-accent="gold">Roadmap</button>
   <button class="tab-button" data-tab="fixes" data-accent="gold">Fixes</button>
   <button class="tab-button" data-tab="contact" data-accent="gold">Contact</button>
@@ -686,8 +686,30 @@ footer{
   </div>
 
   <h2 class="section-title" style="margin-top:48px">Start Here</h2>
-  <p class="section-sub">Required before installing any Vellum product.</p>
+  <p class="section-sub">Get the Launcher, install the dependencies, and you're ready for any Vellum product.</p>
   <div class="grid-cards" style="grid-template-columns:1fr">
+    <details class="product-card product-card--violet" open>
+      <summary>
+        <div class="product-summary-left">
+          <span class="badge violet">LAUNCHER</span>
+          <h3>Vellum App Launcher</h3>
+          <p>Browse, install, and launch every Vellum product from one place.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="product-body">
+        <p class="product-desc">The easiest way to get and run Vellum software. Download it once, then use it to grab any product, keep them updated, and launch them without hunting for installers.</p>
+        <ul class="feature-list">
+          <li>One place to browse the whole Vellum catalog</li>
+          <li>Handles downloads and keeps installed tools organized</li>
+          <li>Launches installed products directly — no digging for files</li>
+        </ul>
+        <div class="product-meta-row">
+          <span class="best-for">Best for: <b>anyone getting started with Vellum products</b></span>
+        </div>
+        <a class="main-btn btn-violet" href="https://vellumtech.gumroad.com/l/lbqfqd" target="_blank">Download Launcher</a>
+      </div>
+    </details>
     <details class="product-card product-card--gold" id="dependencies-card">
       <summary>
         <div class="product-summary-left">
@@ -887,24 +909,50 @@ footer{
   <div class="card" style="margin-top:22px;border-color:var(--violet)">
     <span class="badge violet">LEVEL UP</span>
     <h3>Looking for something even more useful?</h3>
-    <p>These free tools cover only the basics. For heavier-duty editing, capture, and automation, check out the full Creator lineup.</p>
-    <a class="main-btn btn-violet" href="#creator" onclick="navTo('creator',null,event)">Browse Creator Tools</a>
+    <p>These free tools cover only the basics. For heavier-duty editing, capture, and automation, check out the full product lineup.</p>
+    <a class="main-btn btn-violet" href="#products" onclick="navTo('products',null,event)">Browse All Products</a>
   </div>
 </section>
 
-<!-- CREATOR -->
-<section id="creator" class="tab-content theme-gold">
-  <h2 class="section-title">Creator Software</h2>
-  <p class="section-sub">Tools built for editors, streamers, and full-time content creators.</p>
-  <div class="notice-banner notice-gold">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run.(1 or 2 packages may be missing, work in progress.)</div>
+<!-- PRODUCTS -->
+<section id="products" class="tab-content theme-gold">
+  <h2 class="section-title">Products</h2>
+  <p class="section-sub">The full Vellum lineup — creator tools, gaming utilities, and business software, all in one place.</p>
+  <div class="notice-banner notice-gold">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run. (1 or 2 packages may be missing, work in progress.)</div>
+
   <div class="grid-cards" style="grid-template-columns:1fr">
-<!-- CREATOR_START -->
+
+    <!-- LAUNCHER -->
+    <details class="product-card product-card--violet" id="launcher-card" open>
+      <summary>
+        <div class="product-summary-left">
+          <span class="badge violet">LAUNCHER</span>
+          <h3>Vellum App Launcher</h3>
+          <p>Browse, install, and launch every Vellum product from one place.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="product-body">
+        <p class="product-desc">The Vellum App Launcher is the easiest way to get and run Vellum software. Download it once, then use it to grab any product below, keep them updated, and launch them without hunting for installers.</p>
+        <ul class="feature-list">
+          <li>One place to browse the whole Vellum catalog</li>
+          <li>Handles downloads and keeps installed tools organized</li>
+          <li>Launches installed products directly — no digging for files</li>
+        </ul>
+        <div class="product-meta-row">
+          <span class="best-for">Best for: <b>anyone getting started with Vellum products</b></span>
+        </div>
+        <a class="main-btn btn-violet" href="https://vellumtech.gumroad.com/l/lbqfqd" target="_blank">Download Launcher</a>
+      </div>
+    </details>
 
     <!--
-      TEMPLATE — duplicate this block to add a new Creator product.
-      1. Give the <details> a unique accent class: product-card--gold
-      2. Update the badge, title, one-liner, description, features, "best for", and link
+      TEMPLATE — duplicate this block to add a new product.
+      1. Give the <details> a unique accent class: product-card--gold / --crimson / --emerald
+      2. Update the badge, title, one-liner, description, features, and "best for"
+      3. No purchase links — products are distributed through the Launcher above
     -->
+
     <details class="product-card product-card--gold">
       <summary>
         <div class="product-summary-left">
@@ -924,7 +972,6 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>creators who want the whole toolkit, not just one piece</b></span>
         </div>
-        <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/manqx" target="_blank">View Product</a>
       </div>
     </details>
 
@@ -946,7 +993,6 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>editors who record more footage than they have time to cut</b></span>
         </div>
-        <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/jdorg" target="_blank">View Product</a>
       </div>
     </details>
 
@@ -968,7 +1014,6 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>podcasters and editors converting files in bulk</b></span>
         </div>
-        <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/stjica" target="_blank">View Product</a>
       </div>
     </details>
 
@@ -990,11 +1035,10 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>streamers and tutorial creators</b></span>
         </div>
-        <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/gdazef" target="_blank">View Product</a>
       </div>
     </details>
 
-    <details class="product-card product-card--gold">
+    <details class="product-card product-card--crimson">
       <summary>
         <div class="product-summary-left">
           <h3>Vellum Video Clipper</h3>
@@ -1012,26 +1056,9 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>gaming and stream highlight creators</b></span>
         </div>
-        <a class="main-btn btn-gold" href="https://vellumtech.gumroad.com/l/vnudjt" target="_blank">View Product</a>
       </div>
     </details>
 
-<!-- CREATOR_END -->
-  </div>
-</section>
-
-<!-- GAMING -->
-<section id="gaming" class="tab-content theme-crimson">
-  <h2 class="section-title">Gaming Projects</h2>
-  <p class="section-sub">Tools and services built for players and game reviewers.</p>
-  <div class="notice-banner notice-crimson">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run.(1 or 2 packages may be missing, work in progress.)</div>
-  <div class="grid-cards" style="grid-template-columns:1fr">
-<!-- GAMING_START -->
-
-    <!--
-      TEMPLATE — duplicate this block to add a new Gaming product.
-      Use product-card--crimson for the accent class in this section.
-    -->
     <details class="product-card product-card--crimson">
       <summary>
         <div class="product-summary-left">
@@ -1050,48 +1077,9 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>developers wanting outside feedback before launch</b></span>
         </div>
-        <a class="main-btn btn-crimson" href="https://vellumtech.gumroad.com/l/ountn" target="_blank">View Product</a>
       </div>
     </details>
 
-    <details class="product-card product-card--crimson">
-      <summary>
-        <div class="product-summary-left">
-          <h3>Vellum Video Clipper</h3>
-          <p>Turns long gaming or stream footage into polished clips automatically.</p>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="product-body">
-        <p class="product-desc">Instantly cuts gaming or stream videos into polished clips — saving hours of editing without sacrificing quality.</p>
-        <ul class="feature-list">
-          <li>Finds highlight-worthy moments automatically</li>
-          <li>Trims dead air and downtime</li>
-          <li>Exports clips ready for upload</li>
-        </ul>
-        <div class="product-meta-row">
-          <span class="best-for">Best for: <b>gaming and stream highlight creators</b></span>
-        </div>
-        <a class="main-btn btn-crimson" href="https://vellumtech.gumroad.com/l/vnudjt" target="_blank">View Product</a>
-      </div>
-    </details>
-
-<!-- GAMING_END -->
-  </div>
-</section>
-
-<!-- BUSINESS -->
-<section id="Business" class="tab-content theme-emerald">
-  <h2 class="section-title">Business</h2>
-  <p class="section-sub">Productivity and management tools for solo developers, freelancers, and small teams.</p>
-  <div class="notice-banner notice-emerald">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run.(1 or 2 packages may be missing, work in progress.)</div>
-  <div class="grid-cards" style="grid-template-columns:1fr">
-<!-- BUSINESS_START -->
-
-    <!--
-      TEMPLATE — duplicate this block to add a new Business product.
-      Use product-card--emerald for the accent class in this section.
-    -->
     <details class="product-card product-card--emerald">
       <summary>
         <div class="product-summary-left">
@@ -1110,7 +1098,6 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>time-boxing focused work sessions</b></span>
         </div>
-        <a class="main-btn btn-emerald" href="https://vellumtech.gumroad.com/l/ntgasi" target="_blank">View Product</a>
       </div>
     </details>
 
@@ -1132,11 +1119,9 @@ footer{
         <div class="product-meta-row">
           <span class="best-for">Best for: <b>freelancers and small indie teams</b></span>
         </div>
-        <a class="main-btn btn-emerald" href="https://vellumtech.gumroad.com/l/rtchpp" target="_blank">View Product</a>
       </div>
     </details>
 
-<!-- BUSINESS_END -->
   </div>
 </section>
 
@@ -1147,6 +1132,7 @@ footer{
   <div class="roadmap">
     <div class="step"><b>Shipped:</b> Released ready products across Creator, Gaming, and Business.</div>
     <div class="step"><b>Shipped:</b> Free Tools tab — browser-based utilities, no install required.</div>
+    <div class="step"><b>Shipped:</b> Vellum App Launcher — one place to get and run every product.</div>
     <div class="step"><b>In progress:</b> Full UI system redesign.</div>
   </div>
 </section>
@@ -1160,11 +1146,8 @@ footer{
       TEMPLATE — duplicate this block to log a new fix.
       <div class="step"><b>Product Name:</b> What was fixed.</div>
     -->
-    <div class="step"><b>Screen Capture:</b> Fixed an issue where the countdown timer before recording would not start correctly on some systems.</div>
-    <div class="step"><b>Screen Capture:</b> Hardware encoder detection now runs a real test encode instead of just checking for the encoder's presence, preventing recordings from silently failing on unsupported drivers.</div>
-    <div class="step"><b>Screen Capture:</b> Resolved a container/codec mismatch that could corrupt exported clips during the .webm to .mp4 conversion step.</div>
-    <div class="step"><b>Audio Converter Pro:</b> Fixed installer/packaging errors that could prevent the app from launching after a fresh install on some machines.</div>
-    <div class="step"><b>General:</b> Improved Linux compatibility, including more reliable display and graphics driver detection across different desktop environments.</div>
+    <div class="step"><b>note:</b> make sure to run products from folder if using linux. if anything is wrong feel free to contact me through the <a href="#contact" onclick="navTo('contact',null,event)" style="color:var(--gold);font-weight:600;text-decoration:none">Contact page</a> and an update will be put in gumroad.
+    <div class="step"><b>General:</b>Made final improvements to ready to release products. Improved Linux compatibility, including more reliable display and graphics driver detection across different desktop environments.</div>
   </div>
 
   <div class="card" style="margin-top:40px;border-color:var(--crimson)">
@@ -1192,6 +1175,10 @@ footer{
 
   <h2 class="section-title" style="font-size:1.3rem;margin-bottom:14px">Frequently Asked</h2>
   <div class="faq-list">
+    <details class="faq-item">
+      <summary>What's the Vellum App Launcher? <span class="chevron">+</span></summary>
+      <p>It's the easiest way to get Vellum products — download it once from the <a href="#products" onclick="navTo('products','launcher-card',event)" style="color:var(--violet)">Products tab</a>, then use it to browse, install, and launch anything in the lineup.</p>
+    </details>
     <details class="faq-item">
       <summary>Do I need to install anything before using a Vellum product? <span class="chevron">+</span></summary>
       <p>Yes — every Vellum product is built on the same Python runtime, so the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)" style="color:var(--gold)">Dependencies pack</a> needs to be installed once before any other tool will run.</p>
@@ -1357,7 +1344,7 @@ By downloading, installing, accessing, purchasing, or using the Software, you ac
 </section>
 
 <footer>
-  <p>Vellum Studio &bull; Creator &bull; Gaming &bull; Business &bull; Tools</p>
+  <p>Vellum Studio &bull; Products &bull; Tools</p>
   <p style="margin-top:6px">© 2026 Vellum Studio — All Rights Reserved</p>
 </footer>
 
@@ -1367,23 +1354,16 @@ By downloading, installing, accessing, purchasing, or using the Software, you ac
    theme: "gold" | "crimson" | "emerald" | "violet"
    ────────────────────────────────────────────────────────────────────────── */
 const FEATURED = {
-  title : "Vellum Creator Bundle",
-  desc  : "Stop wasting hours editing from scratch. Elevate your content, hook your audience, and double your production speed with the ultimate creative shortcut.",
-  url   : "https://vellumtech.gumroad.com/l/manqx",
-  theme : "gold"
+  title : "Vellum App Launcher",
+  desc  : "Download the Launcher to browse, install, and run every Vellum product from one place.",
+  theme : "violet"
 };
 
 (function applyFeatured(){
   const title = document.getElementById("feat-title");
   const desc  = document.getElementById("feat-desc");
-  const link  = document.getElementById("feat-link");
   if(title) title.textContent = FEATURED.title;
   if(desc)  desc.textContent  = FEATURED.desc;
-  if(link && FEATURED.url){
-    link.href = FEATURED.url;
-    link.style.display = "inline-block";
-    link.className = "main-btn btn-" + FEATURED.theme;
-  }
 })();
 
 /* ── TAB SWITCHER ── */
