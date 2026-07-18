@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tools — Word Counter, Contrast Checker, JSON Formatter, Password Generator | Vellum Studio</title>
+<meta name="description" content="Free browser-based utilities from Vellum Studio: word &amp; character counter, WCAG color contrast checker, JSON formatter and validator, and password generator. No install, no account.">
+<meta property="og:title" content="Free Tools — Vellum Studio">
+<meta property="og:description" content="Word counter, color contrast checker, JSON formatter, and password generator — free, in your browser, no install.">
+<meta property="og:url" content="https://vellumtech55.github.io/vellum/tools.html">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://vellumtech55.github.io/vellum/tools.html">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,800;1,500&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<div class="bg-glow violet" id="bg"></div>
+<div class="grid-bg"></div>
+<div class="grain"></div>
+
+<header>
+  <p class="eyebrow">Independent software &amp; tools</p>
+  <h1><a href="index.html">VELLUM STUDIO</a></h1>
+  <p class="tagline">Lightweight desktop software for creators, gamers &amp; developers.</p>
+  <div class="deckle-spacer"></div>
+</header>
+<div class="deckle"></div>
+
+<nav aria-label="Primary">
+  <a class="nav-link" data-accent="gold" href="index.html">Home</a>
+  <a class="nav-link" data-accent="gold" href="about.html">About Me</a>
+  <a class="nav-link active" data-accent="violet" href="tools.html">Free Tools</a>
+  <a class="nav-link" data-accent="gold" href="products.html">Products</a>
+  <a class="nav-link" data-accent="gold" href="roadmap.html">Roadmap</a>
+  <a class="nav-link" data-accent="gold" href="fixes.html">Fixes and notes</a>
+  <a class="nav-link" data-accent="gold" href="contact.html">Contact and legal</a>
+</nav>
+
+<main id="main-content" class="theme-violet">
+  <h2 class="section-title">Free Tools</h2>
+  <p class="section-sub">No purchase, no install — these run right here in your browser. Tap a tool to open it.</p>
+
+  <div class="grid-cards" style="grid-template-columns:1fr">
+
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Word &amp; Character Counter</h3>
+          <p>Live word count, character count, and estimated reading time.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <label for="wc-input" class="tool-row" style="display:block">Paste or type text below</label>
+        <textarea id="wc-input" placeholder="Paste or type text here…" style="width:100%;min-height:130px"></textarea>
+        <div class="tool-stats">
+          <div>Words<span id="wc-words">0</span></div>
+          <div>Characters<span id="wc-chars">0</span></div>
+          <div>Sentences<span id="wc-sentences">0</span></div>
+          <div>Reading time<span id="wc-time">0 min</span></div>
+        </div>
+      </div>
+    </details>
+
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Color Contrast Checker</h3>
+          <p>Check text/background contrast against WCAG AA &amp; AAA.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <div class="swatch-pair">
+          <div class="pair-block">
+            <label for="cc-fg-hex">Text</label>
+            <input type="color" id="cc-fg" value="#f1ede3" aria-label="Text color picker">
+            <input type="text" id="cc-fg-hex" value="#f1ede3">
+          </div>
+          <span style="color:var(--text-faint);font-size:.8rem">on</span>
+          <div class="pair-block">
+            <label for="cc-bg-hex">Background</label>
+            <input type="color" id="cc-bg" value="#101216" aria-label="Background color picker">
+            <input type="text" id="cc-bg-hex" value="#101216">
+          </div>
+        </div>
+        <div id="cc-preview" class="preview-text">The quick brown fox jumps over the lazy dog</div>
+        <div class="tool-out" id="cc-out" style="margin-top:14px">Ratio: —</div>
+      </div>
+    </details>
+
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>JSON Formatter &amp; Validator</h3>
+          <p>Paste JSON, format it, and catch syntax errors instantly.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <label for="json-input" class="tool-row" style="display:block">Paste JSON below</label>
+        <textarea id="json-input" placeholder='{"example": true}' style="width:100%;min-height:120px;font-family:ui-monospace,monospace"></textarea>
+        <div class="tool-row" style="margin-top:10px">
+          <button class="btn-small" id="json-format" type="button">Format</button>
+          <button class="btn-small" id="json-clear" type="button">Clear</button>
+        </div>
+        <div class="tool-out" id="json-out">Output will appear here.</div>
+      </div>
+    </details>
+
+    <details class="tool-card">
+      <summary>
+        <div class="tool-meta">
+          <h3>Password Generator</h3>
+          <p>Generate a random password with custom length and character sets.</p>
+        </div>
+        <span class="chevron">+</span>
+      </summary>
+      <div class="tool-body">
+        <div class="tool-row">
+          <div class="range-row">
+            <label for="pw-length">Length</label>
+            <input type="range" id="pw-length" min="6" max="48" value="16">
+            <span id="pw-length-val" style="color:var(--text);font-weight:600">16</span>
+          </div>
+        </div>
+        <div class="checkbox-row">
+          <label><input type="checkbox" id="pw-upper" checked> Uppercase</label>
+          <label><input type="checkbox" id="pw-lower" checked> Lowercase</label>
+          <label><input type="checkbox" id="pw-num" checked> Numbers</label>
+          <label><input type="checkbox" id="pw-sym" checked> Symbols</label>
+        </div>
+        <div class="tool-row">
+          <button class="btn-small" id="pw-generate" type="button">Generate</button>
+          <button class="btn-small" id="pw-copy" type="button">Copy</button>
+        </div>
+        <div class="tool-out" id="pw-out">Click Generate</div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="card" style="margin-top:22px;border-color:var(--violet)">
+    <span class="badge violet">LEVEL UP</span>
+    <h3>Looking for something even more useful?</h3>
+    <p>These free tools cover only the basics. For heavier-duty editing, capture, and automation, check out the full product lineup.</p>
+    <a class="main-btn btn-violet" href="products.html">Browse All Products</a>
+  </div>
+</main>
+
+<footer>
+  <p>Vellum Studio &bull; <a href="products.html">Products</a> &bull; <a href="tools.html">Tools</a></p>
+  <p style="margin-top:6px">&#169; 2026 Vellum Studio — All Rights Reserved</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script src="assets/js/tools.js"></script>
+</body>
+</html>
