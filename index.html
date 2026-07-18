@@ -3,14 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vellum Studio</title>
+<title>Vellum Studio — Lightweight Desktop Software for Creators &amp; Developers</title>
+<meta name="description" content="Vellum Studio makes lightweight desktop software for creators, gamers, and developers — including a video editor, screen recorder, audio converter, and more. Built in Python. Free tools included.">
+<meta name="keywords" content="desktop software, screen recorder, video editor, audio converter, python tools, indie software, creator tools, game clipper, productivity app">
+<meta property="og:title" content="Vellum Studio — Lightweight Desktop Software">
+<meta property="og:description" content="Practical desktop tools for creators, gamers, and developers. Lightweight, independent, Python-built.">
+<meta property="og:url" content="https://vellumtech55.github.io/vellum/">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://vellumtech55.github.io/vellum/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,800;1,500&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
+ 
 :root{
-  /* ── core ink + parchment ── */
   --ink-950:#08090b;
   --ink-900:#101216;
   --ink-850:#15171c;
@@ -20,36 +26,34 @@
   --text:#f1ede3;
   --text-dim:#9b9690;
   --text-faint:#8a8478;
-
-  /* ── category accents ── */
+ 
   --gold:#d8a955;
   --gold-dim:rgba(216,169,85,.35);
   --gold-bg:#191510;
-
+ 
   --crimson:#d6495b;
   --crimson-dim:rgba(214,73,91,.35);
   --crimson-bg:#1a0e10;
-
+ 
   --emerald:#2bd6a3;
   --emerald-dim:rgba(43,214,163,.35);
   --emerald-bg:#0c1815;
-
+ 
   --violet:#8d80e0;
   --violet-dim:rgba(141,128,224,.35);
   --violet-bg:#131120;
-
+ 
   --font-display:'Fraunces',serif;
   --font-body:'Inter',sans-serif;
 }
-
+ 
 body{
   font-family:var(--font-body);
   background:var(--ink-950);
   color:var(--text);
   overflow-x:hidden;
 }
-
-/* ── BACKGROUND ── */
+ 
 .bg-glow{
   position:fixed;
   inset:0;
@@ -69,13 +73,13 @@ body{
 .bg-glow.crimson::before{ background:rgba(214,73,91,.16); }
 .bg-glow.emerald::before{ background:rgba(43,214,163,.13); }
 .bg-glow.violet::before { background:rgba(141,128,224,.15); }
-
+ 
 @keyframes float{
   0%  {transform:translate(-10%,-10%) scale(1)}
   50% {transform:translate(35%,20%) scale(1.25)}
   100%{transform:translate(-10%,-10%) scale(1)}
 }
-
+ 
 .grid-bg{
   position:fixed;
   inset:0;
@@ -86,7 +90,7 @@ body{
     linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
   background-size:45px 45px;
 }
-
+ 
 .grain{
   position:fixed;
   inset:0;
@@ -97,8 +101,7 @@ body{
   background-repeat:repeat;
   background-size:180px 180px;
 }
-
-/* ── DECKLE EDGE (signature element: torn-paper divider) ── */
+ 
 .deckle{
   height:16px;
   width:100%;
@@ -110,14 +113,13 @@ body{
   background-size:16px 16px;
   background-repeat:repeat-x;
 }
-
-/* ── HEADER ── */
+ 
 header{
   text-align:center;
   padding:110px 20px 0;
   background:var(--ink-900);
 }
-
+ 
 .eyebrow{
   font-size:.78rem;
   letter-spacing:3px;
@@ -126,14 +128,14 @@ header{
   font-weight:600;
   margin-bottom:14px;
 }
-
+ 
 header h1{
   font-family:var(--font-display);
   font-size:4.2rem;
   font-weight:800;
   letter-spacing:1px;
 }
-
+ 
 header p.tagline{
   color:var(--text-dim);
   margin-top:10px;
@@ -141,7 +143,7 @@ header p.tagline{
   font-family:var(--font-display);
   font-style:italic;
 }
-
+ 
 .hero{
   max-width:780px;
   margin:36px auto 0;
@@ -150,14 +152,13 @@ header p.tagline{
   background:rgba(255,255,255,.035);
   border:1px solid var(--line);
 }
-
+ 
 .hero h2{font-size:.78rem;color:var(--text-faint);text-transform:uppercase;letter-spacing:2.5px;margin-bottom:10px;font-weight:600}
 .hero h3{font-family:var(--font-display);font-size:1.5rem;margin-bottom:10px;font-weight:600}
 .hero p{color:var(--text-dim);font-size:.95rem;line-height:1.6}
-
+ 
 header .deckle-spacer{ height:48px; }
-
-/* ── NAV ── */
+ 
 nav{
   display:flex;
   justify-content:center;
@@ -171,7 +172,7 @@ nav{
   z-index:10;
   border-bottom:1px solid var(--line);
 }
-
+ 
 .tab-button{
   padding:10px 18px;
   border-radius:8px;
@@ -184,21 +185,19 @@ nav{
   font-weight:600;
   font-family:var(--font-body);
 }
-
+ 
 .tab-button:hover{
   transform:translateY(-1px);
   color:var(--text);
   border-color:var(--text-faint);
 }
-
+ 
 .tab-button.active{ background:var(--ink-800); }
-
 .tab-button.active[data-accent="gold"]   { border-color:var(--gold);    color:var(--gold);    box-shadow:0 0 16px var(--gold-dim); }
 .tab-button.active[data-accent="crimson"]{ border-color:var(--crimson); color:var(--crimson); box-shadow:0 0 16px var(--crimson-dim); }
 .tab-button.active[data-accent="emerald"]{ border-color:var(--emerald); color:var(--emerald); box-shadow:0 0 16px var(--emerald-dim); }
 .tab-button.active[data-accent="violet"] { border-color:var(--violet);  color:var(--violet);  box-shadow:0 0 16px var(--violet-dim); }
-
-/* ── SECTIONS ── */
+ 
 .tab-content{
   display:none;
   max-width:1180px;
@@ -213,7 +212,7 @@ nav{
   from{opacity:0;transform:translateY(8px)}
   to  {opacity:1;transform:translateY(0)}
 }
-
+ 
 .section-title{
   font-family:var(--font-display);
   font-size:2rem;
@@ -226,15 +225,14 @@ nav{
   margin-bottom:30px;
   max-width:560px;
 }
-
-/* ── CARDS ── */
+ 
 .grid-cards{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:18px;
   margin-top:4px;
 }
-
+ 
 .card{
   background:rgba(255,255,255,.035);
   border:1px solid var(--line);
@@ -242,29 +240,16 @@ nav{
   padding:24px;
   transition:.22s;
 }
-.card:hover{
-  transform:translateY(-4px);
-  border-color:var(--line-strong);
-}
-
+.card:hover{ transform:translateY(-4px); border-color:var(--line-strong); }
+ 
 .theme-gold .card:hover    { border-color:var(--gold);    box-shadow:0 0 22px rgba(216,169,85,.13); }
 .theme-crimson .card:hover { border-color:var(--crimson); box-shadow:0 0 22px rgba(214,73,91,.15); }
 .theme-emerald .card:hover { border-color:var(--emerald); box-shadow:0 0 22px rgba(43,214,163,.13); }
 .theme-violet .card:hover  { border-color:var(--violet);  box-shadow:0 0 22px rgba(141,128,224,.15); }
-
-.card h3{
-  font-family:var(--font-display);
-  font-size:1.18rem;
-  font-weight:600;
-  margin-bottom:8px;
-}
-.card p{
-  color:var(--text-dim);
-  font-size:.92rem;
-  line-height:1.55;
-}
-
-/* ── BADGES ── */
+ 
+.card h3{ font-family:var(--font-display); font-size:1.18rem; font-weight:600; margin-bottom:8px; }
+.card p{ color:var(--text-dim); font-size:.92rem; line-height:1.55; }
+ 
 .badge{
   display:inline-block;
   padding:4px 10px;
@@ -275,21 +260,14 @@ nav{
   text-transform:uppercase;
   margin-bottom:10px;
 }
-.badge.gold{ background:var(--gold-bg);    color:var(--gold); }
+.badge.gold{ background:var(--gold-bg); color:var(--gold); }
 .badge.crimson{ background:var(--crimson-bg); color:var(--crimson); }
 .badge.emerald{ background:var(--emerald-bg); color:var(--emerald); }
-.badge.violet{ background:var(--violet-bg);  color:var(--violet); }
-
-/* ── STAT CARDS (home) ── */
-.stat-card h3{
-  font-family:var(--font-display);
-  font-size:2.1rem;
-  font-weight:700;
-  margin-bottom:4px;
-}
+.badge.violet{ background:var(--violet-bg); color:var(--violet); }
+ 
+.stat-card h3{ font-family:var(--font-display); font-size:2.1rem; font-weight:700; margin-bottom:4px; }
 .stat-card p{ color:var(--text-faint); font-size:.85rem; }
-
-/* ── BUTTONS ── */
+ 
 .main-btn{
   display:inline-block;
   margin-top:14px;
@@ -311,8 +289,7 @@ nav{
 .btn-emerald:hover{ background:var(--emerald); color:#04140f; }
 .btn-violet { background:transparent; color:var(--violet);  border-color:var(--violet); }
 .btn-violet:hover { background:var(--violet);  color:#100c2c; }
-
-/* ── ROADMAP ── */
+ 
 .roadmap{ display:flex; flex-direction:column; gap:12px; }
 .step{
   padding:16px 20px;
@@ -323,8 +300,7 @@ nav{
   color:var(--text-dim);
 }
 .step b{ color:var(--text); }
-
-/* ── CONTACT ── */
+ 
 form{ display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
 input,textarea{
   background:var(--ink-900);
@@ -337,7 +313,7 @@ input,textarea{
 }
 textarea{ min-height:150px; resize:vertical; }
 input:focus,textarea:focus{ outline:none; border-color:var(--gold); }
-
+ 
 .legal-box{
   background:rgba(255,255,255,.025);
   border:1px solid var(--line);
@@ -348,8 +324,7 @@ input:focus,textarea:focus{ outline:none; border-color:var(--gold); }
   font-size:.88rem;
 }
 .legal-box h3{ font-family:var(--font-display); color:var(--text-dim); margin-bottom:14px; }
-
-/* ── FOOTER ── */
+ 
 footer{
   text-align:center;
   padding:36px 20px;
@@ -357,8 +332,7 @@ footer{
   border-top:1px solid var(--line);
   font-size:.85rem;
 }
-
-/* ── TOOLS (free html tools) ── */
+ 
 .tool-card{
   background:rgba(255,255,255,.035);
   border:1px solid var(--line);
@@ -377,27 +351,18 @@ footer{
 .tool-card > summary::-webkit-details-marker{ display:none; }
 .tool-card > summary .tool-meta h3{ font-family:var(--font-display); font-size:1.1rem; margin-bottom:4px; }
 .tool-card > summary .tool-meta p{ color:var(--text-dim); font-size:.88rem; }
-.tool-card > summary .chevron{
-  color:var(--violet);
-  font-size:1.3rem;
-  transition:.2s;
-  flex-shrink:0;
-}
+.tool-card > summary .chevron{ color:var(--violet); font-size:1.3rem; transition:.2s; flex-shrink:0; }
 .tool-card[open] > summary .chevron{ transform:rotate(45deg); }
 .tool-card[open]{ border-color:var(--violet); box-shadow:0 0 22px rgba(141,128,224,.12); }
-
-.tool-body{
-  padding:0 24px 26px;
-  border-top:1px solid var(--line);
-  padding-top:20px;
-}
-
+ 
+.tool-body{ padding:0 24px 26px; border-top:1px solid var(--line); padding-top:20px; }
+ 
 .tool-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
 .tool-row label{ font-size:.82rem; color:var(--text-dim); display:flex; align-items:center; gap:6px; }
 .tool-stats{ display:flex; gap:22px; flex-wrap:wrap; margin-top:12px; }
 .tool-stats div{ font-size:.8rem; color:var(--text-faint); }
 .tool-stats span{ display:block; font-family:var(--font-display); font-size:1.4rem; color:var(--text); font-weight:600; }
-
+ 
 .tool-out{
   background:var(--ink-950);
   border:1px solid var(--line-strong);
@@ -412,7 +377,7 @@ footer{
 }
 .tool-out.error{ color:var(--crimson); }
 .tool-out.pass{ color:var(--emerald); }
-
+ 
 .btn-small{
   padding:8px 14px;
   border-radius:6px;
@@ -426,33 +391,19 @@ footer{
   transition:.2s;
 }
 .btn-small:hover{ background:var(--violet); color:#100c2c; }
-
+ 
 .swatch-pair{ display:flex; gap:14px; align-items:center; flex-wrap:wrap; }
-.swatch-pair .pair-block{
-  display:flex; align-items:center; gap:8px;
-  background:var(--ink-950); border:1px solid var(--line-strong);
-  padding:8px 10px; border-radius:7px;
-}
-.swatch-pair input[type=color]{
-  width:34px; height:34px; border:none; border-radius:5px; background:none; cursor:pointer; padding:0;
-}
+.swatch-pair .pair-block{ display:flex; align-items:center; gap:8px; background:var(--ink-950); border:1px solid var(--line-strong); padding:8px 10px; border-radius:7px; }
+.swatch-pair input[type=color]{ width:34px; height:34px; border:none; border-radius:5px; background:none; cursor:pointer; padding:0; }
 .swatch-pair input[type=text]{ width:90px; padding:6px 8px; font-size:.82rem; }
-
-.preview-text{
-  margin-top:14px;
-  padding:16px;
-  border-radius:7px;
-  font-size:1rem;
-  font-weight:600;
-  text-align:center;
-}
-
+ 
+.preview-text{ margin-top:14px; padding:16px; border-radius:7px; font-size:1rem; font-weight:600; text-align:center; }
+ 
 .range-row{ display:flex; align-items:center; gap:10px; flex:1; min-width:180px; }
 .range-row input[type=range]{ flex:1; accent-color:var(--violet); }
 .checkbox-row{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:14px; }
 .checkbox-row label{ font-size:.85rem; color:var(--text-dim); display:flex; align-items:center; gap:6px; cursor:pointer; }
-
-/* ── PRODUCT CARDS (Creator / Gaming / Business / Setup) ── */
+ 
 .product-card{
   background:rgba(255,255,255,.035);
   border:1px solid var(--line);
@@ -461,7 +412,7 @@ footer{
   transition:.22s;
 }
 .product-card:hover{ transform:translateY(-2px); border-color:var(--line-strong); }
-
+ 
 .product-card > summary{
   list-style:none;
   cursor:pointer;
@@ -472,130 +423,50 @@ footer{
   gap:16px;
 }
 .product-card > summary::-webkit-details-marker{ display:none; }
-
+ 
 .product-summary-left{ flex:1; min-width:0; }
-.product-summary-left h3{
-  font-family:var(--font-display);
-  font-size:1.18rem;
-  font-weight:600;
-  margin-bottom:6px;
-}
-.product-summary-left p{
-  color:var(--text-dim);
-  font-size:.9rem;
-  line-height:1.5;
-}
-
-.product-card .chevron{
-  font-size:1.3rem;
-  transition:.2s;
-  flex-shrink:0;
-  color:var(--text-faint);
-  margin-top:2px;
-}
+.product-summary-left h3{ font-family:var(--font-display); font-size:1.18rem; font-weight:600; margin-bottom:6px; }
+.product-summary-left p{ color:var(--text-dim); font-size:.9rem; line-height:1.5; }
+ 
+.product-card .chevron{ font-size:1.3rem; transition:.2s; flex-shrink:0; color:var(--text-faint); margin-top:2px; }
 .product-card[open] .chevron{ transform:rotate(45deg); }
-
+ 
 .product-card--gold[open]   { border-color:var(--gold);    box-shadow:0 0 22px rgba(216,169,85,.13); }
 .product-card--gold .chevron{ color:var(--gold); }
 .product-card--crimson[open]{ border-color:var(--crimson); box-shadow:0 0 22px rgba(214,73,91,.15); }
 .product-card--crimson .chevron{ color:var(--crimson); }
-.product-card--emerald[open] { border-color:var(--emerald); box-shadow:0 0 22px rgba(43,214,163,.13); }
+.product-card--emerald[open]{ border-color:var(--emerald); box-shadow:0 0 22px rgba(43,214,163,.13); }
 .product-card--emerald .chevron{ color:var(--emerald); }
-.product-card--violet[open] { border-color:var(--violet); box-shadow:0 0 22px rgba(141,128,224,.15); }
+.product-card--violet[open] { border-color:var(--violet);  box-shadow:0 0 22px rgba(141,128,224,.15); }
 .product-card--violet .chevron{ color:var(--violet); }
-
-.product-body{
-  padding:0 24px 26px;
-  border-top:1px solid var(--line);
-  padding-top:20px;
-}
-
+ 
+.product-body{ padding:0 24px 26px; border-top:1px solid var(--line); padding-top:20px; }
 .product-desc{ color:var(--text-dim); font-size:.92rem; line-height:1.6; margin-bottom:16px; }
-
+ 
 .feature-list{ list-style:none; display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
-.feature-list li{
-  font-size:.88rem;
-  color:var(--text-dim);
-  padding-left:22px;
-  position:relative;
-  line-height:1.5;
-}
-.feature-list li::before{
-  content:"✓";
-  position:absolute;
-  left:0;
-  font-weight:700;
-}
+.feature-list li{ font-size:.88rem; color:var(--text-dim); padding-left:22px; position:relative; line-height:1.5; }
+.feature-list li::before{ content:"✓"; position:absolute; left:0; font-weight:700; }
 .product-card--gold .feature-list li::before   { color:var(--gold); }
 .product-card--crimson .feature-list li::before{ color:var(--crimson); }
 .product-card--emerald .feature-list li::before{ color:var(--emerald); }
-.product-card--violet .feature-list li::before{ color:var(--violet); }
-
-.product-meta-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:8px 16px;
-  margin-bottom:14px;
-  font-size:.8rem;
-  color:var(--text-faint);
-}
+.product-card--violet .feature-list li::before { color:var(--violet); }
+ 
+.product-meta-row{ display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px 16px; margin-bottom:14px; font-size:.8rem; color:var(--text-faint); }
 .product-meta-row .best-for b{ color:var(--text-dim); font-weight:600; }
-
-/* ── ABOUT PAGE ── */
-.about-header{
-  display:flex;
-  gap:28px;
-  align-items:flex-start;
-  flex-wrap:wrap;
-}
-
+ 
+.about-header{ display:flex; gap:28px; align-items:flex-start; flex-wrap:wrap; }
 .about-intro{ flex:1; min-width:260px; }
-.about-intro h3{
-  font-family:var(--font-display);
-  font-size:1.6rem;
-  font-weight:600;
-  margin-bottom:10px;
-}
+.about-intro h3{ font-family:var(--font-display); font-size:1.6rem; font-weight:600; margin-bottom:10px; }
 .about-intro p{ color:var(--text-dim); font-size:.95rem; line-height:1.65; margin-bottom:14px; }
-
+ 
 .tech-badges{ display:flex; flex-wrap:wrap; gap:8px; margin-top:4px; margin-bottom:16px; }
-.tech-badge{
-  background:var(--ink-900);
-  border:1px solid var(--line-strong);
-  color:var(--text-dim);
-  padding:6px 13px;
-  border-radius:20px;
-  font-size:.78rem;
-  font-weight:600;
-}
-
+.tech-badge{ background:var(--ink-900); border:1px solid var(--line-strong); color:var(--text-dim); padding:6px 13px; border-radius:20px; font-size:.78rem; font-weight:600; }
+ 
 .social-links{ display:flex; flex-wrap:wrap; gap:10px; }
-.social-links a{
-  color:var(--text-dim);
-  text-decoration:none;
-  font-size:.86rem;
-  font-weight:600;
-  border:1px solid var(--line-strong);
-  padding:9px 16px;
-  border-radius:7px;
-  transition:.2s;
-}
+.social-links a{ color:var(--text-dim); text-decoration:none; font-size:.86rem; font-weight:600; border:1px solid var(--line-strong); padding:9px 16px; border-radius:7px; transition:.2s; }
 .social-links a:hover{ border-color:var(--gold); color:var(--gold); }
-
-/* ── NOTICE BANNER ── */
-.notice-banner{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  border-radius:8px;
-  padding:13px 18px;
-  margin-bottom:24px;
-  font-size:.86rem;
-  color:var(--text-dim);
-  border:1px solid;
-}
+ 
+.notice-banner{ display:flex; align-items:center; gap:10px; border-radius:8px; padding:13px 18px; margin-bottom:24px; font-size:.86rem; color:var(--text-dim); border:1px solid; }
 .notice-banner a{ font-weight:700; text-decoration:none; }
 .notice-banner a:hover{ text-decoration:underline; }
 .notice-gold{ background:rgba(216,169,85,.07); border-color:rgba(216,169,85,.3); }
@@ -604,39 +475,17 @@ footer{
 .notice-crimson a{ color:var(--crimson); }
 .notice-emerald{ background:rgba(43,214,163,.07); border-color:rgba(43,214,163,.3); }
 .notice-emerald a{ color:var(--emerald); }
-
-/* ── FAQ ── */
+ 
 .faq-list{ display:flex; flex-direction:column; gap:10px; margin-bottom:32px; }
-.faq-item{
-  background:rgba(255,255,255,.03);
-  border:1px solid var(--line);
-  border-radius:8px;
-  overflow:hidden;
-}
-.faq-item summary{
-  list-style:none;
-  cursor:pointer;
-  padding:16px 20px;
-  font-weight:600;
-  font-size:.94rem;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+.faq-item{ background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+.faq-item summary{ list-style:none; cursor:pointer; padding:16px 20px; font-weight:600; font-size:.94rem; display:flex; justify-content:space-between; align-items:center; }
 .faq-item summary::-webkit-details-marker{ display:none; }
 .faq-item summary .chevron{ color:var(--gold); transition:.2s; }
 .faq-item[open] summary .chevron{ transform:rotate(45deg); }
-.faq-item p{
-  padding:0 20px 18px;
-  color:var(--text-dim);
-  font-size:.88rem;
-  line-height:1.6;
-}
-
-/* ── SECRET ── */
+.faq-item p{ padding:0 20px 18px; color:var(--text-dim); font-size:.88rem; line-height:1.6; }
+ 
 .secret-mode{ filter:hue-rotate(180deg); }
-
-/* ── MOBILE ── */
+ 
 @media(max-width:680px){
   header h1{ font-size:2.6rem; }
   .tab-content{ padding:40px 16px 64px; }
@@ -645,15 +494,15 @@ footer{
 </style>
 </head>
 <body>
-
+ 
 <div class="bg-glow" id="bg"></div>
 <div class="grid-bg"></div>
 <div class="grain"></div>
-
+ 
 <header>
   <p class="eyebrow">Independent software &amp; tools</p>
   <h1>VELLUM STUDIO</h1>
-  <p class="tagline">Build. Create. Experiment.</p>
+  <p class="tagline">Lightweight desktop software for creators, gamers &amp; developers.</p>
   <div class="hero" id="featured-hero">
     <h2>Featured Project</h2>
     <h3 id="feat-title">Loading&hellip;</h3>
@@ -662,7 +511,7 @@ footer{
   <div class="deckle-spacer"></div>
 </header>
 <div class="deckle"></div>
-
+ 
 <nav>
   <button class="tab-button active" data-tab="home" data-accent="gold">Home</button>
   <button class="tab-button" data-tab="about" data-accent="gold">About Me</button>
@@ -672,7 +521,7 @@ footer{
   <button class="tab-button" data-tab="fixes" data-accent="gold">Fixes and notes</button>
   <button class="tab-button" data-tab="contact" data-accent="gold">Contact and legal</button>
 </nav>
-
+ 
 <!-- HOME -->
 <section id="home" class="tab-content active theme-gold">
   <h2 class="section-title">Studio Stats</h2>
@@ -681,14 +530,14 @@ footer{
     <div class="card stat-card"><h3>8+</h3><p>Tools Released</p></div>
     <div class="card stat-card"><h3>100%</h3><p>Independent</p></div>
     <div class="card stat-card"><h3>Python</h3><p>Main programming language</p></div>
-    <div class="card stat-card"><h3>∞</h3><p>Ideas</p></div>
+    <div class="card stat-card"><h3>&#8734;</h3><p>Ideas</p></div>
     <div class="card stat-card"><h3>100%</h3><p>Safe</p></div>
   </div>
-
+ 
   <h2 class="section-title" style="margin-top:48px">Start Here</h2>
   <p class="section-sub">Get the Launcher, install the dependencies, and you're ready for any Vellum product.</p>
   <div class="grid-cards" style="grid-template-columns:1fr">
-    <details class="product-card product-card--violet" open>
+    <details class="product-card product-card--violet" open aria-label="Vellum App Launcher — browse, install, and launch all Vellum products from one place">
       <summary>
         <div class="product-summary-left">
           <span class="badge violet">LAUNCHER</span>
@@ -710,7 +559,7 @@ footer{
         <a class="main-btn btn-violet" href="https://vellumtech.gumroad.com/l/lbqfqd" target="_blank">Download Launcher</a>
       </div>
     </details>
-    <details class="product-card product-card--gold" id="dependencies-card">
+    <details class="product-card product-card--gold" id="dependencies-card" aria-label="Vellum Dependencies — Python runtime installer required before any Vellum product will run">
       <summary>
         <div class="product-summary-left">
           <span class="badge gold">SETUP</span>
@@ -734,12 +583,12 @@ footer{
     </details>
   </div>
 </section>
-
+ 
 <!-- ABOUT -->
 <section id="about" class="tab-content theme-gold">
   <h2 class="section-title">About Me</h2>
   <p class="section-sub">The person behind Vellum Studio.</p>
-
+ 
   <div class="card about-header">
     <div class="about-intro">
       <h3>Hi, I'm the developer behind Vellum Studio</h3>
@@ -754,11 +603,10 @@ footer{
       <div class="social-links">
         <a href="https://github.com/" target="_blank">GitHub</a>
         <a href="#contact" onclick="navTo('contact',null,event)">Contact</a>
-        <!-- Add more, e.g.: <a href="https://twitter.com/yourhandle" target="_blank">Twitter/X</a> -->
       </div>
     </div>
   </div>
-
+ 
   <h2 class="section-title" style="margin-top:44px">Why Vellum</h2>
   <p class="section-sub">What guides how these tools get built.</p>
   <div class="grid-cards">
@@ -779,16 +627,14 @@ footer{
     </div>
   </div>
 </section>
-
+ 
 <!-- TOOLS (free) -->
 <section id="tools" class="tab-content theme-violet">
   <h2 class="section-title">Free Tools</h2>
   <p class="section-sub">No purchase, no install — these run right here in your browser. Tap a tool to open it.</p>
-
+ 
   <div class="grid-cards" style="grid-template-columns:1fr">
-<!-- TOOLS_START -->
-
-    <!-- TOOL: Word & Character Counter -->
+ 
     <details class="tool-card">
       <summary>
         <div class="tool-meta">
@@ -807,8 +653,7 @@ footer{
         </div>
       </div>
     </details>
-
-    <!-- TOOL: Color Contrast Checker -->
+ 
     <details class="tool-card">
       <summary>
         <div class="tool-meta">
@@ -833,8 +678,7 @@ footer{
         <div class="tool-out" id="cc-out" style="margin-top:14px">Ratio: —</div>
       </div>
     </details>
-
-    <!-- TOOL: JSON Formatter & Validator -->
+ 
     <details class="tool-card">
       <summary>
         <div class="tool-meta">
@@ -852,8 +696,7 @@ footer{
         <div class="tool-out" id="json-out">Output will appear here.</div>
       </div>
     </details>
-
-    <!-- TOOL: Password Generator -->
+ 
     <details class="tool-card">
       <summary>
         <div class="tool-meta">
@@ -883,29 +726,9 @@ footer{
         <div class="tool-out" id="pw-out">Click Generate</div>
       </div>
     </details>
-
-    <!--
-      TEMPLATE — duplicate this block to add a new free tool.
-      Keep it inside TOOLS_START / TOOLS_END, give every input/output
-      a unique id prefix, and add matching JS down in the TOOLS_JS block.
-
-    <details class="tool-card">
-      <summary>
-        <div class="tool-meta">
-          <h3>Tool Name</h3>
-          <p>One-line description of what it does.</p>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="tool-body">
-        ... tool markup ...
-      </div>
-    </details>
-    -->
-
-<!-- TOOLS_END -->
+ 
   </div>
-
+ 
   <div class="card" style="margin-top:22px;border-color:var(--violet)">
     <span class="badge violet">LEVEL UP</span>
     <h3>Looking for something even more useful?</h3>
@@ -913,17 +736,16 @@ footer{
     <a class="main-btn btn-violet" href="#products" onclick="navTo('products',null,event)">Browse All Products</a>
   </div>
 </section>
-
+ 
 <!-- PRODUCTS -->
 <section id="products" class="tab-content theme-gold">
   <h2 class="section-title">Products</h2>
   <p class="section-sub">The full Vellum lineup — creator tools, gaming utilities, and business software, all in one place.</p>
   <div class="notice-banner notice-gold">Heads up — install the <a href="#dependencies-card" onclick="navTo('home','dependencies-card',event)">Dependencies pack</a> first. It's required before any Vellum product will run. (1 or 2 packages may be missing, work in progress.)</div>
-
+ 
   <div class="grid-cards" style="grid-template-columns:1fr">
-
-    <!-- LAUNCHER -->
-    <details class="product-card product-card--violet" id="launcher-card" open>
+ 
+    <details class="product-card product-card--violet" id="launcher-card" open aria-label="Vellum App Launcher — desktop app manager for all Vellum software">
       <summary>
         <div class="product-summary-left">
           <span class="badge violet">LAUNCHER</span>
@@ -945,15 +767,8 @@ footer{
         <a class="main-btn btn-violet" href="https://vellumtech.gumroad.com/l/lbqfqd" target="_blank">Download Launcher</a>
       </div>
     </details>
-
-    <!--
-      TEMPLATE — duplicate this block to add a new product.
-      1. Give the <details> a unique accent class: product-card--gold / --crimson / --emerald
-      2. Update the badge, title, one-liner, description, features, and "best for"
-      3. No purchase links — products are distributed through the Launcher above
-    -->
-
-    <details class="product-card product-card--gold">
+ 
+    <details class="product-card product-card--gold" aria-label="Vellum Creator Bundle — all creator desktop tools in one install including video editor, audio converter, screen capture, and video clipper">
       <summary>
         <div class="product-summary-left">
           <span class="badge gold">BUNDLE</span>
@@ -974,8 +789,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--gold">
+ 
+    <details class="product-card product-card--gold" aria-label="Video Editor — automatic video editing software that detects cuts from audio spikes for creators and YouTubers">
       <summary>
         <div class="product-summary-left">
           <h3>Video Editor</h3>
@@ -995,8 +810,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--gold">
+ 
+    <details class="product-card product-card--gold" aria-label="Audio Converter — batch convert audio and video files to MP3, WAV, and other formats">
       <summary>
         <div class="product-summary-left">
           <h3>Audio Converter</h3>
@@ -1016,8 +831,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--gold">
+ 
+    <details class="product-card product-card--gold" aria-label="Screen Capture — lightweight customizable screen recorder for streamers and tutorial creators">
       <summary>
         <div class="product-summary-left">
           <h3>Screen Capture</h3>
@@ -1037,8 +852,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--crimson">
+ 
+    <details class="product-card product-card--crimson" aria-label="Vellum Video Clipper — automatically turn long gaming and stream footage into highlight clips">
       <summary>
         <div class="product-summary-left">
           <h3>Vellum Video Clipper</h3>
@@ -1058,8 +873,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--crimson">
+ 
+    <details class="product-card product-card--crimson" aria-label="Professional Game Review — detailed written feedback and review service for indie game developers before launch">
       <summary>
         <div class="product-summary-left">
           <h3>Professional Game Review</h3>
@@ -1079,8 +894,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--emerald">
+ 
+    <details class="product-card product-card--emerald" aria-label="Clock and Stopwatch — distraction-free desktop countdown timer and stopwatch app for focused work">
       <summary>
         <div class="product-summary-left">
           <h3>Clock and Stopwatch</h3>
@@ -1100,8 +915,8 @@ footer{
         </div>
       </div>
     </details>
-
-    <details class="product-card product-card--emerald">
+ 
+    <details class="product-card product-card--emerald" aria-label="Progress Tracker — productivity app for freelancers and indie developers to organize projects, tasks, and deadlines">
       <summary>
         <div class="product-summary-left">
           <h3>Progress Tracker</h3>
@@ -1121,10 +936,10 @@ footer{
         </div>
       </div>
     </details>
-
+ 
   </div>
 </section>
-
+ 
 <!-- ROADMAP -->
 <section id="roadmap" class="tab-content theme-gold">
   <h2 class="section-title">Roadmap</h2>
@@ -1136,21 +951,16 @@ footer{
     <div class="step"><b>In progress:</b> Full UI system redesign.</div>
   </div>
 </section>
-
+ 
 <!-- FIXES -->
 <section id="fixes" class="tab-content theme-gold">
   <h2 class="section-title">Fixes &amp; Patch Notes</h2>
   <p class="section-sub">Recent bug fixes and stability improvements across the Vellum lineup.</p>
   <div class="roadmap">
-    <!--
-      TEMPLATE — duplicate this block to log a new fix.
-      <div class="step"><b>Product Name:</b> What was fixed.</div>
-    -->
-    <div class="step"><b>note:</b> make sure to run products from folder if using linux. if anything is wrong feel free to contact me through the <a href="#contact" onclick="navTo('contact',null,event)" style="color:var(--gold);font-weight:600;text-decoration:none">Contact page</a> and an update will be put in gumroad.
-   
-    <div class="step"><b>General:</b>Made final improvements to ready to release products. Improved Linux compatibility, including more reliable display and graphics driver detection across different desktop environments.</div>
+    <div class="step"><b>note:</b> make sure to run products from folder if using linux. if anything is wrong feel free to contact me through the <a href="#contact" onclick="navTo('contact',null,event)" style="color:var(--gold);font-weight:600;text-decoration:none">Contact page</a> and an update will be put in gumroad.</div>
+    <div class="step"><b>General:</b> Made final improvements to ready to release products. Improved Linux compatibility, including more reliable display and graphics driver detection across different desktop environments.</div>
   </div>
-
+ 
   <div class="card" style="margin-top:40px;border-color:var(--crimson)">
     <span class="badge crimson">A NOTE ON RESPECTFUL COMMUNICATION</span>
     <h3>Support, With Mutual Respect</h3>
@@ -1159,12 +969,12 @@ footer{
     <p style="margin-top:12px">If you're running into a problem, please reach out through the <a href="#contact" onclick="navTo('contact',null,event)" style="color:var(--gold);font-weight:600;text-decoration:none">Contact form</a> — I read every email myself and will do right by you.</p>
   </div>
 </section>
-
+ 
 <!-- CONTACT -->
 <section id="contact" class="tab-content theme-gold">
   <h2 class="section-title">Contact</h2>
   <p class="section-sub">Questions, support, or feedback — send a message below.</p>
-
+ 
   <div class="card" style="margin-bottom:28px">
     <form action="https://formspree.io/f/mykvppey" method="POST">
       <input type="text"  name="name"    placeholder="Your Name"    required>
@@ -1173,7 +983,7 @@ footer{
       <button type="submit" class="main-btn btn-gold">Send Message</button>
     </form>
   </div>
-
+ 
   <h2 class="section-title" style="font-size:1.3rem;margin-bottom:14px">Frequently Asked</h2>
   <div class="faq-list">
     <details class="faq-item">
@@ -1197,33 +1007,33 @@ footer{
       <p>Send a message using the form above with what you're seeing and which product it's for, and we'll help you troubleshoot.</p>
     </details>
   </div>
-
+ 
   <div class="legal-box">
     <h3>Legal</h3>
 <pre style="white-space:pre-wrap;font-family:var(--font-body);font-size:.85rem;color:var(--text-faint);line-height:1.75">END USER LICENSE AGREEMENT (EULA)
-
+ 
 Last Updated: June 3, 2026
-
+ 
 This End User License Agreement ("Agreement") is a legally binding agreement between you ("User," "you," or "your") and us governing your use of the software, applications, tools, scripts, digital products, updates, documentation, and related materials (collectively, the "Software").
-
+ 
 By downloading, installing, accessing, purchasing, or using the Software, you agree to be bound by this Agreement. If you do not agree to these terms, do not install, access, or use the Software.
-
+ 
 1. License Grant
-
+ 
 Subject to your compliance with this Agreement, the Licensor grants you a limited, non-exclusive, non-transferable, non-sublicensable, revocable license to install and use the Software for its intended purpose.
-
+ 
 This Agreement grants a license to use the Software only. No ownership rights are transferred to you.
-
+ 
 2. Ownership and Intellectual Property
-
+ 
 The Software and all associated intellectual property rights, including but not limited to copyrights, trademarks, trade secrets, designs, source code, documentation, and related materials, remain the exclusive property of the Licensor.
-
+ 
 All rights not expressly granted under this Agreement are reserved by the Licensor.
-
+ 
 3. Restrictions
-
+ 
 You may not:
-
+ 
 Sell, resell, redistribute, sublicense, rent, lease, or commercially exploit the Software except as expressly authorized.
 Share, upload, publish, or distribute the Software to any third party.
 Reverse engineer, decompile, disassemble, decode, or otherwise attempt to derive source code, except where prohibited by applicable law.
@@ -1231,54 +1041,54 @@ Modify, adapt, translate, create derivative works from, or merge the Software wi
 Remove, alter, or obscure copyright notices, trademarks, or proprietary notices.
 Circumvent, disable, or interfere with licensing systems, activation systems, security features, or usage limitations.
 Use the Software for unlawful, fraudulent, harmful, abusive, or unauthorized activities.
-
+ 
 4. License Limitations
-
+ 
 Unless otherwise stated in writing:
-
+ 
 One license is granted per purchaser.
 Licenses may not be transferred, assigned, or shared.
 Access credentials, license keys, and downloads may not be shared with others.
 The Licensor reserves the right to revoke licenses obtained through fraud, abuse, chargebacks, unauthorized distribution, or violation of this Agreement.
-
+ 
 5. Updates and Modifications
-
+ 
 The Licensor may provide updates, patches, bug fixes, modifications, or new versions of the Software at its sole discretion.
-
+ 
 The Licensor is under no obligation to provide future updates, features, support, maintenance, or compatibility updates.
-
+ 
 6. No Guarantee of Results
-
+ 
 The Software is intended as a tool and does not guarantee any specific outcome, performance level, business result, financial gain, productivity improvement, or other benefit.
-
+ 
 Any examples, demonstrations, marketing materials, or descriptions are provided for informational purposes only and should not be interpreted as guarantees.
-
+ 
 7. Disclaimer of Warranties
-
+ 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE SOFTWARE IS PROVIDED "AS IS" AND "AS AVAILABLE."
-
+ 
 THE LICENSOR DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO:
-
+ 
 MERCHANTABILITY
 FITNESS FOR A PARTICULAR PURPOSE
 NON-INFRINGEMENT
 ACCURACY
 RELIABILITY
 AVAILABILITY
-
+ 
 The Licensor does not warrant that:
-
+ 
 The Software will be uninterrupted or error-free.
 Defects will be corrected.
 The Software will meet your requirements.
 The Software will be compatible with all devices, systems, or software environments.
-
+ 
 8. Limitation of Liability
-
+ 
 TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE LICENSOR SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR PUNITIVE DAMAGES.
-
+ 
 THIS INCLUDES, WITHOUT LIMITATION:
-
+ 
 Loss of profits
 Loss of business opportunities
 Data loss
@@ -1286,93 +1096,88 @@ System failures
 Service interruptions
 Hardware or software damage
 Loss of goodwill
-
+ 
 IN NO EVENT SHALL THE LICENSOR'S TOTAL LIABILITY EXCEED THE AMOUNT PAID BY YOU FOR THE SOFTWARE.
-
+ 
 9. Indemnification
-
+ 
 You agree to defend, indemnify, and hold harmless the Licensor from and against any claims, damages, liabilities, losses, costs, and expenses arising from:
-
+ 
 Your misuse of the Software.
 Your violation of this Agreement.
 Your violation of any law or third-party rights.
-
+ 
 10. Termination
-
+ 
 This Agreement remains in effect until terminated.
-
+ 
 The Licensor may suspend or terminate your license immediately, without notice, if you violate any provision of this Agreement.
-
+ 
 Upon termination:
-
+ 
 All licenses granted under this Agreement immediately cease.
 You must stop using the Software.
-You must delete all copies of the Software in your possession or control.
-
+You must delete all copies of the Software in your passion or control.
+ 
 11. Anti-Piracy and Unauthorized Distribution
-
+ 
 Unauthorized copying, sharing, redistribution, resale, or publication of the Software is strictly prohibited.
-
+ 
 The Licensor reserves the right to pursue all available legal remedies for violations of intellectual property rights, including license revocation, access termination, takedown requests, and legal action where appropriate.
-
+ 
 12. Refund Policy
-
+ 
 Unless otherwise required by applicable law:
-
+ 
 Digital products are generally non-refundable once delivered.
 Refund requests may be reviewed on a case-by-case basis at the Licensor's discretion.
 Chargebacks initiated without first contacting support may result in immediate license termination.
-
+ 
 Nothing in this section limits any rights that cannot legally be waived under applicable law.
-
+ 
 13. Severability
-
+ 
 If any provision of this Agreement is found unenforceable or invalid, the remaining provisions shall remain in full force and effect.
-
+ 
 14. Governing Law
-
+ 
 This Agreement shall be governed by and construed in accordance with the laws of the State of North Carolina, United States, without regard to conflict-of-law principles.
-
+ 
 15. Contact Information
-
+ 
 Questions regarding this Agreement may be directed to:
-
+ 
 Vellum Studio
 Use the contact form on this page (Contact tab) and we'll respond as soon as we can.
-
+ 
 By downloading, installing, accessing, purchasing, or using the Software, you acknowledge that you have read, understood, and agree to be bound by this Agreement.</pre>
   </div>
 </section>
-
+ 
 <footer>
   <p>Vellum Studio &bull; Products &bull; Tools</p>
-  <p style="margin-top:6px">© 2026 Vellum Studio — All Rights Reserved</p>
+  <p style="margin-top:6px">&#169; 2026 Vellum Studio — All Rights Reserved</p>
 </footer>
-
+ 
 <script>
-/* ── FEATURED PRODUCT ──────────────────────────────────────────────────────
-   Change the values below to update the featured project.
-   theme: "gold" | "crimson" | "emerald" | "violet"
-   ────────────────────────────────────────────────────────────────────────── */
 const FEATURED = {
   title : "Vellum App Launcher",
   desc  : "Download the Launcher to browse, install, and run every Vellum product from one place.",
   theme : "violet"
 };
-
+ 
 (function applyFeatured(){
   const title = document.getElementById("feat-title");
   const desc  = document.getElementById("feat-desc");
   if(title) title.textContent = FEATURED.title;
   if(desc)  desc.textContent  = FEATURED.desc;
 })();
-
-/* ── TAB SWITCHER ── */
+ 
 const buttons = document.querySelectorAll(".tab-button");
 const tabs    = document.querySelectorAll(".tab-content");
 const bg      = document.getElementById("bg");
 const accentToGlow = { gold:null, crimson:"crimson", emerald:"emerald", violet:"violet" };
-
+ 
 buttons.forEach(btn => {
   btn.onclick = () => {
     buttons.forEach(b => b.classList.remove("active"));
@@ -1384,16 +1189,14 @@ buttons.forEach(btn => {
     if(glow) bg.classList.add(glow);
   };
 });
-
-/* ── SECRET: type "vellum" ── */
+ 
 const secret = [];
 document.addEventListener("keydown", e => {
   secret.push(e.key.toLowerCase());
   if(secret.slice(-6).join("") === "vellum")
     document.body.classList.toggle("secret-mode");
 });
-
-/* ── CROSS-TAB NAVIGATION (banners, FAQ links, cross-sell) ── */
+ 
 function navTo(tab, anchorId, e){
   if(e) e.preventDefault();
   const btn = document.querySelector(`.tab-button[data-tab="${tab}"]`);
@@ -1403,9 +1206,7 @@ function navTo(tab, anchorId, e){
     if(el) el.scrollIntoView({behavior:"smooth", block:"start"});
   });
 }
-
-/* ── TOOLS_JS ──────────────────────────────────────────────────────────── */
-
+ 
 /* Word & Character Counter */
 (function(){
   const input = document.getElementById("wc-input");
@@ -1424,7 +1225,7 @@ function navTo(tab, anchorId, e){
     time.textContent = Math.max(1, Math.ceil(wordList.length / 200)) + " min";
   });
 })();
-
+ 
 /* Color Contrast Checker */
 (function(){
   const fg = document.getElementById("cc-fg");
@@ -1434,14 +1235,14 @@ function navTo(tab, anchorId, e){
   const preview = document.getElementById("cc-preview");
   const out = document.getElementById("cc-out");
   if(!fg) return;
-
+ 
   function luminance(hex){
     const rgb = [1,3,5].map(i => parseInt(hex.substr(i,2),16) / 255);
     const [r,g,b] = rgb.map(c => c <= 0.03928 ? c/12.92 : Math.pow((c+0.055)/1.055, 2.4));
     return 0.2126*r + 0.7152*g + 0.0722*b;
   }
   function isHex(v){ return /^#[0-9a-fA-F]{6}$/.test(v); }
-
+ 
   function update(){
     if(!isHex(fgHex.value) || !isHex(bgHex.value)) return;
     fg.value = fgHex.value; bg.value = bgHex.value;
@@ -1453,16 +1254,16 @@ function navTo(tab, anchorId, e){
     const r = ratio.toFixed(2);
     const aaNormal = ratio >= 4.5, aaaNormal = ratio >= 7, aaLarge = ratio >= 3;
     out.className = "tool-out " + (aaNormal ? "pass" : "error");
-    out.textContent = `Ratio: ${r}:1 — AA normal text: ${aaNormal ? "Pass" : "Fail"} · AAA normal text: ${aaaNormal ? "Pass" : "Fail"} · AA large text: ${aaLarge ? "Pass" : "Fail"}`;
+    out.textContent = "Ratio: " + r + ":1 — AA normal text: " + (aaNormal ? "Pass" : "Fail") + " · AAA normal text: " + (aaaNormal ? "Pass" : "Fail") + " · AA large text: " + (aaLarge ? "Pass" : "Fail");
   }
-
+ 
   fg.addEventListener("input", () => { fgHex.value = fg.value; update(); });
   bg.addEventListener("input", () => { bgHex.value = bg.value; update(); });
   fgHex.addEventListener("input", update);
   bgHex.addEventListener("input", update);
   update();
 })();
-
+ 
 /* JSON Formatter & Validator */
 (function(){
   const input = document.getElementById("json-input");
@@ -1486,7 +1287,7 @@ function navTo(tab, anchorId, e){
     out.textContent = "Output will appear here.";
   });
 })();
-
+ 
 /* Password Generator */
 (function(){
   const lengthInput = document.getElementById("pw-length");
@@ -1495,16 +1296,16 @@ function navTo(tab, anchorId, e){
   const genBtn = document.getElementById("pw-generate");
   const copyBtn = document.getElementById("pw-copy");
   if(!lengthInput) return;
-
+ 
   const sets = {
     upper: "ABCDEFGHJKLMNPQRSTUVWXYZ",
     lower: "abcdefghijkmnpqrstuvwxyz",
     num: "23456789",
     sym: "!@#$%^&*()-_=+"
   };
-
+ 
   lengthInput.addEventListener("input", () => { lengthVal.textContent = lengthInput.value; });
-
+ 
   genBtn.addEventListener("click", () => {
     let pool = "";
     if(document.getElementById("pw-upper").checked) pool += sets.upper;
@@ -1524,7 +1325,7 @@ function navTo(tab, anchorId, e){
     out.className = "tool-out pass";
     out.textContent = result;
   });
-
+ 
   copyBtn.addEventListener("click", () => {
     const text = out.textContent;
     if(!text || text === "Click Generate") return;
@@ -1538,3 +1339,4 @@ function navTo(tab, anchorId, e){
 </script>
 </body>
 </html>
+ 
