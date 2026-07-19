@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vellum Arcade </title>
+<title>Vellum Arcade</title>
 <meta name="description" content="Vellum Arcade — a growing collection of free browser games from Vellum Studio. Play instantly, no install required.">
 <meta property="og:title" content="Vellum Arcade — Free Browser Games">
 <meta property="og:description" content="A growing collection of free browser games from Vellum Studio.">
@@ -11,289 +11,275 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMwZDEyMWIiLz4KICA8dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNhYWI1YzQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlY8L3RleHQ+Cjwvc3ZnPgo=">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,800;1,500&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 :root{
-  --ink-950:#070a10;
-  --ink-900:#0d121b;
-  --ink-850:#121722;
-  --ink-800:#1a202c;
-  --line:rgba(233,238,245,.09);
-  --line-strong:rgba(233,238,245,.18);
-  --text:#e9eef5;
-  --text-dim:#98a1ad;
-  --text-faint:#7c8592;
-
-  --navy:#5a7fb8;
-  --navy-dim:rgba(90,127,184,.35);
-  --navy-bg:#10141f;
-
-  --copper:#d98255;
-  --copper-dim:rgba(217,130,85,.35);
-  --copper-bg:#1c130c;
-
-  --teal:#33b8b0;
-  --teal-dim:rgba(51,184,176,.35);
-  --teal-bg:#0b1817;
-
-  --silver:#aab5c4;
-  --silver-dim:rgba(170,181,196,.35);
-  --silver-bg:#14171c;
-
-  --font-display:'Fraunces',serif;
-  --font-body:'Inter',sans-serif;
+  --ink-950:#070a10;--ink-900:#0d121b;--ink-850:#121722;--ink-800:#1a202c;
+  --line:rgba(233,238,245,.09);--line-strong:rgba(233,238,245,.18);
+  --text:#e9eef5;--text-dim:#98a1ad;--text-faint:#7c8592;
+  --navy:#5a7fb8;--navy-dim:rgba(90,127,184,.35);--navy-bg:#10141f;
+  --copper:#d98255;--copper-dim:rgba(217,130,85,.35);--copper-bg:#1c130c;
+  --teal:#33b8b0;--teal-dim:rgba(51,184,176,.35);--teal-bg:#0b1817;
+  --silver:#aab5c4;--silver-dim:rgba(170,181,196,.35);--silver-bg:#14171c;
+  --font-display:'Fraunces',serif;--font-body:'Inter',sans-serif;
 }
+body{font-family:var(--font-body);background:var(--ink-950);color:var(--text);overflow-x:hidden;}
 
-body{
-  font-family:var(--font-body);
-  background:var(--ink-950);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-.bg-glow{ position:fixed; inset:0; z-index:-3; }
+.bg-glow{position:fixed;inset:0;z-index:-3;}
 .bg-glow::before{
-  content:"";
-  position:absolute;
-  width:900px;
-  height:900px;
-  border-radius:50%;
-  filter:blur(170px);
-  background:rgba(217,130,85,.16);
+  content:"";position:absolute;width:900px;height:900px;border-radius:50%;
+  filter:blur(170px);background:rgba(217,130,85,.16);
   animation:float 18s ease-in-out infinite;
 }
 @keyframes float{
-  0%  {transform:translate(-10%,-10%) scale(1)}
-  50% {transform:translate(35%,20%) scale(1.25)}
+  0%{transform:translate(-10%,-10%) scale(1)}
+  50%{transform:translate(35%,20%) scale(1.25)}
   100%{transform:translate(-10%,-10%) scale(1)}
 }
-
 .grid-bg{
-  position:fixed; inset:0; z-index:-2; opacity:.06;
-  background-image:
-    linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
+  position:fixed;inset:0;z-index:-2;opacity:.06;
+  background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
   background-size:45px 45px;
 }
-
 .grain{
-  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.035;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat:repeat;
-  background-size:180px 180px;
+  background-repeat:repeat;background-size:180px 180px;
 }
-
 .deckle{
-  height:16px; width:100%; background-color:var(--ink-950);
-  background-image:
-    linear-gradient(135deg, var(--ink-900) 50%, transparent 50%),
-    linear-gradient(-135deg, var(--ink-900) 50%, transparent 50%);
-  background-position:0 0,0 0;
-  background-size:16px 16px;
-  background-repeat:repeat-x;
+  height:16px;width:100%;background-color:var(--ink-950);
+  background-image:linear-gradient(135deg,var(--ink-900) 50%,transparent 50%),linear-gradient(-135deg,var(--ink-900) 50%,transparent 50%);
+  background-position:0 0,0 0;background-size:16px 16px;background-repeat:repeat-x;
 }
-
-header{ text-align:center; padding:110px 20px 0; background:var(--ink-900); }
-
-.eyebrow{
-  font-size:.78rem; letter-spacing:3px; text-transform:uppercase;
-  color:var(--copper); font-weight:600; margin-bottom:14px;
-}
-
-header h1{ font-family:var(--font-display); font-size:4.2rem; font-weight:800; letter-spacing:1px; }
-header h1 a{ color:inherit; text-decoration:none; }
-
-header p.tagline{
-  color:var(--text-dim); margin-top:10px; font-size:1.05rem;
-  font-family:var(--font-display); font-style:italic;
-}
-
-header .deckle-spacer{ height:48px; }
-
+header{text-align:center;padding:110px 20px 0;background:var(--ink-900);}
+.eyebrow{font-size:.78rem;letter-spacing:3px;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:14px;}
+header h1{font-family:var(--font-display);font-size:4.2rem;font-weight:800;letter-spacing:1px;}
+header h1 a{color:inherit;text-decoration:none;}
+header p.tagline{color:var(--text-dim);margin-top:10px;font-size:1.05rem;font-family:var(--font-display);font-style:italic;}
+header .deckle-spacer{height:48px;}
 nav{
-  display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
-  padding:16px 20px; position:sticky; top:0; backdrop-filter:blur(14px);
-  background:rgba(8,9,11,.78); z-index:10; border-bottom:1px solid var(--line);
+  display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+  padding:16px 20px;position:sticky;top:0;backdrop-filter:blur(14px);
+  background:rgba(8,9,11,.78);z-index:10;border-bottom:1px solid var(--line);
 }
-
 .nav-link{
-  padding:10px 18px; border-radius:8px; border:1px solid var(--line-strong);
-  background:var(--ink-850); color:var(--text-dim); cursor:pointer;
-  transition:.2s; font-size:.88rem; font-weight:600; font-family:var(--font-body);
-  text-decoration:none; display:inline-block;
+  padding:10px 18px;border-radius:8px;border:1px solid var(--line-strong);
+  background:var(--ink-850);color:var(--text-dim);cursor:pointer;transition:.2s;
+  font-size:.88rem;font-weight:600;font-family:var(--font-body);text-decoration:none;display:inline-block;
 }
-.nav-link:hover{ transform:translateY(-1px); color:var(--text); border-color:var(--text-faint); }
-.nav-link.active{ background:var(--ink-800); border-color:var(--copper); color:var(--copper); box-shadow:0 0 16px var(--copper-dim); }
+.nav-link:hover{transform:translateY(-1px);color:var(--text);border-color:var(--text-faint);}
+.nav-link.active{background:var(--ink-800);border-color:var(--copper);color:var(--copper);box-shadow:0 0 16px var(--copper-dim);}
+main{max-width:1180px;margin:auto;padding:54px 22px 84px;animation:.3s fade ease;}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;margin-bottom:6px;}
+.section-sub{color:var(--text-dim);font-size:.95rem;margin-bottom:30px;max-width:560px;}
 
-main{ max-width:1180px; margin:auto; padding:54px 22px 84px; animation:.3s fade ease; }
-@keyframes fade{ from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-.section-title{ font-family:var(--font-display); font-size:2rem; font-weight:700; margin-bottom:6px; }
-.section-sub{ color:var(--text-dim); font-size:.95rem; margin-bottom:30px; max-width:560px; }
-
-/* ---------- Ad slots ---------- */
+/* ---- Ad slots ---- */
 .ad-slot{
-  border:1px dashed var(--line-strong);
-  border-radius:10px;
-  background:rgba(255,255,255,.02);
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  color:var(--text-faint); font-size:.75rem; letter-spacing:1.5px; text-transform:uppercase;
-  font-weight:700; text-align:center; gap:6px; padding:10px;
+  border:1px dashed var(--line-strong);border-radius:10px;background:rgba(255,255,255,.02);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  color:var(--text-faint);font-size:.75rem;letter-spacing:1.5px;text-transform:uppercase;
+  font-weight:700;text-align:center;gap:6px;padding:10px;
 }
-.ad-slot span.ad-note{ font-size:.68rem; letter-spacing:.4px; text-transform:none; color:var(--text-faint); font-weight:400; max-width:260px; }
-.ad-leaderboard{ width:100%; min-height:110px; margin-bottom:44px; }
-.ad-leaderboard.top{ margin-top:0; }
-.ad-incard{ min-height:220px; }
-.ad-incard a{ text-decoration:none; }
+.ad-slot span.ad-note{font-size:.68rem;letter-spacing:.4px;text-transform:none;color:var(--text-faint);font-weight:400;max-width:260px;}
+.ad-leaderboard{width:100%;min-height:110px;margin-bottom:44px;}
+.ad-leaderboard.top{margin-top:0;}
+.ad-incard{min-height:220px;}
 
-/* ---------- Games grid ---------- */
+/* ---- My Games section ---- */
+.my-games-section{
+  margin-bottom:64px;
+}
+.my-games-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;margin-bottom:6px;
+}
+.my-games-eyebrow{
+  font-size:.72rem;letter-spacing:3px;text-transform:uppercase;
+  color:var(--copper);font-weight:700;margin-bottom:8px;
+}
+.my-games-title{
+  font-family:var(--font-display);font-size:1.9rem;font-weight:800;
+  background:linear-gradient(120deg,var(--copper),#f0b07a,var(--copper));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.my-games-sub{
+  color:var(--text-dim);font-size:.9rem;margin-top:4px;
+}
+.my-games-divider{
+  width:100%;height:1px;
+  background:linear-gradient(90deg,var(--copper-dim),rgba(217,130,85,.08),transparent);
+  margin:18px 0 24px;
+}
+/* My game cards get a slightly warmer border to stand out */
+.my-game-card{
+  border-color:rgba(217,130,85,.22)!important;
+}
+.my-game-card:hover{
+  border-color:var(--copper)!important;
+  box-shadow:0 0 28px rgba(217,130,85,.22)!important;
+}
+.my-game-badge{
+  position:absolute;top:8px;right:8px;
+  background:rgba(217,130,85,.18);border:1px solid var(--copper);
+  color:var(--copper);font-family:var(--font-body);font-size:.62rem;font-weight:700;
+  letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;
+  backdrop-filter:blur(4px);
+}
+.my-games-empty{
+  border:1px dashed rgba(217,130,85,.25);border-radius:10px;
+  padding:48px 32px;text-align:center;
+  background:rgba(217,130,85,.03);
+}
+.my-games-empty p{color:var(--text-faint);font-size:.9rem;line-height:1.7;margin-bottom:6px;}
+.my-games-empty code{
+  font-size:.78rem;background:var(--ink-800);padding:2px 7px;border-radius:4px;
+  color:var(--teal);font-family:monospace;
+}
+
+/* divider between my-games and community section */
+.section-divider{
+  display:flex;align-items:center;gap:14px;margin:0 0 48px;
+}
+.section-divider-line{
+  flex:1;height:1px;background:var(--line-strong);
+}
+.section-divider-label{
+  font-size:.72rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--text-faint);font-weight:600;white-space:nowrap;
+}
+
+/* ---- Filter bar ---- */
+.filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px;}
+.filter-btn{
+  padding:8px 16px;border-radius:20px;border:1px solid var(--line-strong);
+  background:var(--ink-850);color:var(--text-dim);font-size:.82rem;font-weight:600;
+  cursor:pointer;transition:.2s;font-family:var(--font-body);
+}
+.filter-btn:hover{color:var(--text);border-color:var(--text-faint);}
+.filter-btn.active{background:var(--copper-bg);color:var(--copper);border-color:var(--copper);}
+
+/* ---- Category separator ---- */
+.cat-separator{
+  display:flex;align-items:center;gap:14px;
+  margin:48px 0 22px;
+}
+.cat-separator:first-child{ margin-top: 0; }
+.cat-separator-label{
+  font-family:var(--font-display);font-size:1.35rem;font-weight:700;
+  color:var(--text);white-space:nowrap;
+}
+.cat-separator-icon{
+  font-size:1.1rem;margin-right:2px;
+}
+.cat-separator-line{
+  flex:1;height:1px;
+  background:linear-gradient(90deg, var(--line-strong), transparent);
+}
+.cat-separator-tag{
+  padding:3px 10px;border-radius:20px;border:1px solid var(--line-strong);
+  font-size:.72rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  color:var(--text-faint);white-space:nowrap;background:var(--ink-850);
+}
+
+/* ---- Games grid ---- */
 .grid-cards{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:18px;
-  margin-top:4px;
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:18px;margin-top:4px;
 }
-
 .game-card{
-  background:rgba(255,255,255,.035);
-  border:1px solid var(--line);
-  border-radius:10px;
-  overflow:hidden;
-  transition:.22s;
-  display:flex;
-  flex-direction:column;
+  background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:10px;
+  overflow:hidden;transition:.22s;display:flex;flex-direction:column;
 }
-.game-card:hover{ transform:translateY(-4px); border-color:var(--copper); box-shadow:0 0 22px rgba(217,130,85,.14); }
-
+.game-card:hover{transform:translateY(-4px);border-color:var(--copper);box-shadow:0 0 22px rgba(217,130,85,.14);}
 .game-thumb{
-  aspect-ratio:16/10;
-  width:100%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--font-display); font-size:2.4rem; font-weight:700;
-  color:rgba(255,255,255,.85);
-  position:relative;
+  aspect-ratio:16/10;width:100%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-size:2.4rem;font-weight:700;
+  color:rgba(255,255,255,.85);position:relative;overflow:hidden;
 }
-.game-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-.game-body{ padding:18px 20px 20px; display:flex; flex-direction:column; flex:1; }
-
+.game-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.open-src-badge{
+  position:absolute;top:8px;right:8px;
+  background:rgba(51,184,176,.18);border:1px solid var(--teal);
+  color:var(--teal);font-family:var(--font-body);font-size:.62rem;font-weight:700;
+  letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;
+  backdrop-filter:blur(4px);
+}
+.game-body{padding:18px 20px 20px;display:flex;flex-direction:column;flex:1;}
 .game-tag{
-  display:inline-block; align-self:flex-start;
-  padding:3px 9px; border-radius:5px; font-size:.66rem; font-weight:700;
-  letter-spacing:.6px; text-transform:uppercase; margin-bottom:10px;
-  background:var(--copper-bg); color:var(--copper);
+  display:inline-block;align-self:flex-start;padding:3px 9px;border-radius:5px;
+  font-size:.66rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+  margin-bottom:10px;background:var(--copper-bg);color:var(--copper);
 }
-
-.game-card h3{ font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:6px; }
-.game-card p.game-desc{ color:var(--text-dim); font-size:.86rem; line-height:1.5; margin-bottom:14px; flex:1; }
-
+.game-card h3{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:6px;}
+.game-card p.game-desc{color:var(--text-dim);font-size:.86rem;line-height:1.5;margin-bottom:14px;flex:1;}
+.game-card-footer{display:flex;align-items:center;gap:8px;margin-top:auto;}
 .main-btn{
-  display:inline-block; align-self:flex-start; margin-top:auto;
-  padding:9px 16px; border-radius:7px; text-decoration:none; font-weight:600;
-  font-size:.84rem; cursor:pointer; transition:.2s; font-family:var(--font-body);
+  display:inline-block;padding:9px 16px;border-radius:7px;text-decoration:none;
+  font-weight:600;font-size:.84rem;cursor:pointer;transition:.2s;font-family:var(--font-body);
   border:1px solid transparent;
 }
-.btn-copper{ background:transparent; color:var(--copper); border-color:var(--copper); }
-.btn-copper:hover{ background:var(--copper); color:#1f1006; }
-
-/* ---------- Filter bar ---------- */
-.filter-bar{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
-.filter-btn{
-  padding:8px 14px; border-radius:20px; border:1px solid var(--line-strong);
-  background:var(--ink-850); color:var(--text-dim); font-size:.8rem; font-weight:600;
-  cursor:pointer; transition:.2s; font-family:var(--font-body);
+.btn-copper{background:transparent;color:var(--copper);border-color:var(--copper);}
+.btn-copper:hover{background:var(--copper);color:#1f1006;}
+.src-link{
+  font-size:.75rem;color:var(--teal);text-decoration:none;opacity:.8;transition:.2s;
+  display:inline-flex;align-items:center;gap:3px;
 }
-.filter-btn:hover{ color:var(--text); border-color:var(--text-faint); }
-.filter-btn.active{ background:var(--copper-bg); color:var(--copper); border-color:var(--copper); }
+.src-link:hover{opacity:1;text-decoration:underline;}
 
-/* ---------- Modal ---------- */
+/* ---- Modal ---- */
 .modal-overlay{
-  position:fixed; inset:0; background:rgba(4,5,7,.92); backdrop-filter:blur(6px);
-  display:none; align-items:center; justify-content:center; z-index:100; padding:16px;
+  position:fixed;inset:0;background:rgba(4,5,7,.92);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:16px;
 }
-.modal-overlay.open{ display:flex; }
-
+.modal-overlay.open{display:flex;}
 .modal-box{
-  /* Size to content — constrained by viewport */
-  background:var(--ink-900);
-  border:1px solid var(--line-strong);
-  border-radius:12px;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  max-width:98vw;
-  max-height:96vh;
+  background:var(--ink-900);border:1px solid var(--line-strong);border-radius:12px;
+  overflow:hidden;display:flex;flex-direction:column;max-width:98vw;max-height:96vh;
 }
-
 .modal-head{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:12px 16px; border-bottom:1px solid var(--line);
-  flex-shrink:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-bottom:1px solid var(--line);flex-shrink:0;
 }
-.modal-head h3{ font-family:var(--font-display); font-size:1.05rem; }
-.modal-head-right{ display:flex; gap:8px; align-items:center; }
-
+.modal-head h3{font-family:var(--font-display);font-size:1.05rem;}
+.modal-head-right{display:flex;gap:8px;align-items:center;}
 .modal-close{
-  background:none; border:1px solid var(--line-strong); color:var(--text-dim);
-  border-radius:6px; padding:6px 12px; cursor:pointer; font-size:.85rem;
+  background:none;border:1px solid var(--line-strong);color:var(--text-dim);
+  border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.85rem;
 }
-.modal-close:hover{ color:var(--text); border-color:var(--text-faint); }
-
+.modal-close:hover{color:var(--text);border-color:var(--text-faint);}
 .modal-open-tab{
-  background:none; border:1px solid var(--copper); color:var(--copper);
-  border-radius:6px; padding:6px 12px; cursor:pointer; font-size:.85rem;
-  text-decoration:none; font-family:var(--font-body); font-weight:600;
+  background:none;border:1px solid var(--copper);color:var(--copper);
+  border-radius:6px;padding:6px 12px;cursor:pointer;font-size:.85rem;
+  text-decoration:none;font-family:var(--font-body);font-weight:600;
 }
-.modal-open-tab:hover{ background:var(--copper); color:#1f1006; }
-
-/* The iframe wrapper fills remaining space, but never exceeds viewport */
-.modal-frame-wrap{
-  flex:1;
-  overflow:hidden;
-  background:#000;
-  display:flex;
-}
-.modal-frame-wrap iframe{
-  width:100%;
-  height:100%;
-  border:0;
-  display:block;
-}
-
-/* Blocked / error notice inside modal */
+.modal-open-tab:hover{background:var(--copper);color:#1f1006;}
+.modal-frame-wrap{flex:1;overflow:hidden;background:#000;display:flex;}
+.modal-frame-wrap iframe{width:100%;height:100%;border:0;display:block;}
 .modal-blocked{
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  padding:32px;
-  text-align:center;
-  height:100%;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
+  gap:14px;padding:32px;text-align:center;height:100%;min-height:200px;
 }
-.modal-blocked.visible{ display:flex; }
-.modal-blocked p{ color:var(--text-dim); font-size:.9rem; line-height:1.6; max-width:340px; }
+.modal-blocked.visible{display:flex;}
+.modal-blocked p{color:var(--text-dim);font-size:.9rem;line-height:1.6;max-width:340px;}
 .modal-blocked a{
-  display:inline-block; padding:10px 20px; border-radius:7px;
-  background:var(--copper); color:#1f1006; font-weight:700; font-size:.9rem;
-  text-decoration:none; transition:.2s;
+  display:inline-block;padding:10px 20px;border-radius:7px;
+  background:var(--copper);color:#1f1006;font-weight:700;font-size:.9rem;
+  text-decoration:none;transition:.2s;
 }
-.modal-blocked a:hover{ opacity:.85; }
+.modal-blocked a:hover{opacity:.85;}
 
-footer{ text-align:center; padding:40px 20px; color:var(--text-faint); font-size:.82rem; border-top:1px solid var(--line); }
-footer a{ color:var(--text-dim); }
-
-@media (max-width:640px){
-  header h1{ font-size:2.6rem; }
-  .ad-leaderboard{ min-height:90px; }
+footer{text-align:center;padding:40px 20px;color:var(--text-faint);font-size:.82rem;border-top:1px solid var(--line);}
+footer a{color:var(--text-dim);}
+@media(max-width:640px){
+  header h1{font-size:2.6rem;}
+  .ad-leaderboard{min-height:90px;}
+  .cat-separator-tag{display:none;}
 }
 </style>
 </head>
 <body>
-
-<div class="bg-glow" id="bg"></div>
+<div class="bg-glow"></div>
 <div class="grid-bg"></div>
 <div class="grain"></div>
 
@@ -306,37 +292,62 @@ footer a{ color:var(--text-dim); }
 <div class="deckle"></div>
 
 <nav aria-label="Primary">
-  <a class="nav-link" data-accent="navy" href="index.html">Home</a>
-  <a class="nav-link" data-accent="navy" href="about.html">About Me</a>
-  <a class="nav-link" data-accent="silver" href="tools.html">Free Tools</a>
-  <a class="nav-link" data-accent="navy" href="products.html">Products</a>
-  <a class="nav-link active" data-accent="copper" href="arcade.html">Arcade</a>
-  <a class="nav-link" data-accent="navy" href="roadmap.html">Roadmap</a>
-  <a class="nav-link" data-accent="navy" href="fixes.html">Fixes and notes</a>
-  <a class="nav-link" data-accent="navy" href="contact.html">Contact and legal</a>
+  <a class="nav-link" href="index.html">Home</a>
+  <a class="nav-link" href="about.html">About Me</a>
+  <a class="nav-link" href="tools.html">Free Tools</a>
+  <a class="nav-link" href="products.html">Products</a>
+  <a class="nav-link active" href="arcade.html">Arcade</a>
+  <a class="nav-link" href="roadmap.html">Roadmap</a>
+  <a class="nav-link" href="fixes.html">Fixes and notes</a>
+  <a class="nav-link" href="contact.html">Contact and legal</a>
 </nav>
 
 <main id="main-content">
 
-  <div class="ad-slot ad-leaderboard top" id="ad-top">
+  <div class="ad-slot ad-leaderboard top">
     <span>Advertisement</span>
-    <span class="ad-note">728×90 / responsive leaderboard slot — swap in your AdSense &lt;ins&gt; tag or your own banner here</span>
+    <span class="ad-note">728×90 leaderboard — swap in your AdSense &lt;ins&gt; tag here</span>
   </div>
 
   <h2 class="section-title" id="games">Play Now</h2>
-  <p class="section-sub">Every game below is pulled from one list in the page's code — add a new one and it shows up here automatically.</p>
+  <p class="section-sub">Every game is free to play, right here in your browser. Games marked <span style="color:var(--teal);font-weight:600">Open Source</span> link to their source code.</p>
+
+  <!-- ============================================================
+       MY GAMES — your own creations live here
+  ================================================================ -->
+  <div class="my-games-section" id="my-games-section">
+    <div class="my-games-header">
+      <div>
+        <p class="my-games-eyebrow">Vellum Studio Originals</p>
+        <h2 class="my-games-title">Made by Me</h2>
+        <p class="my-games-sub">Games I built from scratch — updated as new ones ship.</p>
+      </div>
+    </div>
+    <div class="my-games-divider"></div>
+    <div class="grid-cards" id="my-games-grid"></div>
+  </div>
+
+  <!-- Divider between original and community sections -->
+  <div class="section-divider">
+    <div class="section-divider-line"></div>
+    <span class="section-divider-label">Community &amp; Open Source</span>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <h2 class="section-title" id="games">Play Now</h2>
+  <p class="section-sub">Free browser games — open source picks and classics, all playable instantly.</p>
 
   <div class="filter-bar" id="filter-bar"></div>
-  <div class="grid-cards" id="games-grid"></div>
+  <div id="games-container"></div>
 
-  <div class="ad-slot ad-leaderboard" id="ad-bottom" style="margin-top:44px;">
+  <div class="ad-slot ad-leaderboard" style="margin-top:44px;">
     <span>Advertisement</span>
-    <span class="ad-note">728×90 / responsive banner slot — swap in your AdSense &lt;ins&gt; tag or your own banner here</span>
+    <span class="ad-note">728×90 banner — swap in your AdSense &lt;ins&gt; tag here</span>
   </div>
 
 </main>
 
-<!-- ===================== MODAL ===================== -->
+<!-- Modal -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-box" id="modal-box">
     <div class="modal-head">
@@ -347,12 +358,10 @@ footer a{ color:var(--text-dim); }
       </div>
     </div>
     <div class="modal-frame-wrap" id="modal-frame-wrap">
-      <iframe id="modal-frame" src="" title="Game" allowfullscreen
-        allow="fullscreen; gamepad; autoplay"></iframe>
+      <iframe id="modal-frame" src="" title="Game" allowfullscreen allow="fullscreen; gamepad; autoplay"></iframe>
     </div>
-    <!-- Shown if the site blocks embedding -->
     <div class="modal-blocked" id="modal-blocked">
-      <p id="modal-blocked-msg">This game's website doesn't allow it to be embedded here. You can still play it directly:</p>
+      <p id="modal-blocked-msg">This game can't be embedded here. You can still play it directly:</p>
       <a id="modal-blocked-link" href="#" target="_blank" rel="noopener">Play in new tab ↗</a>
     </div>
   </div>
@@ -360,86 +369,241 @@ footer a{ color:var(--text-dim); }
 
 <footer>
   <p>Vellum Studio &bull; <a href="index.html">Home</a> &bull; <a href="products.html">Products</a></p>
-  <p style="margin-top:6px">&#169; 2026 Vellum Studio — All Rights Reserved</p>
+  <p style="margin-top:6px">© 2026 Vellum Studio — All Rights Reserved</p>
 </footer>
 
 <script>
 /* =====================================================================
-   HOW TO ADD A GAME
+   MY GAMES — your own creations
    ---------------------------------------------------------------------
-   Add one object to the GAMES array. Fields:
+   Add your games here. Same fields as GAMES below, plus one extra:
+     version  — optional string shown on the card e.g. "v1.2"
 
-     title     — display name (required)
-     category  — short tag / filter button label (required)
-     desc      — 1–2 sentence description (required)
-     color     — hex for the placeholder thumbnail bg (optional)
-     thumb     — path/URL to a thumbnail image (optional)
-     url       — external link, opens in a new tab (use this OR embed)
-     embed     — URL for the in-page iframe popup (use this OR url)
+   Example:
+     {
+       title: "Void Drifter",
+       category: "Arcade",
+       desc: "My take on an endless space shooter. Dodge debris, collect cores.",
+       color: "#5a7fb8",
+       embed: "games/void-drifter/index.html",   ← relative path to your game folder
+       embedW: 800, embedH: 600,
+       version: "v0.9 beta"
+     }
 
-     // Modal sizing (optional — only needed for portrait/tall games)
-     embedW    — iframe width  in px (default: 900)
-     embedH    — iframe height in px (default: 600)
+   Leave the array empty ([]) and a placeholder card will appear instead.
+   ===================================================================== */
+const MY_GAMES = [
+  // ← paste your game objects here
+];
 
+/* =====================================================================
+   GAMES DATA
+   ---------------------------------------------------------------------
+   Each object needs:
+     title, category, desc        — required
+     color                        — hex for placeholder thumb bg (optional)
+     thumb                        — image URL (optional)
+     embed                        — URL for in-page iframe popup
+     url                          — external link (use instead of embed if site blocks iframes)
+     embedW / embedH              — modal size in px (default 900×600)
+     openSource                   — { label, href } shows badge + source link (optional)
    ===================================================================== */
 const GAMES = [
+
+  // ── ARCADE ──────────────────────────────────────────────────────────
   {
     title: "Snake",
     category: "Arcade",
     desc: "The classic snake game — eat, grow, and don't bite yourself. How long can you last?",
     color: "#33b8b0",
     embed: "https://gamezipper.com/snake/",
-    embedW: 900,
-    embedH: 600
-  },
-  {
-    title: "2048",
-    category: "Puzzle",
-    desc: "Slide the tiles, merge the numbers, and reach the elusive 2048 tile.",
-    color: "#5a7fb8",
-    embed: "https://gamezipper.com/2048/",
-    embedW: 540,
-    embedH: 680
-  },
-  {
-    title: "Tetris",
-    category: "Puzzle",
-    desc: "Stack falling blocks and clear lines in the timeless puzzle classic.",
-    color: "#d98255",
-    embed: "https://gamezipper.com/tetris/",
-    embedW: 540,
-    embedH: 680
+    embedW: 900, embedH: 600
   },
   {
     title: "Flappy Bird",
     category: "Arcade",
-    desc: "Tap to fly through the pipes. Simple to learn, impossible to master.",
+    desc: "Tap to fly through the pipes without touching the walls. Simple, addictive, brutal.",
     color: "#aab5c4",
     embed: "https://gamezipper.com/flappy-bird/",
-    embedW: 420,
-    embedH: 640
+    embedW: 420, embedH: 640
+  },
+  {
+    title: "Hextris",
+    category: "Arcade",
+    desc: "Rotate a hexagon to catch falling colored blocks and clear them before they stack out. Fast, hypnotic, and open source.",
+    color: "#d98255",
+    embed: "https://hextris.github.io/hextris/",
+    embedW: 700, embedH: 700,
+    openSource: { label: "GPL-3.0", href: "https://github.com/Hextris/hextris" }
+  },
+  {
+    title: "Asteroids",
+    category: "Arcade",
+    desc: "Pure JavaScript asteroids — rotate, thrust, and blast rocks before they crash into you.",
+    color: "#5a7fb8",
+    embed: "https://timrossback.github.io/asteroids/",
+    embedW: 800, embedH: 600,
+    openSource: { label: "Open Source", href: "https://github.com/timrossback/asteroids" }
+  },
+
+  // ── PUZZLE ──────────────────────────────────────────────────────────
+  {
+    title: "2048",
+    category: "Puzzle",
+    desc: "Slide the tiles, merge the numbers, and reach 2048. The classic MIT-licensed original.",
+    color: "#5a7fb8",
+    embed: "https://gamezipper.com/2048/",
+    embedW: 540, embedH: 680
+  },
+  {
+    title: "Tetris",
+    category: "Puzzle",
+    desc: "Stack falling tetrominoes and clear lines in the timeless puzzle classic.",
+    color: "#d98255",
+    embed: "https://gamezipper.com/tetris/",
+    embedW: 540, embedH: 680
+  },
+  {
+    title: "Minesweeper",
+    category: "Puzzle",
+    desc: "Uncover every safe square without detonating a mine. Three difficulty levels — beginner to expert.",
+    color: "#33b8b0",
+    embed: "https://minesweeper-playonline.github.io/",
+    embedW: 860, embedH: 640,
+    openSource: { label: "Open Source", href: "https://github.com/minesweeper-playonline/minesweeper-playonline.github.io" }
+  },
+  {
+    title: "Sliding Puzzle",
+    category: "Puzzle",
+    desc: "The classic 15-tile sliding number puzzle. Scramble and solve — how few moves can you manage?",
+    color: "#aab5c4",
+    embed: "https://scholtzm.github.io/sliding-puzzle/",
+    embedW: 640, embedH: 600,
+    openSource: { label: "MIT", href: "https://github.com/scholtzm/sliding-puzzle" }
+  },
+
+  // ── STRATEGY ────────────────────────────────────────────────────────
+  {
+    title: "Chess",
+    category: "Strategy",
+    desc: "Play chess against a computer opponent, straight in your browser. Powered by the open-source Lichess engine.",
+    color: "#5a7fb8",
+    url: "https://lichess.org/",
+    embedW: 900, embedH: 700,
+    openSource: { label: "AGPL-3.0", href: "https://github.com/lichess-org/lila" }
+  },
+  {
+    title: "Connect Four",
+    category: "Strategy",
+    desc: "Drop discs and get four in a row before your opponent does. Play against an AI.",
+    color: "#d98255",
+    embed: "https://c4.bitbucket.io/",
+    embedW: 700, embedH: 620,
+    openSource: { label: "Open Source", href: "https://bitbucket.org/Superfishycode/c4" }
+  },
+
+  // ── WORD ────────────────────────────────────────────────────────────
+  {
+    title: "Wordle (Unlimited)",
+    category: "Word",
+    desc: "Guess the hidden 5-letter word in six tries. Color clues guide you — unlimited daily games.",
+    color: "#33b8b0",
+    url: "https://wordleunlimited.org/",
+    embedW: 680, embedH: 720
+  },
+  {
+    title: "Typeracer",
+    category: "Word",
+    desc: "Race against others by typing a passage as fast and accurately as you can. Classic typing challenge.",
+    color: "#aab5c4",
+    url: "https://play.typeracer.com/",
+    embedW: 900, embedH: 600
   }
 ];
 
-/* How often an ad card appears in the grid (0 = off) */
+/* =====================================================================
+   CONFIG
+   ===================================================================== */
 const AD_EVERY_N_GAMES = 6;
+const THEME_COLORS = ["#5a7fb8","#d98255","#33b8b0","#aab5c4"];
 
-const THEME_COLORS = ["#5a7fb8", "#d98255", "#33b8b0", "#aab5c4"];
+// Category display config — icon + accent color
+const CATEGORY_META = {
+  "Arcade":   { icon:"🕹️", desc:"Reflexes, timing, and high scores" },
+  "Puzzle":   { icon:"🧩", desc:"Think it through, tile by tile" },
+  "Strategy": { icon:"♟️", desc:"Outplan, outmanoeuvre, outwit" },
+  "Word":     { icon:"📝", desc:"Letters, language, and lightning fingers" },
+};
+
 function colorFor(game, i){ return game.color || THEME_COLORS[i % THEME_COLORS.length]; }
+
+/* ---- My Games section ---- */
+function myGameCardHTML(game, i){
+  const bg = colorFor(game, i);
+  const initial = game.title.charAt(0).toUpperCase();
+  const badge = `<span class="my-game-badge">✦ Vellum Original</span>`;
+  const versionTag = game.version
+    ? `<span style="font-size:.7rem;color:var(--text-faint);margin-left:6px">${game.version}</span>` : "";
+
+  const thumb = game.thumb
+    ? `<div class="game-thumb"><img src="${game.thumb}" alt="${game.title} thumbnail">${badge}</div>`
+    : `<div class="game-thumb" style="background:${bg}">${initial}${badge}</div>`;
+
+  const w = game.embedW || 900, h = game.embedH || 600;
+  let playBtn = "";
+  if(game.embed){
+    playBtn = `<a class="main-btn btn-copper play-btn" href="#"
+        data-embed="${game.embed}" data-title="${game.title}"
+        data-url="${game.embed}" data-w="${w}" data-h="${h}">Play</a>`;
+  } else if(game.url){
+    playBtn = `<a class="main-btn btn-copper" href="${game.url}" target="_blank" rel="noopener">Play ↗</a>`;
+  }
+
+  return `<div class="game-card my-game-card">
+    ${thumb}
+    <div class="game-body">
+      <span class="game-tag">${game.category}</span>
+      <h3>${game.title}${versionTag}</h3>
+      <p class="game-desc">${game.desc}</p>
+      <div class="game-card-footer">${playBtn}</div>
+    </div>
+  </div>`;
+}
+
+function renderMyGames(){
+  const grid = document.getElementById("my-games-grid");
+  if(!MY_GAMES.length){
+    grid.innerHTML = `<div class="my-games-empty" style="grid-column:1/-1">
+      <p>Your games will appear here.</p>
+      <p>Add an object to <code>MY_GAMES</code> in the page source and it shows up instantly.</p>
+    </div>`;
+    return;
+  }
+  grid.innerHTML = MY_GAMES.map((g, i) => myGameCardHTML(g, i)).join("");
+  grid.querySelectorAll(".play-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      openModal(btn.dataset.title, btn.dataset.embed, btn.dataset.url,
+        parseInt(btn.dataset.w), parseInt(btn.dataset.h));
+    });
+  });
+}
 
 /* ---- Filter bar ---- */
 function renderFilterBar(){
   const bar = document.getElementById("filter-bar");
-  const cats = ["All", ...new Set(GAMES.map(g => g.category))];
+  const cats = ["All", ...Object.keys(CATEGORY_META).filter(c => GAMES.some(g => g.category === c))];
   bar.innerHTML = cats.map((c, i) =>
-    `<button class="filter-btn${i===0?" active":""}" data-filter="${c}">${c}</button>`
+    `<button class="filter-btn${i===0?" active":""}" data-filter="${c}">
+      ${CATEGORY_META[c] ? CATEGORY_META[c].icon + " " : ""}${c}
+    </button>`
   ).join("");
   bar.addEventListener("click", e => {
     const btn = e.target.closest(".filter-btn");
     if(!btn) return;
     bar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    renderGrid(btn.dataset.filter);
+    renderGames(btn.dataset.filter);
   });
 }
 
@@ -447,26 +611,32 @@ function renderFilterBar(){
 function adCardHTML(){
   return `<div class="game-card ad-incard ad-slot">
     <span>Advertisement</span>
-    <span class="ad-note">In-feed ad slot — swap in an AdSense unit or one of your own promos</span>
+    <span class="ad-note">In-feed ad slot — swap in an AdSense unit here</span>
   </div>`;
 }
 
 /* ---- Game card ---- */
-function gameCardHTML(game, i){
+function gameCardHTML(game, globalIdx){
+  const bg = colorFor(game, globalIdx);
+  const initial = game.title.charAt(0).toUpperCase();
   const thumb = game.thumb
-    ? `<div class="game-thumb"><img src="${game.thumb}" alt="${game.title} thumbnail"></div>`
-    : `<div class="game-thumb" style="background:${colorFor(game,i)}">${game.title.charAt(0).toUpperCase()}</div>`;
+    ? `<div class="game-thumb"><img src="${game.thumb}" alt="${game.title} thumbnail">${game.openSource ? '<span class="open-src-badge">Open Source</span>' : ''}</div>`
+    : `<div class="game-thumb" style="background:${bg}">${initial}${game.openSource ? '<span class="open-src-badge">Open Source</span>' : ''}</div>`;
 
-  const w = game.embedW || 900;
-  const h = game.embedH || 600;
+  const w = game.embedW || 900, h = game.embedH || 600;
 
-  const playTag = game.embed
-    ? `<a class="main-btn btn-copper play-btn" href="#"
-          data-embed="${game.embed}"
-          data-title="${game.title}"
-          data-url="${game.embed}"
-          data-w="${w}" data-h="${h}">Play</a>`
-    : `<a class="main-btn btn-copper" href="${game.url||'#'}" target="_blank" rel="noopener">Play</a>`;
+  let playBtn = "";
+  if(game.embed){
+    playBtn = `<a class="main-btn btn-copper play-btn" href="#"
+        data-embed="${game.embed}" data-title="${game.title}"
+        data-url="${game.embed}" data-w="${w}" data-h="${h}">Play</a>`;
+  } else {
+    playBtn = `<a class="main-btn btn-copper" href="${game.url||'#'}" target="_blank" rel="noopener">Play ↗</a>`;
+  }
+
+  const srcLink = game.openSource
+    ? `<a class="src-link" href="${game.openSource.href}" target="_blank" rel="noopener">⌥ ${game.openSource.label}</a>`
+    : "";
 
   return `<div class="game-card">
     ${thumb}
@@ -474,33 +644,76 @@ function gameCardHTML(game, i){
       <span class="game-tag">${game.category}</span>
       <h3>${game.title}</h3>
       <p class="game-desc">${game.desc}</p>
-      ${playTag}
+      <div class="game-card-footer">
+        ${playBtn}
+        ${srcLink}
+      </div>
     </div>
   </div>`;
 }
 
-/* ---- Grid ---- */
-function renderGrid(filter="All"){
-  const grid = document.getElementById("games-grid");
-  const list = GAMES.filter(g => filter==="All" || g.category===filter);
-  let html = "";
-  list.forEach((game, i) => {
-    html += gameCardHTML(game, i);
-    if(AD_EVERY_N_GAMES>0 && (i+1)%AD_EVERY_N_GAMES===0 && i!==list.length-1)
-      html += adCardHTML();
-  });
-  grid.innerHTML = html || `<p style="color:var(--text-dim)">No games in this category yet.</p>`;
+/* ---- Category separator ---- */
+function catSeparatorHTML(cat, count){
+  const meta = CATEGORY_META[cat] || { icon:"🎮", desc:"" };
+  return `<div class="cat-separator">
+    <span class="cat-separator-label"><span class="cat-separator-icon">${meta.icon}</span> ${cat}</span>
+    <div class="cat-separator-line"></div>
+    <span class="cat-separator-tag">${count} game${count!==1?"s":""} · ${meta.desc}</span>
+  </div>`;
+}
 
-  grid.querySelectorAll(".play-btn").forEach(btn => {
+/* ---- Render everything ---- */
+function renderGames(filter = "All"){
+  const container = document.getElementById("games-container");
+  const list = GAMES.filter(g => filter === "All" || g.category === filter);
+
+  if(!list.length){
+    container.innerHTML = `<p style="color:var(--text-dim)">No games in this category yet.</p>`;
+    return;
+  }
+
+  let html = "";
+  let adCount = 0;
+
+  if(filter === "All"){
+    // Group by category order
+    const catOrder = [...new Set(GAMES.map(g => g.category))];
+    catOrder.forEach(cat => {
+      const catGames = list.filter(g => g.category === cat);
+      if(!catGames.length) return;
+
+      html += catSeparatorHTML(cat, catGames.length);
+      html += `<div class="grid-cards">`;
+      catGames.forEach((game, i) => {
+        const globalIdx = GAMES.indexOf(game);
+        html += gameCardHTML(game, globalIdx);
+        adCount++;
+        if(AD_EVERY_N_GAMES > 0 && adCount % AD_EVERY_N_GAMES === 0){
+          html += adCardHTML();
+        }
+      });
+      html += `</div>`;
+    });
+  } else {
+    // Single category — no separator header needed, just one grid
+    html += catSeparatorHTML(filter, list.length);
+    html += `<div class="grid-cards">`;
+    list.forEach((game, i) => {
+      const globalIdx = GAMES.indexOf(game);
+      html += gameCardHTML(game, globalIdx);
+      if(AD_EVERY_N_GAMES > 0 && (i+1) % AD_EVERY_N_GAMES === 0 && i !== list.length-1){
+        html += adCardHTML();
+      }
+    });
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+
+  container.querySelectorAll(".play-btn").forEach(btn => {
     btn.addEventListener("click", e => {
       e.preventDefault();
-      openModal(
-        btn.dataset.title,
-        btn.dataset.embed,
-        btn.dataset.url,
-        parseInt(btn.dataset.w),
-        parseInt(btn.dataset.h)
-      );
+      openModal(btn.dataset.title, btn.dataset.embed, btn.dataset.url, parseInt(btn.dataset.w), parseInt(btn.dataset.h));
     });
   });
 }
@@ -509,66 +722,41 @@ function renderGrid(filter="All"){
 let embedCheckTimer = null;
 
 function openModal(title, embedUrl, directUrl, w, h){
-  // Update header
   document.getElementById("modal-title").textContent = title;
   document.getElementById("modal-open-tab").href = directUrl || embedUrl;
 
-  // Size the modal box to the game's natural dimensions, capped at viewport
   const box = document.getElementById("modal-box");
-  const vw = Math.min(window.innerWidth  * 0.96, w  + 2);   // +2 for borders
-  const vh = Math.min(window.innerHeight * 0.92, h  + 50);  // +50 for header
-  box.style.width  = vw + "px";
-  box.style.height = vh + "px";
+  box.style.width  = Math.min(window.innerWidth  * 0.96, w + 2) + "px";
+  box.style.height = Math.min(window.innerHeight * 0.92, h + 50) + "px";
 
-  // Hide blocked notice, show iframe
-  const frameWrap = document.getElementById("modal-frame-wrap");
-  const blocked   = document.getElementById("modal-blocked");
-  frameWrap.style.display = "flex";
-  blocked.classList.remove("visible");
+  document.getElementById("modal-frame-wrap").style.display = "flex";
+  document.getElementById("modal-blocked").classList.remove("visible");
 
-  // Load the iframe
   const frame = document.getElementById("modal-frame");
   frame.src = "";
   frame.style.opacity = "0";
-
-  // Show overlay
   document.getElementById("modal-overlay").classList.add("open");
   document.body.style.overflow = "hidden";
 
-  // Small delay then load (avoids some race conditions)
-  setTimeout(() => {
-    frame.src = embedUrl;
-  }, 60);
+  setTimeout(() => { frame.src = embedUrl; }, 60);
 
-  // Fade iframe in once it loads
   frame.onload = () => {
     frame.style.transition = "opacity .3s";
     frame.style.opacity = "1";
-
-    // Try to detect a blank / blocked page
-    // (Only works if same-origin; cross-origin silently succeeds from our side)
     try {
       const body = frame.contentDocument && frame.contentDocument.body;
-      if(body && body.innerHTML.trim() === ""){
-        showBlocked(title, directUrl || embedUrl);
-      }
-    } catch(e){
-      // Cross-origin: we can't inspect the content — that's normal and fine
-    }
+      if(body && body.innerHTML.trim() === "") showBlocked(title, directUrl || embedUrl);
+    } catch(e){}
   };
 
-  // Set blocked link
   document.getElementById("modal-blocked-link").href = directUrl || embedUrl;
   document.getElementById("modal-blocked-msg").textContent =
-    `"${title}" can't be embedded here because the game's website blocks it. Open it directly instead:`;
+    `"${title}" can't be shown in an iframe (the site blocks embedding). Open it directly instead:`;
 
-  // Fallback: if iframe hasn't loaded visibly after 8 s, offer the link
   clearTimeout(embedCheckTimer);
   embedCheckTimer = setTimeout(() => {
-    try {
-      const f = document.getElementById("modal-frame");
-      if(f.style.opacity !== "1") showBlocked(title, directUrl || embedUrl);
-    } catch(e){}
+    const f = document.getElementById("modal-frame");
+    if(f.style.opacity !== "1") showBlocked(title, directUrl || embedUrl);
   }, 8000);
 }
 
@@ -594,8 +782,9 @@ document.getElementById("modal-overlay").addEventListener("click", e => {
 });
 document.addEventListener("keydown", e => { if(e.key === "Escape") closeModal(); });
 
+renderMyGames();
 renderFilterBar();
-renderGrid();
+renderGames();
 </script>
 </body>
 </html>
