@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vellum Arcade — Free Browser Games</title>
+<meta name="description" content="Vellum Arcade — a growing collection of free browser games from Vellum Studio. Play instantly, no install required.">
+<meta property="og:title" content="Vellum Arcade — Free Browser Games">
+<meta property="og:description" content="A growing collection of free browser games from Vellum Studio.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMwZDEyMWIiLz4KICA8dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLCAnVGltZXMgTmV3IFJvbWFuJywgc2VyaWYiIGZvbnQtc2l6ZT0iMzYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiNhYWI1YzQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlY8L3RleHQ+Cjwvc3ZnPgo=">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,800;1,500&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+
+<!-- ============================================================
+     GOOGLE ADSENSE — SITE VERIFICATION / AUTO ADS SCRIPT
+     Uncomment and drop in your own publisher ID (ca-pub-XXXXXXXXXXXXXXXX)
+     to enable AdSense on this page.
+================================================================
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+-->
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --ink-950:#070a10;
+  --ink-900:#0d121b;
+  --ink-850:#121722;
+  --ink-800:#1a202c;
+  --line:rgba(233,238,245,.09);
+  --line-strong:rgba(233,238,245,.18);
+  --text:#e9eef5;
+  --text-dim:#98a1ad;
+  --text-faint:#7c8592;
+
+  --navy:#5a7fb8;
+  --navy-dim:rgba(90,127,184,.35);
+  --navy-bg:#10141f;
+
+  --copper:#d98255;
+  --copper-dim:rgba(217,130,85,.35);
+  --copper-bg:#1c130c;
+
+  --teal:#33b8b0;
+  --teal-dim:rgba(51,184,176,.35);
+  --teal-bg:#0b1817;
+
+  --silver:#aab5c4;
+  --silver-dim:rgba(170,181,196,.35);
+  --silver-bg:#14171c;
+
+  --font-display:'Fraunces',serif;
+  --font-body:'Inter',sans-serif;
+}
+
+body{
+  font-family:var(--font-body);
+  background:var(--ink-950);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+.bg-glow{ position:fixed; inset:0; z-index:-3; }
+.bg-glow::before{
+  content:"";
+  position:absolute;
+  width:900px;
+  height:900px;
+  border-radius:50%;
+  filter:blur(170px);
+  background:rgba(217,130,85,.16);
+  animation:float 18s ease-in-out infinite;
+}
+@keyframes float{
+  0%  {transform:translate(-10%,-10%) scale(1)}
+  50% {transform:translate(35%,20%) scale(1.25)}
+  100%{transform:translate(-10%,-10%) scale(1)}
+}
+
+.grid-bg{
+  position:fixed; inset:0; z-index:-2; opacity:.06;
+  background-image:
+    linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);
+  background-size:45px 45px;
+}
+
+.grain{
+  position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:180px 180px;
+}
+
+.deckle{
+  height:16px; width:100%; background-color:var(--ink-950);
+  background-image:
+    linear-gradient(135deg, var(--ink-900) 50%, transparent 50%),
+    linear-gradient(-135deg, var(--ink-900) 50%, transparent 50%);
+  background-position:0 0,0 0;
+  background-size:16px 16px;
+  background-repeat:repeat-x;
+}
+
+header{ text-align:center; padding:110px 20px 0; background:var(--ink-900); }
+
+.eyebrow{
+  font-size:.78rem; letter-spacing:3px; text-transform:uppercase;
+  color:var(--copper); font-weight:600; margin-bottom:14px;
+}
+
+header h1{ font-family:var(--font-display); font-size:4.2rem; font-weight:800; letter-spacing:1px; }
+header h1 a{ color:inherit; text-decoration:none; }
+
+header p.tagline{
+  color:var(--text-dim); margin-top:10px; font-size:1.05rem;
+  font-family:var(--font-display); font-style:italic;
+}
+
+header .deckle-spacer{ height:48px; }
+
+nav{
+  display:flex; justify-content:center; gap:8px; flex-wrap:wrap;
+  padding:16px 20px; position:sticky; top:0; backdrop-filter:blur(14px);
+  background:rgba(8,9,11,.78); z-index:10; border-bottom:1px solid var(--line);
+}
+
+.nav-link{
+  padding:10px 18px; border-radius:8px; border:1px solid var(--line-strong);
+  background:var(--ink-850); color:var(--text-dim); cursor:pointer;
+  transition:.2s; font-size:.88rem; font-weight:600; font-family:var(--font-body);
+  text-decoration:none; display:inline-block;
+}
+.nav-link:hover{ transform:translateY(-1px); color:var(--text); border-color:var(--text-faint); }
+.nav-link.active{ background:var(--ink-800); border-color:var(--copper); color:var(--copper); box-shadow:0 0 16px var(--copper-dim); }
+
+main{ max-width:1180px; margin:auto; padding:54px 22px 84px; animation:.3s fade ease; }
+@keyframes fade{ from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+.section-title{ font-family:var(--font-display); font-size:2rem; font-weight:700; margin-bottom:6px; }
+.section-sub{ color:var(--text-dim); font-size:.95rem; margin-bottom:30px; max-width:560px; }
+
+/* ---------- Ad slots ---------- */
+.ad-slot{
+  border:1px dashed var(--line-strong);
+  border-radius:10px;
+  background:rgba(255,255,255,.02);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  color:var(--text-faint); font-size:.75rem; letter-spacing:1.5px; text-transform:uppercase;
+  font-weight:700; text-align:center; gap:6px; padding:10px;
+}
+.ad-slot span.ad-note{ font-size:.68rem; letter-spacing:.4px; text-transform:none; color:var(--text-faint); font-weight:400; max-width:260px; }
+.ad-leaderboard{ width:100%; min-height:110px; margin-bottom:44px; }
+.ad-leaderboard.top{ margin-top:0; }
+.ad-incard{ min-height:220px; }
+.ad-incard a{ text-decoration:none; }
+
+/* ---------- Games grid ---------- */
+.grid-cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:4px;
+}
+
+.game-card{
+  background:rgba(255,255,255,.035);
+  border:1px solid var(--line);
+  border-radius:10px;
+  overflow:hidden;
+  transition:.22s;
+  display:flex;
+  flex-direction:column;
+}
+.game-card:hover{ transform:translateY(-4px); border-color:var(--copper); box-shadow:0 0 22px rgba(217,130,85,.14); }
+
+.game-thumb{
+  aspect-ratio:16/10;
+  width:100%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--font-display); font-size:2.4rem; font-weight:700;
+  color:rgba(255,255,255,.85);
+  position:relative;
+}
+.game-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.game-body{ padding:18px 20px 20px; display:flex; flex-direction:column; flex:1; }
+
+.game-tag{
+  display:inline-block; align-self:flex-start;
+  padding:3px 9px; border-radius:5px; font-size:.66rem; font-weight:700;
+  letter-spacing:.6px; text-transform:uppercase; margin-bottom:10px;
+  background:var(--copper-bg); color:var(--copper);
+}
+
+.game-card h3{ font-family:var(--font-display); font-size:1.1rem; font-weight:600; margin-bottom:6px; }
+.game-card p.game-desc{ color:var(--text-dim); font-size:.86rem; line-height:1.5; margin-bottom:14px; flex:1; }
+
+.main-btn{
+  display:inline-block; align-self:flex-start; margin-top:auto;
+  padding:9px 16px; border-radius:7px; text-decoration:none; font-weight:600;
+  font-size:.84rem; cursor:pointer; transition:.2s; font-family:var(--font-body);
+  border:1px solid transparent;
+}
+.btn-copper{ background:transparent; color:var(--copper); border-color:var(--copper); }
+.btn-copper:hover{ background:var(--copper); color:#1f1006; }
+
+/* ---------- Filter bar ---------- */
+.filter-bar{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+.filter-btn{
+  padding:8px 14px; border-radius:20px; border:1px solid var(--line-strong);
+  background:var(--ink-850); color:var(--text-dim); font-size:.8rem; font-weight:600;
+  cursor:pointer; transition:.2s; font-family:var(--font-body);
+}
+.filter-btn:hover{ color:var(--text); border-color:var(--text-faint); }
+.filter-btn.active{ background:var(--copper-bg); color:var(--copper); border-color:var(--copper); }
+
+/* ---------- Modal ---------- */
+.modal-overlay{
+  position:fixed; inset:0; background:rgba(4,5,7,.86); backdrop-filter:blur(6px);
+  display:none; align-items:center; justify-content:center; z-index:100; padding:24px;
+}
+.modal-overlay.open{ display:flex; }
+.modal-box{
+  width:100%; max-width:960px; background:var(--ink-900); border:1px solid var(--line-strong);
+  border-radius:12px; overflow:hidden;
+}
+.modal-head{ display:flex; align-items:center; justify-content:space-between; padding:14px 18px; border-bottom:1px solid var(--line); }
+.modal-head h3{ font-family:var(--font-display); font-size:1.05rem; }
+.modal-close{ background:none; border:1px solid var(--line-strong); color:var(--text-dim); border-radius:6px; padding:6px 12px; cursor:pointer; font-size:.85rem; }
+.modal-close:hover{ color:var(--text); border-color:var(--text-faint); }
+.modal-frame-wrap{ position:relative; width:100%; aspect-ratio:16/9; background:#000; }
+.modal-frame-wrap iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+
+footer{ text-align:center; padding:40px 20px; color:var(--text-faint); font-size:.82rem; border-top:1px solid var(--line); }
+footer a{ color:var(--text-dim); }
+
+@media (max-width:640px){
+  header h1{ font-size:2.6rem; }
+  .ad-leaderboard{ min-height:90px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-glow" id="bg"></div>
+<div class="grid-bg"></div>
+<div class="grain"></div>
+
+<header>
+  <p class="eyebrow">Vellum Studio</p>
+  <h1><a href="#">VELLUM ARCADE</a></h1>
+  <p class="tagline">Free browser games. No install, no accounts, just play.</p>
+  <div class="deckle-spacer"></div>
+</header>
+<div class="deckle"></div>
+
+<nav aria-label="Primary">
+  <a class="nav-link active" href="#games">Games</a>
+  <a class="nav-link" href="index.html">Vellum Studio Home</a>
+  <a class="nav-link" href="products.html">Products</a>
+</nav>
+
+<main id="main-content">
+
+  <!-- ============================================================
+       AD SLOT — TOP LEADERBOARD
+       Replace the placeholder box below with a real AdSense unit:
+
+       <ins class="adsbygoogle"
+            style="display:block;width:100%;min-height:90px"
+            data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+            data-ad-slot="XXXXXXXXXX"
+            data-ad-format="horizontal"
+            data-full-width-responsive="true"></ins>
+       <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  ================================================================ -->
+  <div class="ad-slot ad-leaderboard top" id="ad-top">
+    <span>Advertisement</span>
+    <span class="ad-note">728×90 / responsive leaderboard slot — swap in your AdSense &lt;ins&gt; tag or your own banner here</span>
+  </div>
+
+  <h2 class="section-title" id="games">Play Now</h2>
+  <p class="section-sub">Every game below is pulled from one list in the page's code — add a new one and it shows up here automatically.</p>
+
+  <div class="filter-bar" id="filter-bar"></div>
+
+  <div class="grid-cards" id="games-grid"></div>
+
+  <!-- ============================================================
+       AD SLOT — BOTTOM BANNER
+  ================================================================ -->
+  <div class="ad-slot ad-leaderboard" id="ad-bottom" style="margin-top:44px;">
+    <span>Advertisement</span>
+    <span class="ad-note">728×90 / responsive banner slot — swap in your AdSense &lt;ins&gt; tag or your own banner here</span>
+  </div>
+
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="modal-title">Game</h3>
+      <button class="modal-close" id="modal-close">Close ✕</button>
+    </div>
+    <div class="modal-frame-wrap">
+      <iframe id="modal-frame" src="" title="Game" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Vellum Studio &bull; <a href="index.html">Home</a> &bull; <a href="products.html">Products</a></p>
+  <p style="margin-top:6px">&#169; 2026 Vellum Studio — All Rights Reserved</p>
+</footer>
+
+<script>
+/* =====================================================================
+   HOW TO ADD A GAME
+   ---------------------------------------------------------------------
+   Add one object to the GAMES array below. That's the whole process —
+   the grid, filter buttons, and thumbnails are all generated from this
+   list automatically.
+
+   Fields:
+     title     — display name (required)
+     category  — short tag, also becomes a filter button (required)
+     desc      — 1–2 sentence description (required)
+     color     — hex used for the placeholder thumbnail background
+                 (optional — omit to auto-pick one of the theme colors)
+     thumb     — path/URL to a real thumbnail image (optional — if
+                 omitted, a colored placeholder with the game's initial
+                 is shown instead)
+     url       — external link to the game, opens in a new tab
+                 (use this OR embed, not both)
+     embed     — URL of an embeddable game (played in an in-page iframe
+                 popup instead of a new tab) (use this OR url)
+
+   Example:
+     {
+       title: "Asteroid Drift",
+       category: "Arcade",
+       desc: "Dodge and blast your way through an endless asteroid field.",
+       url: "https://itch.io/embed-upload/000000?class=game-embed"
+     }
+   ===================================================================== */
+
+const GAMES = [
+  {
+    title: "Sample Game One",
+    category: "Arcade",
+    desc: "Replace this with your first game's title, category, and a short description.",
+    url: "#"
+  },
+  {
+    title: "Sample Game Two",
+    category: "Puzzle",
+    desc: "Replace this with your second game's title, category, and a short description.",
+    url: "#"
+  },
+  {
+    title: "Sample Game Three",
+    category: "Strategy",
+    desc: "Replace this with your third game's title, category, and a short description.",
+    embed: "about:blank"
+  }
+];
+
+/* ---------------------------------------------------------------------
+   IN-GRID NATIVE AD
+   ---------------------------------------------------------------------
+   Set how often an ad card is inserted into the games grid (every N
+   game cards). Set to 0 to disable in-grid ads entirely.
+   ===================================================================== */
+const AD_EVERY_N_GAMES = 6;
+
+const THEME_COLORS = ["#5a7fb8", "#d98255", "#33b8b0", "#aab5c4"];
+
+function colorFor(game, i){
+  return game.color || THEME_COLORS[i % THEME_COLORS.length];
+}
+
+function renderFilterBar(){
+  const bar = document.getElementById("filter-bar");
+  const categories = ["All", ...new Set(GAMES.map(g => g.category))];
+  bar.innerHTML = categories.map((c, i) =>
+    `<button class="filter-btn${i === 0 ? " active" : ""}" data-filter="${c}">${c}</button>`
+  ).join("");
+  bar.addEventListener("click", e => {
+    const btn = e.target.closest(".filter-btn");
+    if(!btn) return;
+    bar.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderGrid(btn.dataset.filter);
+  });
+}
+
+function adCardHTML(){
+  /* ==================================================================
+     Replace this block with a real in-feed AdSense unit, e.g.:
+
+     <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-format="fluid"
+          data-ad-layout-key="-XX+X-XX-XX-X"
+          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+          data-ad-slot="XXXXXXXXXX"></ins>
+     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  ================================================================== */
+  return `
+    <div class="game-card ad-incard ad-slot">
+      <span>Advertisement</span>
+      <span class="ad-note">In-feed ad slot — swap in an AdSense unit or one of your own promos</span>
+    </div>`;
+}
+
+function gameCardHTML(game, i){
+  const thumb = game.thumb
+    ? `<div class="game-thumb"><img src="${game.thumb}" alt="${game.title} thumbnail"></div>`
+    : `<div class="game-thumb" style="background:${colorFor(game, i)}">${game.title.charAt(0).toUpperCase()}</div>`;
+
+  const playAttr = game.embed
+    ? `data-embed="${game.embed}" data-title="${game.title}"`
+    : "";
+  const playTag = game.embed
+    ? `<a class="main-btn btn-copper play-btn" href="#" ${playAttr}>Play</a>`
+    : `<a class="main-btn btn-copper" href="${game.url || '#'}" target="_blank" rel="noopener">Play</a>`;
+
+  return `
+    <div class="game-card">
+      ${thumb}
+      <div class="game-body">
+        <span class="game-tag">${game.category}</span>
+        <h3>${game.title}</h3>
+        <p class="game-desc">${game.desc}</p>
+        ${playTag}
+      </div>
+    </div>`;
+}
+
+function renderGrid(filter = "All"){
+  const grid = document.getElementById("games-grid");
+  const filtered = GAMES.filter(g => filter === "All" || g.category === filter);
+
+  let html = "";
+  filtered.forEach((game, i) => {
+    html += gameCardHTML(game, i);
+    if(AD_EVERY_N_GAMES > 0 && (i + 1) % AD_EVERY_N_GAMES === 0 && i !== filtered.length - 1){
+      html += adCardHTML();
+    }
+  });
+  grid.innerHTML = html || `<p style="color:var(--text-dim)">No games in this category yet.</p>`;
+
+  grid.querySelectorAll(".play-btn").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+      openModal(btn.dataset.title, btn.dataset.embed);
+    });
+  });
+}
+
+function openModal(title, embedUrl){
+  document.getElementById("modal-title").textContent = title;
+  document.getElementById("modal-frame").src = embedUrl;
+  document.getElementById("modal-overlay").classList.add("open");
+}
+function closeModal(){
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.getElementById("modal-frame").src = "";
+}
+document.getElementById("modal-close").addEventListener("click", closeModal);
+document.getElementById("modal-overlay").addEventListener("click", e => {
+  if(e.target.id === "modal-overlay") closeModal();
+});
+
+renderFilterBar();
+renderGrid();
+</script>
+</body>
+</html>
