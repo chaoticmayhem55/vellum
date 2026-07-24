@@ -475,6 +475,30 @@ footer a:hover{ color:var(--navy); }
 .social-links{ display:flex; flex-wrap:wrap; gap:10px; }
 .social-links a{ color:var(--text-dim); text-decoration:none; font-size:.86rem; font-weight:600; border:1px solid var(--line-strong); padding:9px 16px; border-radius:7px; transition:.2s; }
 .social-links a:hover{ border-color:var(--navy); color:var(--navy); }
+.asset-card{ display:flex; flex-direction:column; }
+.shot-frame{
+  aspect-ratio:16/10;
+  border-radius:8px;
+  border:1.5px dashed var(--line-strong);
+  background:repeating-linear-gradient(45deg, rgba(255,255,255,.022) 0 10px, rgba(255,255,255,.045) 10px 20px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  color:var(--text-faint);
+  margin-bottom:16px;
+  transition:.2s;
+}
+.asset-card:hover .shot-frame{ border-color:var(--text-faint); }
+.shot-frame .shot-icon{ font-size:1.9rem; opacity:.55; }
+.shot-frame span{ font-size:.72rem; letter-spacing:.8px; text-transform:uppercase; font-weight:700; }
+.asset-card h3{ font-family:var(--font-display); font-size:1.12rem; font-weight:600; margin-bottom:8px; }
+.asset-card > p{ color:var(--text-dim); font-size:.9rem; line-height:1.55; margin-bottom:6px; flex:1; }
+.asset-meta{ display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 4px; font-size:.76rem; color:var(--text-faint); }
+.asset-meta span{ background:var(--ink-900); border:1px solid var(--line-strong); padding:3px 9px; border-radius:20px; }
+.asset-buttons{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+.asset-buttons .main-btn{ margin-top:0; }
 .notice-banner{ display:flex; align-items:center; gap:10px; border-radius:8px; padding:13px 18px; margin-bottom:24px; font-size:.86rem; color:var(--text-dim); border:1px solid; }
 .notice-banner a{ font-weight:700; text-decoration:none; }
 .notice-banner a:hover{ text-decoration:underline; }
@@ -558,88 +582,65 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   <a class="nav-link" data-accent="navy" href="fixes.html">Fixes and notes</a>
   <a class="nav-link" data-accent="navy" href="contact.html">Contact and legal</a>
 </nav>
-<main id="main-content" class="theme-navy">
-  <div class="notice-banner notice-copper" role="note">
-    <span aria-hidden="true">⚠️</span>
-    <span>Heads up: Vellum apps are built with PyInstaller, so Windows Defender/SmartScreen may flag the installers as "unrecognized" — this is a common false positive for small, unsigned indie tools, not a sign of malware. <a href="fixes.html">See Fixes and notes</a> for how to safely proceed.</span>
+<main id="main-content" class="theme-teal">
+  <div class="notice-banner notice-teal" role="note">
+    <span aria-hidden="true">🖼️</span>
+    <span>Screenshots for these packs are on their way — the placeholders below will be replaced with real previews as each pack ships.</span>
   </div>
-  <h2 class="section-title">Studio Stats</h2>
-  <p class="section-sub">A small, independent studio building practical software across creator tools, gaming, and business utilities.</p>
+
+  <h2 class="section-title">Game Asset Packs</h2>
+  <p class="section-sub">Sprites, tilesets, UI kits, and sound packs from the studio — built for indie devs who need to ship fast.</p>
+
   <div class="grid-cards">
-    <div class="card stat-card"><h3>8+</h3><p>Tools Released</p></div>
-    <div class="card stat-card"><h3>100%</h3><p>Independent</p></div>
-    <div class="card stat-card"><h3>Python</h3><p>Main programming language</p></div>
-    <div class="card stat-card"><h3>&#8734;</h3><p>Ideas</p></div>
-    <div class="card stat-card"><h3>100%</h3><p>Safe</p></div>
-  </div>
-  <h2 class="section-title" style="margin-top:48px">Start Here</h2>
-  <p class="section-sub">Get the Launcher, install the dependencies, and you're ready for any Vellum product.</p>
-  <div class="grid-cards" style="grid-template-columns:1fr">
-    <details class="product-card product-card--silver" open aria-label="Vellum App Launcher — browse, install, and launch all Vellum products from one place">
-      <summary>
-        <div class="product-summary-left">
-          <span class="badge silver">LAUNCHER</span>
-          <h3>Vellum App Launcher</h3>
-          <p>Browse, install, and launch every Vellum product from one place.</p>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="product-body">
-        <p class="product-desc">The easiest way to get and run Vellum software. Download it once, then use it to grab any product, keep them updated, and launch them without hunting for installers.</p>
-        <ul class="feature-list">
-          <li>One place to browse the whole Vellum catalog</li>
-          <li>Handles downloads and keeps installed tools organized</li>
-          <li>Launches installed products directly — no digging for files</li>
-        </ul>
-        <div class="product-meta-row">
-          <span class="best-for">Best for: <b>anyone getting started with Vellum products</b></span>
-        </div>
-        <a class="main-btn btn-silver" href="https://vellumtech.gumroad.com/l/lbqfqd" target="_blank" rel="noopener">Download Launcher</a>
+
+    <div class="card asset-card">
+      <div class="shot-frame"><span class="shot-icon">🖼️</span><span>Screenshot coming soon</span></div>
+      <span class="badge teal">SPRITES</span>
+      <h3>Pixel Hero Sprite Pack</h3>
+      <p>32×32 animated character sprites — walk, run, attack, and idle cycles, ready for any 2D engine.</p>
+      <div class="asset-meta"><span>PNG</span><span>32×32</span><span>Free</span></div>
+      <div class="asset-buttons">
+        <a class="main-btn btn-teal" href="#">View Screenshots</a>
+        <a class="main-btn btn-navy" href="#">Get Pack</a>
       </div>
-    </details>
-    <details class="product-card product-card--navy" id="dependencies-card" aria-label="Vellum Dependencies — Python runtime installer required before any Vellum product will run">
-      <summary>
-        <div class="product-summary-left">
-          <span class="badge navy">SETUP</span>
-          <h3>Dependencies</h3>
-          <p>The installer for the Python runtime every Vellum product is built on. Install this first.</p>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="product-body">
-        <p class="product-desc">A one-time installer that sets up the shared Python runtime and libraries every Vellum product depends on. Run it once, then any Vellum tool you install afterward will just work.</p>
-        <ul class="feature-list">
-          <li>Installs the exact runtime version every Vellum app is tested against</li>
-          <li>One install covers every current and future Vellum product</li>
-          <li>Takes under a minute on most machines</li>
-        </ul>
-        <div class="product-meta-row">
-          <span class="best-for">Best for: <b>anyone installing a Vellum product for the first time</b></span>
-        </div>
-        <a class="main-btn btn-navy" href="https://vellumtech.gumroad.com/l/zroor" target="_blank" rel="noopener">View Product</a>
+    </div>
+
+    <div class="card asset-card">
+      <div class="shot-frame"><span class="shot-icon">🖼️</span><span>Screenshot coming soon</span></div>
+      <span class="badge navy">TILESET</span>
+      <h3>Fantasy Dungeon Tileset</h3>
+      <p>Modular stone, moss, and torch-lit tiles for building dungeon levels quickly.</p>
+      <div class="asset-meta"><span>PNG</span><span>16×16</span><span>Free</span></div>
+      <div class="asset-buttons">
+        <a class="main-btn btn-teal" href="#">View Screenshots</a>
+        <a class="main-btn btn-navy" href="#">Get Pack</a>
       </div>
-    </details>
-  </div>
-  <h2 class="section-title" style="margin-top:48px">Vellum Arcade</h2>
-  <p class="section-sub">Free browser games from the studio — no install, no accounts, just play.</p>
-  <div class="grid-cards" style="grid-template-columns:1fr">
-    <details class="product-card product-card--copper" open aria-label="Vellum Arcade — free browser games from Vellum Studio">
-      <summary>
-        <div class="product-summary-left">
-          <span class="badge copper">ARCADE</span>
-          <h3>Vellum Arcade</h3>
-          <p>A growing collection of free games you can play right in the browser.</p>
-        </div>
-        <span class="chevron">+</span>
-      </summary>
-      <div class="product-body">
-        <p class="product-desc">No downloads, no installers — just pick a game and play. New titles get added as the studio makes them.</p>
-        <div class="product-meta-row">
-          <span class="best-for">Best for: <b>a quick break between builds</b></span>
-        </div>
-        <a class="main-btn btn-copper" href="arcade.html">Play Now</a>
+    </div>
+
+    <div class="card asset-card">
+      <div class="shot-frame"><span class="shot-icon">🖼️</span><span>Screenshot coming soon</span></div>
+      <span class="badge silver">UI KIT</span>
+      <h3>Sci-Fi UI Kit</h3>
+      <p>Buttons, health bars, dialog boxes, and icon frames styled for sci-fi and cyberpunk projects.</p>
+      <div class="asset-meta"><span>PNG</span><span>Vector source</span><span>Free</span></div>
+      <div class="asset-buttons">
+        <a class="main-btn btn-teal" href="#">View Screenshots</a>
+        <a class="main-btn btn-silver" href="#">Get Pack</a>
       </div>
-    </details>
+    </div>
+
+    <div class="card asset-card">
+      <div class="shot-frame"><span class="shot-icon">🎵</span><span>Preview coming soon</span></div>
+      <span class="badge copper">AUDIO</span>
+      <h3>Retro SFX Bundle</h3>
+      <p>Jump, hit, coin, and menu sounds in an 8-bit style — drop straight into any prototype.</p>
+      <div class="asset-meta"><span>WAV</span><span>40 clips</span><span>Free</span></div>
+      <div class="asset-buttons">
+        <a class="main-btn btn-teal" href="#">Preview Sounds</a>
+        <a class="main-btn btn-copper" href="#">Get Pack</a>
+      </div>
+    </div>
+
   </div>
 </main>
 <footer>
